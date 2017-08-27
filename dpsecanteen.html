@@ -1,0 +1,135 @@
+<html>
+<head>
+    <title>dps</title>
+     <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Tangerine"> 
+<style>
+
+#options {
+height:600px;
+width:2100px;
+border: 0.5px LightGreen solid;
+color: #45922A;
+font-family:'Tangerine','Comic Sans MS',"Sans Serif";
+font-size: 50px;
+padding-left:10px;
+}
+
+#header {
+    border-bottom: 1px solid #e5e5e5;
+    font-family: 'Tangerine',"Comic Sans MS", "Sans serif";
+    color: #45922A;
+}
+
+a {
+    text-decoration:none;
+    color: #45922A;
+}
+nav {
+    position:relative;
+    float:right;
+    top:20px;
+    right:30px;
+    font-size:40px;
+}
+
+ul {
+    position:relative;
+    right:10px;
+}
+
+
+    iframe {
+    position:absolute;
+    top:90px;
+    right:1px;
+    height:600px;
+    width:1100px;
+    }
+    #info {
+        position:absolute;
+        top:320px;
+        left: 9px;
+        font-size:30px;
+    }
+</style>    
+<!--script start-->
+<script>
+//firebase start
+<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCdVFzknUKjtYtwvu2DWiuolhgcmG0_WbY",
+    authDomain: "test-a9f51.firebaseapp.com",
+    databaseURL: "https://test-a9f51.firebaseio.com",
+    projectId: "test-a9f51",
+    storageBucket: "",
+    messagingSenderId: "1042173971887"
+  };
+  firebase.initializeApp(config);
+  
+  
+
+
+
+
+
+
+
+//firebase end
+ function options() {
+     var menu=document.getElementById('options');
+     menu.innerHTML = "<ul><li><a href='http://drive-html-viewer.pansy.at/?state=%7B%22ids%22:%5B%220B0ls4lFgYbg6UjBJMDB3R1dOOGc%22%5D,%22action%22:%22open%22,%22userId%22:%22106658813252341093333%22%7D' target='screen' onclick='st_info()'>Wallet Topup</a></li><li><a href='http://drive-html-viewer.pansy.at/?state=%7B%22ids%22:%5B%220B0ls4lFgYbg6d2U5X3pwbEZPckE%22%5D,%22action%22:%22open%22,%22userId%22:%22106658813252341093333%22%7D' target='screen' onclick='st_info()'>Transaction <br> History</a></li><li><a href='http://drive-html-viewer.pansy.at/?state=%7B%22ids%22:%5B%220B0ls4lFgYbg6Z1YxUlJtaXhEcVU%22%5D,%22action%22:%22open%22,%22userId%22:%22106658813252341093333%22%7D' target='screen' onclick='st_info()'>Menu</a></li></ul>";
+     menu.style = "color: #45922A;font-family:'Tangerine','Comic Sans MS','Sans Serif';font-size: 50px;padding-left:10px;";
+ } 
+ function st_info() {
+     var img = new Image();
+     var div = document.getElementById('options');
+     img.onload = function() {
+     div.appendChild(img);
+     } 
+img.src ="http://kids.nationalgeographic.com/content/dam/kids/photos/animals/Mammals/A-G/gray-wolf-closeup.adapt.945.1.jpg";
+img.style = "height:200px;width:200px;position:absolute;top:115px;left:25px;"; 
+
+    var screen = document.getElementById("options");
+    screen.innerHTML = "<br><span id='info'><p>Name:Gokul.J.kurup <br> Section: XI <br>Wallet-Balance: 1234<br>*Sample Data<br><br><br><br><a href='javascript:void(0);' onclick='options();'>Back To dashboard</a></p><span>";
+    screen.style = "font-size:20px;";
+ }  
+</script>
+<!--script end-->
+
+
+</head>
+<body>
+
+
+
+
+
+<!--header-->
+<div id="header">
+<img src="https://image.ibb.co/fAVD1k/finaldlogo.jpg" alt="finaldlogo" border="0">
+<nav>
+    <a href="http://drive-html-viewer.pansy.at/?state=%7B%22ids%22:%5B%220B0ls4lFgYbg6UGFLMkMwZEtiZVE%22%5D,%22action%22:%22open%22,%22userId%22:%22106658813252341093333%22%7D" target="screen">About</a> |<a href="http://drive-html-viewer.pansy.at/?state=%7B%22ids%22:%5B%220B0ls4lFgYbg6b2ZGMDlvSUhQZnc%22%5D,%22action%22:%22open%22,%22userId%22:%22106658813252341093333%22%7D" target="screen">Creators</a>
+</nav>
+</div>
+
+<!--sidebar-->
+<div id ="options">
+<ul>
+    <li><a href="http://drive-html-viewer.pansy.at/?state=%7B%22ids%22:%5B%220B0ls4lFgYbg6UjBJMDB3R1dOOGc%22%5D,%22action%22:%22open%22,%22userId%22:%22106658813252341093333%22%7D" target="screen" onclick="st_info()">Wallet Topup</a></li>
+    <li><a href="http://drive-html-viewer.pansy.at/?state=%7B%22ids%22:%5B%220B0ls4lFgYbg6d2U5X3pwbEZPckE%22%5D,%22action%22:%22open%22,%22userId%22:%22106658813252341093333%22%7D" target="screen" onclick="st_info()">Transaction <br> History</a></li>
+    <li><a href="http://drive-html-viewer.pansy.at/?state=%7B%22ids%22:%5B%220B0ls4lFgYbg6Z1YxUlJtaXhEcVU%22%5D,%22action%22:%22open%22,%22userId%22:%22106658813252341093333%22%7D" target="screen" onclick="st_info()">Menu</a></li>
+</ul>
+</div>
+
+
+    <iframe src="http://drive-html-viewer.pansy.at/?state=%7B%22ids%22:%5B%220B0ls4lFgYbg6OGdBeWNJRWVJZ28%22%5D,%22action%22:%22open%22,%22userId%22:%22106658813252341093333%22%7D" name="screen"></iframe>
+
+
+
+
+
+</body>
+</html>
