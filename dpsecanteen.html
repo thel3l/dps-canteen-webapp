@@ -2,7 +2,7 @@
 <head>
     <title>dps</title>
      <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Tangerine"> 
+          href="https://fonts.googleapis.com/css?family=Tangerine">
 <style>
 
 #options {
@@ -52,7 +52,7 @@ ul {
         left: 9px;
         font-size:30px;
     }
-</style>    
+</style>
 <!--script start-->
 <script>
 //firebase start
@@ -68,8 +68,8 @@ ul {
     messagingSenderId: "1042173971887"
   };
   firebase.initializeApp(config);
-  
-  
+
+
 
 
 
@@ -80,22 +80,22 @@ ul {
 //firebase end
  function options() {
      var menu=document.getElementById('options');
-     menu.innerHTML = "<ul><li><a href='http://drive-html-viewer.pansy.at/?state=%7B%22ids%22:%5B%220B0ls4lFgYbg6UjBJMDB3R1dOOGc%22%5D,%22action%22:%22open%22,%22userId%22:%22106658813252341093333%22%7D' target='screen' onclick='st_info()'>Wallet Topup</a></li><li><a href='http://drive-html-viewer.pansy.at/?state=%7B%22ids%22:%5B%220B0ls4lFgYbg6d2U5X3pwbEZPckE%22%5D,%22action%22:%22open%22,%22userId%22:%22106658813252341093333%22%7D' target='screen' onclick='st_info()'>Transaction <br> History</a></li><li><a href='http://drive-html-viewer.pansy.at/?state=%7B%22ids%22:%5B%220B0ls4lFgYbg6Z1YxUlJtaXhEcVU%22%5D,%22action%22:%22open%22,%22userId%22:%22106658813252341093333%22%7D' target='screen' onclick='st_info()'>Menu</a></li></ul>";
+     menu.innerHTML = "<ul><li><a href='topup.html' target='screen' onclick='st_info()'>Wallet Topup</a></li><li><a href='transactionhistory.html' target='screen' onclick='st_info()'>Transaction <br> History</a></li><li><a href='menu.html' target='screen' onclick='st_info()'>Menu</a></li></ul>";
      menu.style = "color: #45922A;font-family:'Tangerine','Comic Sans MS','Sans Serif';font-size: 50px;padding-left:10px;";
- } 
+ }
  function st_info() {
      var img = new Image();
      var div = document.getElementById('options');
      img.onload = function() {
      div.appendChild(img);
-     } 
+     }
 img.src ="http://kids.nationalgeographic.com/content/dam/kids/photos/animals/Mammals/A-G/gray-wolf-closeup.adapt.945.1.jpg";
-img.style = "height:200px;width:200px;position:absolute;top:115px;left:25px;"; 
+img.style = "height:200px;width:200px;position:absolute;top:115px;left:25px;";
 
     var screen = document.getElementById("options");
     screen.innerHTML = "<br><span id='info'><p>Name:Gokul.J.kurup <br> Section: XI <br>Wallet-Balance: 1234<br>*Sample Data<br><br><br><br><a href='javascript:void(0);' onclick='options();'>Back To dashboard</a></p><span>";
     screen.style = "font-size:20px;";
- }  
+ }
 </script>
 <!--script end-->
 
@@ -111,21 +111,21 @@ img.style = "height:200px;width:200px;position:absolute;top:115px;left:25px;";
 <div id="header">
 <img src="https://image.ibb.co/fAVD1k/finaldlogo.jpg" alt="finaldlogo" border="0">
 <nav>
-    <a href="http://drive-html-viewer.pansy.at/?state=%7B%22ids%22:%5B%220B0ls4lFgYbg6UGFLMkMwZEtiZVE%22%5D,%22action%22:%22open%22,%22userId%22:%22106658813252341093333%22%7D" target="screen">About</a> |<a href="http://drive-html-viewer.pansy.at/?state=%7B%22ids%22:%5B%220B0ls4lFgYbg6b2ZGMDlvSUhQZnc%22%5D,%22action%22:%22open%22,%22userId%22:%22106658813252341093333%22%7D" target="screen">Creators</a>
+    <a href="about.html" target="screen">About</a> |<a href="Creators.html" target="screen">Creators</a>
 </nav>
 </div>
 
 <!--sidebar-->
 <div id ="options">
 <ul>
-    <li><a href="http://drive-html-viewer.pansy.at/?state=%7B%22ids%22:%5B%220B0ls4lFgYbg6UjBJMDB3R1dOOGc%22%5D,%22action%22:%22open%22,%22userId%22:%22106658813252341093333%22%7D" target="screen" onclick="st_info()">Wallet Topup</a></li>
-    <li><a href="http://drive-html-viewer.pansy.at/?state=%7B%22ids%22:%5B%220B0ls4lFgYbg6d2U5X3pwbEZPckE%22%5D,%22action%22:%22open%22,%22userId%22:%22106658813252341093333%22%7D" target="screen" onclick="st_info()">Transaction <br> History</a></li>
-    <li><a href="http://drive-html-viewer.pansy.at/?state=%7B%22ids%22:%5B%220B0ls4lFgYbg6Z1YxUlJtaXhEcVU%22%5D,%22action%22:%22open%22,%22userId%22:%22106658813252341093333%22%7D" target="screen" onclick="st_info()">Menu</a></li>
+    <li><a href="topup.html" target="screen" onclick="st_info()">Wallet Topup</a></li>
+    <li><a href="transactionhistory.html" target="screen" onclick="st_info()">Transaction <br> History</a></li>
+    <li><a href="menu.html" target="screen" onclick="st_info()">Menu</a></li>
 </ul>
 </div>
 
 
-    <iframe src="http://drive-html-viewer.pansy.at/?state=%7B%22ids%22:%5B%220B0ls4lFgYbg6OGdBeWNJRWVJZ28%22%5D,%22action%22:%22open%22,%22userId%22:%22106658813252341093333%22%7D" name="screen"></iframe>
+    <iframe src="Welcome.html" name="screen"></iframe>
 
 
 
