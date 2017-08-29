@@ -1,4 +1,4 @@
-	    @font-face {
+s	    @font-face {
     font-family: penultimate;
     src: url(fonts/penultimate.ttf);
 }
@@ -365,4 +365,14 @@ ul {
 }
     #trid:nth-child(even) {
     background-color: #dddddd;
+}
+ #submit {
+    background-color: red;
+    border-radius: 2px;
+    cursor :pointer;
+  }
+#welcomePage {
+  font-family: 'Tangerine','Comic Sans MS','Sans Serif';
+  color: #45922A;
+  font-size: 100px;
 }
