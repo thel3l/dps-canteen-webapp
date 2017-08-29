@@ -349,30 +349,30 @@ ul {
         left: 9px;
         font-size:30px;
    }
-            #headingTH {
-             color: #13B029 ;
-             font-size:40px;
-         }
-         #trhs, #trid{
-         font-family: arial, sans-serif;
-         border-collapse: collapse;
-         width: 100%;
-         }
-         .trhsC{
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
+    #headingTH {
+      color: #13B029 ;
+      font-size:40px;
+    }
+    #trhs, #trid{
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    .trhsC{
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
     #trid:nth-child(even) {
-    background-color: #dddddd;
-}
- #submit {
-    background-color: red;
-    border-radius: 2px;
-    cursor :pointer;
-  }
-#welcomePage {
-  font-family: 'Tangerine','Comic Sans MS','Sans Serif';
-  color: #45922A;
-  font-size: 100px;
-}
+      background-color: #dddddd;
+    }
+    #submit {
+      background-color: red;
+      border-radius: 2px;
+      cursor :pointer;
+    } 
+    #welcomePage {
+      font-family: 'Tangerine','Comic Sans MS','Sans Serif';
+      color: #45922A;
+      font-size: 100px;
+    }
