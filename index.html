@@ -1,22 +1,291 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  	<title>Potato Web</title>
-  	<meta charset="utf-8"/>
-    <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-  <body>
-  	<div id = "loginWrapper">
-  		<h1 id = "greeter">Welcome!</h1>
-  		<div id = "inputField">
-  		  <input id = "adminInput" type="text" required>
-        	<span class="highlight"></span>
-        	<span class="bar"></span>
-        	<label>Admission Number</label>
-         	<div class = "button" id = "adminCheck">Proceed</div>
-      </div>
-  	</div>
-    <script type="text/javascript" src = "script.js"></script>
-  </body>
 
-</html>
+<!DOCTYPE html>
+<!-- html -->
+<html>
+<!-- head -->
+<head>
+	<title>DPSE Canteen Portal</title>
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" /><!-- bootstrap-CSS -->
+	<link rel="stylesheet" href="css/bootstrap-select.css"><!-- bootstrap-select-CSS -->
+	<link href="css/font-awesome.css" rel="stylesheet" type="text/css" media="all" /><!-- Fontawesome-CSS -->
+	<script type='text/javascript' src='js/jquery-2.2.3.min.js'></script>
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+</head>
+<body >
+	<header>
+		<div class="container">
+			<div class="logo">
+				<h1><a href="index.html">DPSE Canteen Portal</a></h1>
+			</div>
+		</div>
+	</header>
+
+	<!--//-->
+	<div class="header-right">
+		<div class="banner">
+			<div class="slider">
+				<div class="callbacks_container">
+					<ul class="rslides" id="slider">
+						<li>
+							<div class="banner1">
+								<div class="caption">
+									<h3><span>Welcome</span> to DPS East's Parent Canteen Portal</h3>
+									<p><a onclick = "" class="scroll">Recharge now</a></p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="banner2">
+								<div class="caption">
+									<h3><span>Recharge</span> student's ID Card</h3>
+									<p><a onclick = "">Recharge now</a></p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="banner3">
+								<div class="caption">
+									<h3><span>For Faster Payment</span>  at DPSE Canteen</h3>
+									<p><a onclick="">Recharge now</a></p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="banner4">
+								<div class="caption">
+									<h3><span>View Student </span> & Transaction History</h3>
+									<p><a onclick = "">View now</a></p>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--Vertical Tab-->
+	<div class="categories-section main-grid-border" id="vertTab">
+		<div class="container">
+			<div class="category-list">
+				<div id="parentVerticalTab">
+					<div class="agileits-tab_nav">
+						<ul class="resp-tabs-list hor_1">
+							<li><i class="icon fa fa-credit-card" aria-hidden="true"></i>Wallets Topup</li>
+							<li><i class="icon fa fa-television" aria-hidden="true"></i>Transaction History</li>
+							<li><i class="icon fa fa-file" aria-hidden="true"></i>Menu</li>
+							<li><i class="icon fa fa-home" aria-hidden="true"></i>About</li>
+							<li><i class="icon fa fa-lightbulb-o" aria-hidden="true"></i>Creators</li>
+							<li><i class="icon fa fa-users" aria-hidden="true"></i>Profile</li>
+						</ul>
+					</div>
+					<div class="resp-tabs-container hor_1">
+						<!-- tab1 -->
+						<div>
+							<div class="tabs-box">
+								<i class="icon fa fa-credit-card inner-icon" aria-hidden="true"></i>
+
+								<ul class="tabs-menu">
+									<li><a href="#tab1"><label class="radio"><input type="radio" name="radio" checked=""><i></i>Packages</label></a></li>
+									<li><a href="#tab2"><label class="radio"><input type="radio" name="radio"><i></i>Custom</label></a></li>
+								</ul>
+								<div class="clearfix"> </div>
+								<div class="tab-grids">
+									<div id="tab1" class="tab-grid">
+										<div class="login-form">
+											<form action="#" method="post" id="formIn">
+												<ol>
+													<li>
+
+														<h4>Enter your admission number</h4>
+
+														<input type="tel" id="tel" name="tel" pattern="\d{10}" placeholder="Enter Admission Number" required="required" />
+
+													</li>
+													<li>
+														<div class="agileits-select">
+															<select class="selectpicker show-tick" data-live-search="true" required="required" >
+																<option data-tokens="Select Operator">Select Plan</option>
+																<option data-tokens="day">1 Day</option>
+																<option data-tokens="week">1 Week</option>
+																<option data-tokens="month">1 Month</option>
+															</select>
+														</div>
+													</li>
+
+													<li>
+														<input type="submit" class="submit" value="Recharge Now" />
+													</li>
+												</ol>
+											</form>
+
+										</div>
+
+									</div>
+									<div id="tab2" class="tab-grid">
+										<div class="login-form">
+											<form action="pay.html" method="post" id="formIn">
+												<ol>
+													<li>
+														<h4>Enter your admission number</h4>
+														<input type="tel" id="tel" name="tel" pattern="\d{10}" placeholder="Enter Admission Number" required />
+													</li>
+													<li>
+														<div class="wallet-right">
+															<h4>How Much To Pay?</h4>
+															<div class="wallet-rchge">
+																<input type="text" placeholder="Enter amount" name="amount" required="required"  />
+															</div>
+															<div class="clearfix"></div>
+														</div>
+													</li>
+													<li>
+														<input type="submit" class="submit" value="Recharge Now" />
+													</li>
+												</ol>
+											</form>
+										</div>
+									</div>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+						</div>
+						<div>
+
+							<div class="login-form">
+								<i class="icon fa fa-television inner-icon" aria-hidden="true"></i>
+								<form action="pay.html" method="post" id="formIn">
+
+									<ol>
+										<li>
+											<div class="agileits-select">
+												<select class="selectpicker show-tick" data-live-search="true">
+													<option data-tokens="select time">Select Time Period</option>
+													<option data-tokens="day">Today</option>
+													<option data-tokens="weekly">This Week</option>
+													<option data-tokens="monthly">This Month</option>
+													<option data-tokens="all">All Records</option>
+
+												</select>
+											</div>
+										</li>
+										<li>
+											<input type="submit" class="submit" value="View Now" />
+										</li>
+									</ol>
+								</form>
+
+							</div>
+						</div>
+						<div>
+							<i class="icon fa fa-file inner-icon" aria-hidden="true"></i>
+							<div id="tab2" class="tab-grid">
+								<div class="login-form">
+									<form action="pay.html" method="post" id="formIn">
+										<ol>
+											<li>
+												<img class = "img-responsive"	 src="">
+											</li>
+										</ol>
+									</form>
+
+								</div>
+
+							</div>
+						</div>
+						<div>
+							<i class="icon fa fa-home inner-icon" aria-hidden="true"></i>
+							<div id="tab2" class="tab-grid">
+								<div class="login-form">
+									<form action="" method="post" id="formIn">
+										<ol>
+											<li>
+												<img id = "aboutProject" class = "img-responsive" src="images/aboutdpse.png">
+											</li>
+										</ol>
+									</form>
+
+								</div>
+							</div>
+						</div>
+						<div>
+
+							<i class="icon fa fa-lightbulb-o inner-icon" aria-hidden="true"></i>
+							<div id="tab2" class="tab-grid">
+								<div class="login-form">
+									<form action="" method="post" id="formIn">
+										<ol>
+											<li>
+												<img id = "aboutCreators" class = "img-responsive" src ="images/creatorsdpse.png">
+											</li>
+										</ol>
+									</form>
+
+								</div>
+							</div>
+
+						</div>
+						<div>
+							<i class="icon fa fa-user inner-icon" aria-hidden="true"></i>
+							<div id="tab2" class="tab-grid">
+								<div class="login-form">
+									<form action="pay.html" method="post" id="formIn">
+										<ol>
+											<li>
+
+												<div class = "img-responsive" id = "profileImage"></div>
+											</li>
+											<li>
+												<div class="wallet-rchge">
+													<input readonly = "true" type="text" id="studentName" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required="">
+												</div>
+											</li>
+											<li>
+												<div class="wallet-rchge">
+													<input readonly = "true" type="text" id="adminNumber" value = "BE00012314" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required="">
+												</div>
+											</li>
+											<li>
+												<div class="wallet-right">
+													<h4>Wallet Balance</h4>
+													<div class="wallet-rchge">
+														<input id = "walletBal" readonly = "true" type="text" name="amount" onblur="if (this.value == '') {this.value = '';}" required=""  />
+													</div>
+												</div>
+											</li>
+										</ol>
+									</form>
+
+								</div>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+
+		</script>
+		<script src="js/bootstrap.js"></script>
+		<script src="js/responsiveslides.min.js"></script>
+		<script>
+
+		</script>
+		<script src="js/bootstrap-select.js"></script>
+		<script>
+
+		</script>
+		<link rel="stylesheet" type="text/css" href="css/easy-responsive-tabs.css" />
+		<script src="js/easyResponsiveTabs.js"></script>
+		<script type="text/javascript" src="js/move-top.js"></script>
+		<script type="text/javascript" src="js/easing.js"></script>
+		<script type = "text/javascript" src="js/firebase.js"></script>
+		<script type="text/javascript" src = "js/firebaseInit.js"></script>
+		<script type="text/javascript" src = "js/script.js"></script>
+	</body>
+	</html>
