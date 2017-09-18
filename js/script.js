@@ -1,6 +1,9 @@
 var img = new Image();
 var div = document.getElementById('profileImage');
 
+function goToHome(){
+  location.href = "index.html"
+}
 $(document).ready(function() {
   $("#tab2").hide();
   $("#tab3").hide();
