@@ -97,55 +97,68 @@
 								<div class="clearfix"> </div>
 								<div class="tab-grids">
 									<div id="tab1" class="tab-grid">
-										<div class="login-form">
-											<form action="#" method="post" id="formIn">
-												<ol>
+										<div class="login-form" id = "formIn">
+											 <ol>
 													<li>
 
 														<h4>Enter your admission number</h4>
 
-														<input type="tel" id="tel" name="tel" pattern="\d{10}" placeholder="Enter Admission Number" required="required" />
+														<input id="idNum" name="idNum" placeholder="Enter Admission Number"  value="BE/00012314" readonly = "true" required="required" />
 
 													</li>
 													<li>
 														<div class="agileits-select">
-															<select class="selectpicker show-tick" data-live-search="true" required="required" >
+															<select class="selectpicker show-tick" data-live-search="true" required="required" id = "foodPlans" name "plans">
 																<option data-tokens="Select Operator">Select Plan</option>
-																<option data-tokens="day">1 Day</option>
-																<option data-tokens="week">1 Week</option>
-																<option data-tokens="month">1 Month</option>
+																<option value = "day" data-tokens= "day">1 Day</option>
+																<option value = "week" data-tokens= "week">1 Week</option>
+																<option value = "month" data-tokens= "month">1 Month</option>
 															</select>
+															<div id="selectValue" class="modal fade custMod" role="dialog">
+																<div class="modal-dialog">
+																	<div class="modal-content">
+																		<div class="modal-header">
+																			<button type="button" class="close" data-dismiss="modal">&times;</button>
+																			<h4 class="modal-title">Invalid Selection</h4>
+																		</div>
+																		<div class="modal-body">
+																			<p id = "modalError" class = "alert-danger">Please Select Valid Lunch Plan!</p>
+																		</div>
+																		<div class="modal-footer">
+																			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																		</div>
+																	</div>
+
+																</div>
+															</div>
 														</div>
 													</li>
 
 													<li>
-														<input type="submit" class="submit" value="Recharge Now" />
+														<input onclick = "topUpPre()"  type="submit" class="submit" value="Recharge Now" />
 													</li>
 												</ol>
-											</form>
-
 										</div>
 
 									</div>
 									<div id="tab2" class="tab-grid">
 										<div class="login-form">
-											<form action="pay.html" method="post" id="formIn">
 												<ol>
 													<li>
 														<h4>Enter your admission number</h4>
-														<input type="tel" id="tel" name="tel" pattern="\d{10}" placeholder="Enter Admission Number" required />
+														<input type="id" id="idNum2" name="idNum" value="BE/00012314" readonly = "true" placeholder="Enter Admission Number" required />
 													</li>
 													<li>
 														<div class="wallet-right">
 															<h4>How Much To Pay?</h4>
 															<div class="wallet-rchge">
-																<input type="text" placeholder="Enter amount" name="amount" required="required"  />
+																<input id = "customMon" type="text" placeholder="Enter amount" name="amount" required="required"  />
 															</div>
 															<div class="clearfix"></div>
 														</div>
 													</li>
 													<li>
-														<input type="submit" class="submit" value="Recharge Now" />
+														<input onclick = "topUp()" type="submit" class="submit" value="Recharge Now" />
 													</li>
 												</ol>
 											</form>
@@ -175,7 +188,7 @@
 										</li>
 										<li>
 											<input data-toggle = "modal" data-target = "#transModal" type="submit" class="submit" value="View Now" />
-											<div class="modal fade" id="transModal" role="dialog">
+											<div class="modal fade custMod" id="transModal" role="dialog">
 												<div class="modal-dialog">
 
 													<!-- Modal content-->

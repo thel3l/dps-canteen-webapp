@@ -111,3 +111,43 @@ studentIDRef.on("value", function(snapshot){
   img.classList.add("img-responsive");
   img.src = id_val;
 });
+var money = 0;
+function topUpPre(){
+  if(document.getElementById("idNum").value == ""){
+      console.log("TF?");
+  }else if(document.getElementById("idNum").value == "BE/00012314"){
+    var ddl = document.getElementById("foodPlans");
+    var selectedPlan = ddl.options[ddl.selectedIndex].value;
+    if (selectedPlan == "day"){
+      money += 50;
+    }else if(selectedPlan == "week"){
+      money += 250;
+    }else if(selectedPlan == "month"){
+      money += 1000;
+    }else{
+      $("#selectValue").modal("show");
+    }
+
+    walletRef.on("value",function(snapshot) {
+      var w_val = snapshot.val();
+      money += w_val;
+    });
+    console.log(money);
+    walletRef.set(money);
+  }
+}
+function topUp(){
+  if(document.getElementById("idNum2").value == ""){
+      console.log("TF?");
+  }else if(document.getElementById("idNum2").value == "BE/00012314"){
+    var customMon = document.getElementById("customMon");
+    money = parseFloat(customMon.value);
+    console.log(money);
+    walletRef.on("value",function(snapshot) {
+      var w_val = snapshot.val();
+      money += w_val;
+    });
+    console.log(money);
+    walletRef.set(money);
+  }
+}

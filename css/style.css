@@ -581,6 +581,12 @@ a.mask {
   overflow: hidden;
   display: block;
 }
+#modalError{
+  text-align: center;
+}
+.custMod{
+  top: 30px;
+}
 /*--services--*/
 .service-top h3{
   text-align:center;
@@ -1158,8 +1164,6 @@ figure.effect-layla h4.effect1{
 figure.effect-layla h4.effect3{
   margin-top: 23%;
 }
-/*----*/
-/*--premium--*/
 .premium {
   background: url(../images/pr.jpg) no-repeat center;
   width: 100%;
@@ -1183,8 +1187,6 @@ figure.effect-layla h4.effect3{
   font-size: 1em;
   margin: 0.3em 0 0;
 }
-/*--//premium--*/
-/*----*/
 .future h3 {
   font-size: 3em;
   color: #000;
@@ -1281,23 +1283,20 @@ span.fur-money{
   cursor: pointer;
   z-index: 100;
 }
-/*--//--*/
-/*--contact--*/
-
-/**** LOGIN_formIn ******/
-/* formIn Form styles */
-#formIn ol{
+/* formIn, #tab2 Form styles */
+#formIn ol, #tab2 ol{
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
-#formIn li{
+
+#formIn li, #tab2 li{
   position: relative;
   margin: 20px 0px;
 }
-#formIn fieldset input,
-#formIn fieldset textarea,
-#formIn fieldset select{
+#formIn fieldset input, #tab2 fieldset input,
+#formIn fieldset textarea, #tab2 fieldset textarea,
+#formIn fieldset select, #tab2 fieldset select{
   background: #fff url(ico_validation.png) 379px 24px no-repeat;
   display: inline-block;
   width: 371px;
@@ -1311,19 +1310,19 @@ span.fur-money{
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-#formIn fieldset select{
+#formIn fieldset select, #tab2 fieldset select{
   width: 401px;
   padding: 3px;
 }
-#formIn fieldset #postcode{
+#formIn fieldset, #tab2 fieldset #postcode{
   padding: 3px;
   width: 400px;
 }
-#formIn input::-webkit-input-placeholder,
-#formIn input:-moz-placeholder {
+#formIn input::-webkit-input-placeholder, #tab2 input::-webkit-input-placeholder,
+#formIn input:-moz-placeholder, #tab2 input:-moz-placeholder {
   color: #A6A6A6;
 }
-#formIn .validation01
+#formIn .validation01, #tab2 .validation01
 {
   background: red;
   color: #fff;
@@ -1344,53 +1343,53 @@ span.fur-money{
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-#formIn input:focus + .validation01 {
+#formIn input:focus + .validation01, #tab2 input:focus + .validation01 {
   display: block;
 }
-#formIn input:focus:required:invalid + .validation01 .valid,
-#formIn input.error:focus + .validation01 .valid,
-#formIn input.required:focus + .validation01 .valid,
-#formIn input:focus + .validation01 .valid	{
+#formIn input:focus:required:invalid + .validation01 .valid, #tab2 input:focus:required:invalid + .validation01 .valid,
+#formIn input.error:focus + .validation01 .valid, #tab2 input.error:focus + .validation01 .valid,
+#formIn input.required:focus + .validation01 .valid, #tab2 input.required:focus + .validation01 .valid,
+#formIn input:focus + .validation01 .valid, #tab2 input:focus + .validation01 .valid	{
   display: none;
 }
-#formIn input:focus:required:valid + .validation01,
-#formIn input.valid:focus + .validation01{
+#formIn input:focus:required:valid + .validation01, #tab2 input:focus:required:valid + .validation01,
+#formIn input.valid:focus + .validation01, #tab2 input.valid:focus + .validation01{
   background: green;
 }
-#formIn input:focus:required:valid + .validation01 .invalid,
-#formIn input.valid:focus + .validation01 .invalid	{
+#formIn input:focus:required:valid + .validation01 .invalid, #tab2 input:focus:required:valid + .validation01 .invalid,
+#formIn input.valid:focus + .validation01 .invalid, #tab2 input.valid:focus + .validation01 .invalid	{
   display: none;
 }
-#formIn input:focus:required:valid + .validation01 .valid,
-#formIn input.valid:focus + .validation01 .valid{
+#formIn input:focus:required:valid + .validation01 .valid, #tab2 input:focus:required:valid + .validation01 .valid,
+#formIn input.valid:focus + .validation01 .valid, #tab2 input.valid:focus + .validation01 .valid{
   display: block;
 }
-#formIn fieldset input:required:valid{
+#formIn fieldset input:required:valid, #tab2 fieldset input:required:valid{
   background-color: #fff;
   background-position: 379px -61px;
 }
 
 /* Enhanced error styling */
-#formIn input.error{
+#formIn input.error, #tab2 input.error{
   background-color: pink;
   background-position: 379px 3px;
   outline: none;
 }
-#formIn input.required{
+#formIn input.required, #tab2 input.required{
   background-color: #fff;
   background-position: 379px -29px;
 }
-#formIn input.valid {
+#formIn input.valid, #tab2 input.valid {
   background-color: #fff;
   background-position: 379px -61px;
 }
 
-#formIn input.error::-webkit-input-placeholder,
-#formIn inputerror :-moz-placeholder {
+#formIn input.error::-webkit-input-placeholder, #tab2 input.error::-webkit-input-placeholder,
+#formIn inputerror :-moz-placeholder, #tab2 inputerror :-moz-placeholder {
   color: #fff;
 }
 
-input#tel {
+input#idNum, input#idNum2 {
   width: 85%;
   padding: 10px;
   font-weight: normal;
@@ -2067,7 +2066,7 @@ input.submit {
     font-size: 32px;
     letter-spacing: 0px;
   }
-  input#tel,input#customer {
+  input#idNum, input#idNum2,input#customer {
     width: 100%;
   }
   .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
