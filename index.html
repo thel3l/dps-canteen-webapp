@@ -157,9 +157,8 @@
 						</div>
 						<div>
 
-							<div class="login-form">
+							<div class="login-form" id="formIn">
 								<i class="icon fa fa-television inner-icon" aria-hidden="true"></i>
-								<form action="pay.html" method="post" id="formIn">
 
 									<ol>
 										<li>
@@ -175,10 +174,71 @@
 											</div>
 										</li>
 										<li>
-											<input type="submit" class="submit" value="View Now" />
+											<input data-toggle = "modal" data-target = "#transModal" type="submit" class="submit" value="View Now" />
+											<div class="modal fade" id="transModal" role="dialog">
+												<div class="modal-dialog">
+
+													<!-- Modal content-->
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal">&times;</button>
+															<h4 class="modal-title">Transaction History</h4>
+														</div>
+														<div class="modal-body">
+															<div class="table-responsive">
+																<table class="table">
+																	<thead>
+																		<tr>
+																			<th>Time Stamp</th>
+																			<th>Amount</th>
+																			<th>Payment Medium</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<tr>
+																			<td>1505904738</td>
+																			<td>&#8377 250</td>
+																			<td>Card</td>
+																		</tr>
+																		<tr>
+																			<td>1505904739</td>
+																			<td>&#8377 100</td>
+																			<td>Cash</td>
+																		</tr>
+																		<tr>
+																			<td>1505904797</td>
+																			<td>&#8377 50</td>
+																			<td>Card</td>
+																		</tr>
+														   				<tr>
+																			<td>1505903738</td>
+																			<td>&#8377 350</td>
+																			<td>Cash</td>
+																		</tr>
+																		<tr>
+																			<td>1505904679</td>
+																			<td>&#8377 120</td>
+																			<td>Card</td>
+																		</tr>
+																		<tr>
+																			<td>1505904788</td>
+																			<td>&#8377 10</td>
+																			<td>Card</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+														</div>
+													</div>
+
+												</div>
+											</div>
+
 										</li>
 									</ol>
-								</form>
 
 							</div>
 						</div>
