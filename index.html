@@ -176,18 +176,17 @@
 									<ol>
 										<li>
 											<div class="agileits-select">
-												<select class="selectpicker show-tick" data-live-search="true">
-													<option data-tokens="select time">Select Time Period</option>
-													<option data-tokens="day">Today</option>
-													<option data-tokens="weekly">This Week</option>
-													<option data-tokens="monthly">This Month</option>
-													<option data-tokens="all">All Records</option>
+												<select id = "transPrec" class="selectpicker show-tick" data-live-search="true">
+													<option value = "day" data-tokens="day">Last Usage</option>
+													<option value = "ten" data-tokens="ten">Last 10 Usages</option>
+													<option value = "thirty" data-tokens="thirty">Last 30 Usages</option>
+													<option value = "fifty" data-tokens="fifty">Last 50 Usages </option>
 
 												</select>
 											</div>
 										</li>
 										<li>
-											<input data-toggle = "modal" data-target = "#transModal" type="submit" class="submit" value="View Now" />
+											<input onclick = "transUpdate()" data-toggle = "modal" data-target = "#transModal" type="submit" class="submit" value="View Now" />
 											<div class="modal fade custMod" id="transModal" role="dialog">
 												<div class="modal-dialog">
 
@@ -207,37 +206,7 @@
 																			<th>Payment Medium</th>
 																		</tr>
 																	</thead>
-																	<tbody>
-																		<tr>
-																			<td>1505904738</td>
-																			<td>&#8377 250</td>
-																			<td>Card</td>
-																		</tr>
-																		<tr>
-																			<td>1505904739</td>
-																			<td>&#8377 100</td>
-																			<td>Cash</td>
-																		</tr>
-																		<tr>
-																			<td>1505904797</td>
-																			<td>&#8377 50</td>
-																			<td>Card</td>
-																		</tr>
-														   				<tr>
-																			<td>1505903738</td>
-																			<td>&#8377 350</td>
-																			<td>Cash</td>
-																		</tr>
-																		<tr>
-																			<td>1505904679</td>
-																			<td>&#8377 120</td>
-																			<td>Card</td>
-																		</tr>
-																		<tr>
-																			<td>1505904788</td>
-																			<td>&#8377 10</td>
-																			<td>Card</td>
-																		</tr>
+																	<tbody id = "tranHist">
 																	</tbody>
 																</table>
 															</div>
@@ -259,7 +228,7 @@
 							<i class="icon fa fa-file inner-icon" aria-hidden="true"></i>
 							<div id="tab2" class="tab-grid">
 								<div class="login-form">
-									<form action="pay.html" method="post" id="formIn">
+									<form action="" method="post" id="formIn">
 										<ol>
 											<li>
 												<img class = "img-responsive"	 src="">

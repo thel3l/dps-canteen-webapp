@@ -72,6 +72,7 @@ jQuery(document).ready(function($) {
   $(".scroll").click(function(event){
     event.preventDefault();
     $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+
   });
 });
 $(document).ready(function() {
@@ -128,7 +129,7 @@ function topUpPre(){
       $("#selectValue").modal("show");
     }
 
-    walletRef.on("value",function(snapshot) {
+    walletRef.once("value",function(snapshot) {
       var w_val = snapshot.val();
       money += w_val;
     });
@@ -150,4 +151,28 @@ function topUp(){
     console.log(money);
     walletRef.set(money);
   }
+}
+function transUpdate(){
+  var ddl = document.getElementById("transPrec");
+  var query = firebase.database().ref().child("transactions").child("BE0001234");
+  var selectedTrans = ddl.options[ddl.selectedIndex].value;
+  if (selectedTrans == "day"){
+    var trans = query.orderByChild("timestamp").limitToLast(1);
+  }else if(selectedTrans == "ten"){
+    var trans = query.orderByChild("timestamp").limitToLast(10);
+  }else if(selectedTrans == "thirty"){
+    var trans = query.orderByChild("timestamp").limitToLast(30);
+  }else if(selectedTrans == "fifty"){
+    var trans = query.orderByChild("timestamp").limitToLast(50);
+  }else{
+    $("#selectValue").modal("show");
+  }
+    document.getElementById("tranHist").innerHTML = "";
+  trans.on("child_added", function(snap){
+    var timestamp = snap.val().timestamp;
+    var amount = snap.val().amount;
+    var payment = snap.val().gateway;
+    document.getElementById("tranHist").innerHTML += "<tr><td>"+timestamp+"</td>"+"<td>"+amount+"</td>"+"<td>"+payment+"</td>"+"</tr>";
+    console.log(timestamp);
+  });
 }
