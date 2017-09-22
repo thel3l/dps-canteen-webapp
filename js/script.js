@@ -172,7 +172,7 @@ function transUpdate(){
     var timestamp = snap.val().timestamp;
     var amount = snap.val().amount;
     var payment = snap.val().gateway;
-    document.getElementById("tranHist").innerHTML += "<tr><td>"+timestamp+"</td>"+"<td>"+amount+"</td>"+"<td>"+payment+"</td>"+"</tr>";
+    document.getElementById("tranHist").innerHTML = "<tr><td>"+timestamp+"</td>"+"<td>"+amount+"</td>"+"<td>"+payment+"</td>"+"</tr>" + document.getElementById("tranHist");
     console.log(timestamp);
   });
 }
