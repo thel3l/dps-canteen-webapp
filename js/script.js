@@ -115,7 +115,7 @@ studentIDRef.on("value", function(snapshot){
 var money = 0;
 function topUpPre(){
   if(document.getElementById("idNum").value == ""){
-      console.log("TF?");
+    console.log("TF?");
   }else if(document.getElementById("idNum").value == "BE/00012314"){
     var ddl = document.getElementById("foodPlans");
     var selectedPlan = ddl.options[ddl.selectedIndex].value;
@@ -139,7 +139,7 @@ function topUpPre(){
 }
 function topUp(){
   if(document.getElementById("idNum2").value == ""){
-      console.log("TF?");
+    console.log("TF?");
   }else if(document.getElementById("idNum2").value == "BE/00012314"){
     var customMon = document.getElementById("customMon");
     money = parseFloat(customMon.value);
@@ -167,7 +167,7 @@ function transUpdate(){
   }else{
     $("#selectValue").modal("show");
   }
-    document.getElementById("tranHist").innerHTML = "";
+  document.getElementById("tranHist").innerHTML = "";
   trans.on("child_added", function(snap){
     var timestamp = snap.val().timestamp;
     var amount = snap.val().amount;
