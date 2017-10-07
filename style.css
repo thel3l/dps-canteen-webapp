@@ -23,8 +23,8 @@ body a{
   -ms-transition: 0.5s all;
 }
 @font-face {
-  font-family: penultimate;
-  src: url(fonts/penultimate.ttf);
+    font-family: penultimate;
+    src: url(fonts/penultimate.ttf);
 }
 @-webkit-keyframes boxEntrance{
   from{
@@ -84,28 +84,28 @@ body a{
   from{
     background: #5264AE;
   }
-  to{
-    width: 0;
-    background:transparent;
-  }
+    to{
+      width: 0;
+      background:transparent;
+    }
 }
 @-moz-keyframes inputHighlighter {
   from{
     background: #5264AE;
   }
-  to{
-    width: 0;
-    background:transparent;
-  }
+    to{
+      width: 0;
+      background:transparent;
+    }
 }
 @keyframes inputHighlighter {
   from{
     background: #5264AE;
   }
-  to{
-    width: 0;
-    background:transparent;
-  }
+    to{
+      width: 0;
+      background:transparent;
+    }
 }
 @-webkit-keyframes boxEntrancet{
   from{
@@ -133,51 +133,51 @@ body a{
 }
 #login{
   width: 100%;
-  height: 100%;
-  background: url("images/greybg.jpg");
-  background-repeat: no-repeat;
-  background-size: 100%;
-  font-family:'penultimate';
+	height: 100%;
+	background: url("images/greybg.jpg");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	font-family:'penultimate';
 }
 #loginWrapper{
-  height: 80%;
-  position: fixed;
-  top: 10%;
-  width: 20%;
-  left: 40%;
-  background-color: white;
-  -webkit-transition-duration: 0.6s;
+	height: 80%;
+	position: fixed;
+	top: 10%;
+	width: 20%;
+	left: 40%;
+	background-color: white;
+	-webkit-transition-duration: 0.6s;
   -moz-transition-duration: 0.6s;
-  -webkit-animation: boxEntrance 0.6s;
+	-webkit-animation: boxEntrance 0.6s;
   -moz-animation: boxEntrance 0.6s;
   animation: boxEntrance 0.6s;
   -webkit-animation-iteration-count: 1;
   -moz-animation-iteration-count: 1;
   animation-iteration-count: 1;
   -webkit-animation-fill-mode: forwards;
-  -moz-animation-fill-mode: forwards;
+	-moz-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 }
 #greeter{
-  color: black;
-  text-align: center;
+	color: black;
+	text-align: center;
 }
 #adminInput{
-  font-size: 18px;
-  padding: 10px 10px 10px 5px;
-  display: block;
-  width: 94%;
-  border: none;
-  border-bottom: 1px solid #757575;
+ 	font-size: 18px;
+ 	padding: 10px 10px 10px 5px;
+ 	display: block;
+ 	width: 94%;
+ 	border: none;
+ 	border-bottom: 1px solid #757575;
 }
 #adminInput:focus{
-  outline: none;
+	outline: none;
 }
 label{
-  color: #999;
-  font-size: 18px;
-  font-weight: normal;
-  position: absolute;
+	color: #999;
+	font-size: 18px;
+	font-weight: normal;
+	position: absolute;
   pointer-events: none;
   left: 5px;
   top: 10px;
@@ -191,9 +191,9 @@ label{
   color: #5264AE;
 }
 .bar{
-  position: relative;
-  display: block;
-  width: 100%;
+	position: relative;
+	display: block;
+	width: 100%;
 }
 .bar:before, .bar:after{
   content: '';
@@ -230,9 +230,9 @@ label{
   animation: inputHighlighter 0.3s ease;
 }
 #inputField{
-  top: 25%;
-  position: relative;
-  margin-bottom: 45px;
+	top: 25%;
+	position: relative;
+	margin-bottom: 45px;
 }
 .button{
   position: relative;
@@ -242,7 +242,7 @@ label{
   color: #FFFFFF;
   -webkit-animation: buttonExpan 0.3s;
   -moz-animation: buttonExpan 0.3s;
-  animation: buttonExpan 0.3s;
+   animation: buttonExpan 0.3s;
   -webkit-animation-fill-mode: forwards;
   -moz-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
@@ -315,17 +315,17 @@ td{
 }
 #choiceAmount{
   top: 35%;
-  width: 97%;
+	width: 97%;
 }
 #topUpField{
-  top: 25%;
-  position: relative;
-  margin-bottom: 45px;
-  width: 50%;
-  box-shadow: 5px 5px 5px #888888;
-  border: solid #888888 0.2px;
-  margin: auto;
-  top: 20px;
+	top: 25%;
+	position: relative;
+	margin-bottom: 45px;
+	width: 50%;
+	box-shadow: 5px 5px 5px #888888;
+	border: solid #888888 0.2px;
+	margin: auto;
+	top: 20px;
 }
 #customPay{
   position: relative;

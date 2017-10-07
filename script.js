@@ -72,7 +72,6 @@ jQuery(document).ready(function($) {
   $(".scroll").click(function(event){
     event.preventDefault();
     $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-
   });
 });
 $(document).ready(function() {
@@ -115,7 +114,7 @@ studentIDRef.on("value", function(snapshot){
 var money = 0;
 function topUpPre(){
   if(document.getElementById("idNum").value == ""){
-    console.log("TF?");
+      console.log("TF?");
   }else if(document.getElementById("idNum").value == "BE/00012314"){
     var ddl = document.getElementById("foodPlans");
     var selectedPlan = ddl.options[ddl.selectedIndex].value;
@@ -129,7 +128,7 @@ function topUpPre(){
       $("#selectValue").modal("show");
     }
 
-    walletRef.once("value",function(snapshot) {
+    walletRef.on("value",function(snapshot) {
       var w_val = snapshot.val();
       money += w_val;
     });
@@ -139,7 +138,7 @@ function topUpPre(){
 }
 function topUp(){
   if(document.getElementById("idNum2").value == ""){
-    console.log("TF?");
+      console.log("TF?");
   }else if(document.getElementById("idNum2").value == "BE/00012314"){
     var customMon = document.getElementById("customMon");
     money = parseFloat(customMon.value);
@@ -152,33 +151,3 @@ function topUp(){
     walletRef.set(money);
   }
 }
-function transUpdate(){
-  var ddl = document.getElementById("transPrec");
-  var query = firebase.database().ref().child("transactions").child("BE0001234");
-  var selectedTrans = ddl.options[ddl.selectedIndex].value;
-  if (selectedTrans == "day"){
-    var trans = query.orderByChild("timestamp").limitToLast(1);
-  }else if(selectedTrans == "ten"){
-    var trans = query.orderByChild("timestamp").limitToLast(10);
-  }else if(selectedTrans == "thirty"){
-    var trans = query.orderByChild("timestamp").limitToLast(30);
-  }else if(selectedTrans == "fifty"){
-    var trans = query.orderByChild("timestamp").limitToLast(50);
-  }else{
-    $("#selectValue").modal("show");
-  }
-  document.getElementById("tranHist").innerHTML = "";
-  trans.on("child_added", function(snap){
-    var timestamp = snap.val().timestamp;
-    var amount = snap.val().amount;
-    var payment = snap.val().gateway;
-    document.getElementById("tranHist").innerHTML = "<tr><td>"+timestamp+"</td>"+"<td>"+amount+"</td>"+"<td>"+payment+"</td>"+"</tr>" + document.getElementById("tranHist").innerHTML;
-    console.log(timestamp);
-  });
-}
-$(".rchgnow").click(function(){
-    $('html, body').animate({
-        scrollTop: $( $(this).attr('href') ).offset().top
-    }, 1000, "easeOutCubic");
-    return false;
-});
