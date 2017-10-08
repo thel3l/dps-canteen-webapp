@@ -1,19 +1,7 @@
-@font-face {
-  font-family: 'Montserrat-Regular';
-  src:url(../fonts/Montserrat-Regular.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Oxygen-Regular';
-  src:url(../fonts/Oxygen-Regular.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Open Sans', sans-serif;
-  src:url(../fonts/OpenSans-Regular.ttf) format('truetype');
-}
 html,body{
   background:#fff;
   font-size: 100%;
-  font-family: 'Oxygen-Regular';
+  font-family: 'Oxygen';
 }
 body a{
   transition: 0.5s all;
@@ -22,9 +10,6 @@ body a{
   -moz-transition: 0.5s all;
   -ms-transition: 0.5s all;
 }
-@font-face {
-  font-family: penultimate;
-  src: url(fonts/penultimate.ttf);
 }
 @-webkit-keyframes boxEntrance{
   from{
@@ -137,7 +122,6 @@ body a{
   background: url("images/greybg.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
-  font-family:'penultimate';
 }
 #loginWrapper{
   height: 80%;
@@ -345,7 +329,7 @@ ul{
 }
 h1,h2,h3,h4,h5,h6{
   margin:0;
-  font-family: 'Montserrat-Regular';
+  font-family: 'Montserrat';
 }
 /*----*/
 .logo {
@@ -1191,7 +1175,7 @@ figure.effect-layla h4.effect3{
   font-size: 3em;
   color: #000;
   margin: 0 0 1em;
-  font-family: 'Montserrat-Regular';
+  font-family: 'Montserrat';
   text-align: center;
 }
 .future h3:after,.future h3:before {
@@ -1599,7 +1583,7 @@ ul.tabs-menu li a {
   color: #28ece3;
   font-size: 20px;
   letter-spacing: 1px;
-  font-family: 'Oxygen-Regular';
+  font-family: 'Oxygen';
 }
 label.radio, .checkbox {
   font-size: 14px;
@@ -1612,7 +1596,7 @@ label.radio, .checkbox {
   color: #28ece3;
   font-size: 20px;
   letter-spacing: 1px;
-  font-family: 'Oxygen-Regular';
+  font-family: 'Oxygen';
   cursor: pointer;
 }
 .radio i, .checkbox i {
