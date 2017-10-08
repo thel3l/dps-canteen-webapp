@@ -4,14 +4,13 @@
   <title>DPSE Canteen Portal</title>
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  <link rel="icon" src="images/dpsIcon.jpg">
+  <link rel="shortcut icon" href="images/dpsIcon.jpg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Oxygen">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ResponsiveSlides.js/1.55/responsiveslides.min.js"></script>
@@ -26,6 +25,7 @@
     <i aria-hidden="true" class="fa fa-arrow-up fa-2x"></i>
   </div>
 
+	<!-- Header -->
 	<header>
     <div class="container">
       <div class="logo">
@@ -34,7 +34,37 @@
     </div>
   </header>
 
-  <div class="header-right">
+	<!-- Transactions Modal -->
+	<div class="modal fade custMod" id="transModal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button class="close" data-dismiss="modal" type="button">&times;</button>
+					<h4 class="modal-title">Transaction History</h4>
+				</div>
+				<div class="modal-body">
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Time Stamp</th>
+									<th>Amount</th>
+									<th>Payment Medium</th>
+								</tr>
+							</thead>
+							<tbody id="tranHist"></tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Slider -->
+  <div>
     <div class="banner">
       <div class="slider">
         <div class="callbacks_container">
@@ -77,7 +107,7 @@
     </div>
   </div>
 
-	<!--Vertical Tab-->
+	<!-- Vertical tabs -->
   <div class="categories-section main-grid-border" id="vertTab">
     <div class="container">
       <div class="category-list">
@@ -93,187 +123,95 @@
             </ul>
           </div>
           <div class="resp-tabs-container hor_1">
-            <!-- tab1 -->
+
+						<!-- Wallet Topup -->
             <div>
-              <div class="tabs-box">
+              <div class="tabs-box container-fluid">
                 <i aria-hidden="true" class="icon fa fa-credit-card inner-icon"></i>
                 <ul class="tabs-menu">
-                  <li>
-                    <a href="#tab1"><label class="radio"><input checked name="radio" type="radio"><i></i>Packages</label></a>
-                  </li>
-                  <li>
-                    <a href="#tab2"><label class="radio"><input name="radio" type="radio"><i></i>Custom</label></a>
-                  </li>
+                  <li><a href="#tab1"><label class="radio"><input checked name="radio" type="radio"><i></i>Packages</label></a></li>
+                  <li><a href="#tab2"><label class="radio"><input name="radio" type="radio"><i></i>Custom</label></a></li>
                 </ul>
-                <div class="clearfix"></div>
 								<br>
-								<p>Enter your admission number</p><input id="idNum" name="idNum" placeholder="Enter Admission Number" readonly="true" required="required" value="BE/0001234">
+								<p>Enter your admission number</p>
+								<input id="idNum" name="idNum" placeholder="Enter Admission Number" readonly="true" required="required" value="BE/0001234">
 								<br><br>
                 <div class="tab-grids">
                   <div class="tab-grid" id="tab1">
-                    <div class="login-form" id="formIn">
-                      <div class="agileits-select">
-                        <select class="selectpicker show-tick" data-live-search="true" id="foodPlans" name="plans" required>
-                          <option data-tokens="Select Operator" disabled selected>Select Plan</option>
-                          <option data-tokens="day" value="50">1 Day</option>
-                          <option data-tokens="week" value="250">1 Week</option>
-                          <option data-tokens="month" value="1000">1 Month</option>
-                        </select>
-                        <div class="modal fade custMod" id="selectValue" role="dialog">
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <button class="close" data-dismiss="modal" type="button">&times;</button>
-                                <h4 class="modal-title">Invalid Selection</h4>
-                              </div>
-                              <div class="modal-body">
-                                <p class="alert-danger" id="modalError">Please Select Valid Lunch Plan!</p>
-                              </div>
-                              <div class="modal-footer">
-                                <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-											<br>
-											<input class="submit" onclick="topUp('package')" type="submit" value="Recharge Now">
-                    </div>
+                    <select class="selectpicker show-tick" data-live-search="true" id="foodPlans" name="plans" required>
+                      <option data-tokens="Select Operator" disabled selected>Select Plan</option>
+                      <option data-tokens="day" value="50">1 Day</option>
+                      <option data-tokens="week" value="250">1 Week</option>
+                      <option data-tokens="month" value="1000">1 Month</option>
+                    </select>
+										<br><br>
+										<input class="submit" onclick="topUp('package')" type="submit" value="Recharge Now">
                   </div>
                   <div class="tab-grid" id="tab2">
-                    <div class="login-form">
-                      <div class="wallet-right">
-                        <h4>How Much To Pay?</h4>
-                        <div class="wallet-rchge">
-                          <input id="customMon" name="amount" placeholder="Enter amount" type="number" required>
-                        </div>
-                        <div class="clearfix"></div>
-                      </div>
-											<br>
-                      <input class="submit" onclick="topUp('custom')" type="submit" value="Recharge Now">
-                    </div>
+										<input id="customMon" name="amount" placeholder="Enter amount" type="number" required>
+										<br><br>
+										<input class="submit" onclick="topUp('custom')" type="submit" value="Recharge Now">
                   </div>
                 </div>
-                <div class="clearfix"></div>
               </div>
             </div>
+						<!-- END Wallet Topup -->
+
+						<!-- Transaction History -->
             <div>
-              <div class="login-form" id="formIn">
-                <i aria-hidden="true" class="icon fa fa-television inner-icon"></i>
-                <ol>
-                  <li>
-                    <div class="agileits-select">
-                      <select class="selectpicker show-tick" data-live-search="true" id="transPrec">
-                        <option data-tokens="day" value="1">Last Usage</option>
-                        <option data-tokens="ten" value="10">Last 10 Usages</option>
-                        <option data-tokens="thirty" value="30">Last 30 Usages</option>
-                        <option data-tokens="fifty" value="50">Last 50 Usages</option>
-                      </select>
-                    </div>
-                  </li>
-                  <li>
-                    <input class="submit" data-target="#transModal" data-toggle="modal" onclick="transUpdate()" type="submit" value="View Now">
-                    <div class="modal fade custMod" id="transModal" role="dialog">
-                      <div class="modal-dialog">
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button class="close" data-dismiss="modal" type="button">&times;</button>
-                            <h4 class="modal-title">Transaction History</h4>
-                          </div>
-                          <div class="modal-body">
-                            <div class="table-responsive">
-                              <table class="table">
-                                <thead>
-                                  <tr>
-                                    <th>Time Stamp</th>
-                                    <th>Amount</th>
-                                    <th>Payment Medium</th>
-                                  </tr>
-                                </thead>
-                                <tbody id="tranHist"></tbody>
-                              </table>
-                            </div>
-                          </div>
-                          <div class="modal-footer">
-                            <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ol>
-              </div>
+              <i aria-hidden="true" class="icon fa fa-television inner-icon"></i><br><br>
+              <select class="selectpicker show-tick" data-live-search="true" id="transPrec">
+                <option data-tokens="day" value="1">Last Usage</option>
+                <option data-tokens="ten" value="10">Last 10 Usages</option>
+                <option data-tokens="thirty" value="30">Last 30 Usages</option>
+                <option data-tokens="fifty" value="50">Last 50 Usages</option>
+              </select>
+							<br><br>
+              <input class="submit" data-target="#transModal" data-toggle="modal" onclick="transUpdate()" type="submit" value="View Now">
             </div>
+						<!-- END Transaction history -->
+
+						<!-- Menu -->
             <div>
               <i aria-hidden="true" class="icon fa fa-file inner-icon"></i>
-              <div class="tab-grid" id="tab3">
-                <div class="login-form">
-                  <form action="" id="formIn" method="post" name="formIn">
-                    <ol>
-                      <li><img class="img-responsive" src=""></li>
-                    </ol>
-                  </form>
-                </div>
-              </div>
+							<img class="img-responsive" src="">
             </div>
+						<!-- END Menu -->
+
+						<!-- About -->
             <div>
               <i aria-hidden="true" class="icon fa fa-home inner-icon"></i>
-              <div class="tab-grid" id="tab2">
-                <div class="login-form">
-                  <form action="" id="formIn" method="post" name="formIn">
-                    <ol>
-                      <li><img class="img-responsive" id="aboutProject" src="images/aboutdpse.png"></li>
-                    </ol>
-                  </form>
-                </div>
-              </div>
+							<img class="img-responsive" id="aboutProject" src="images/aboutdpse.png">
             </div>
+						<!-- END About -->
+
+						<!-- Creators -->
             <div>
               <i aria-hidden="true" class="icon fa fa-lightbulb-o inner-icon"></i>
-              <div class="tab-grid" id="tab5">
-                <div class="login-form">
-                  <form action="" id="formIn" method="post" name="formIn">
-                    <ol>
-                      <li><img class="img-responsive" id="aboutCreators" src="images/creatorsdpse.png"></li>
-                    </ol>
-                  </form>
-                </div>
-              </div>
+							<img class="img-responsive" id="aboutCreators" src="images/creatorsdpse.png">
             </div>
+						<!-- END Creators -->
+
+						<!-- Profile -->
             <div>
-              <i aria-hidden="true" class="icon fa fa-user inner-icon"></i>
-              <div class="tab-grid" id="tab6">
-                <div class="login-form">
-                  <form action="pay.html" id="formIn" method="post" name="formIn">
-                    <ol>
-                      <li>
-                        <div class="img-responsive" id="profileImage"><img alt="Profile picture" class="img-responsive" src=""></div>
-                      </li>
-                      <li>
-                        <div class="wallet-rchge">
-                          <input id="studentName" onblur="if (this.value == '') {this.value = '';}" onfocus="this.value = '';" readonly="true" required="" type="text">
-                        </div>
-                      </li>
-                      <li>
-                        <div class="wallet-rchge">
-                          <input id="adminNumber" onblur="if (this.value == '') {this.value = '';}" onfocus="this.value = '';" readonly="true" required="" type="text" value="BE00012314">
-                        </div>
-                      </li>
-                      <li>
-                        <div class="wallet-right">
-                          <h4>Wallet Balance</h4>
-                          <div class="wallet-rchge">
-                            <input id="walletBal" name="amount" onblur="if (this.value == '') {this.value = '';}" readonly="true" required="" type="text">
-                          </div>
-                        </div>
-                      </li>
-                    </ol>
-                  </form>
-                </div>
-              </div>
+              <!-- <i aria-hidden="true" class="icon fa fa-user inner-icon"></i> -->
+
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-xs-12 col-md-3">
+										<img id="profileImage" alt="Profile picture" class="img-responsive img-circle" src="">
+									</div>
+									<div class="col-xs-12 col-md-9">
+										<br><h4 id="studentName"><span></span></h4>
+										<br><h5 id="admNumber">Admission number: <span>BE00012314</span></h5>
+										<h4 id="walletBal">Wallet balance: ₹ <span></span></h4>
+									</div>
+								</div>
+							</div>
+
             </div>
-            <div class="clearfix"></div>
+						<!-- END Profile -->
+
           </div>
         </div>
       </div>

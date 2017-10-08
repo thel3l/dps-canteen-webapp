@@ -47,7 +47,7 @@ $(document).ready(function() {
   $(".scroll").click(function(){
       $('html, body').animate({
           scrollTop: $( $(this).attr('href') ).offset().top
-      }, 500, "easeOutCubic");
+      }, 500);
       return false;
   });
 
@@ -66,9 +66,9 @@ var userRef = database.ref().child("users").child("BE0001234");
 // Update student info
 userRef.on('value', function(snapshot) {
   var userInfo = snapshot.val();
-  $('#studentName').attr('value', userInfo.name);
-  $('#profileImage img').attr('src', userInfo.photo);
-  $('#walletBal').attr('value', userInfo.balance);
+  $('#studentName span').text(userInfo.name);
+  $('#walletBal span').text(userInfo.balance);
+  $('#profileImage').attr('src', userInfo.photo);
 });
 
 function topUp(type) {
