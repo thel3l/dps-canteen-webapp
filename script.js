@@ -5,6 +5,7 @@ function goToHome(){
   location.href = "index.html"
 }
 $(document).ready(function() {
+  
   $("#tab2").hide();
   $("#tab3").hide();
   $("#tab4").hide();
@@ -15,9 +16,27 @@ $(document).ready(function() {
     $(tab).fadeIn("slow");
   });
 });
+window.addEventListener("load",main);
+window.addEventListener("scroll",debug);
+var globalID ;
+var color = 1 ;
+function main() {
 
+}
+function fadeOut(element){
+ var opacity = 1;
+ while(opacity !=0 ) {
+    opacity = opacity - 0.1;
+
+ }
+}
+function debug() {
+	window.alert("This works");
+}
 $(document).ready(function() {
-
+  if(document.body.scrollTop = 35){
+    console.log("Hello World!")
+  }
   //Vertical Tab
   $('#parentVerticalTab').easyResponsiveTabs({
     type: 'vertical',
