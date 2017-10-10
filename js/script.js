@@ -13,7 +13,7 @@ $(document).ready(function() {
   setTimeout(function(){
     $('#wrapper').fadeOut(function() { $(this).remove(); });
     $('#slideshow').fadeOut( function() { $(this).remove(); });
-}, 2000);
+}, 1500);
   // Vertical tabs
   $('#parentVerticalTab').easyResponsiveTabs({
     type: 'vertical',
