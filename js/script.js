@@ -65,7 +65,6 @@ userRef.on('value', function(snapshot) {
   $('#walletBal span').text(userInfo.balance);
   $('#profileImage').attr('src', userInfo.photo);
 });
-
 function topUp(type) {
   var admNo = $('#idNum').val();
   if (type == 'package') {

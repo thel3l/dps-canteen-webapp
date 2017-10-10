@@ -11,6 +11,7 @@ body a{
   -moz-transition: 0.5s all;
   -ms-transition: 0.5s all;
 }
+
 html{
   height: 100%;
 }
@@ -64,6 +65,7 @@ blockquote cite:before {
   background: #ffffff;
   color: #000000;
   border-radius: 8px;
+
 }
 #profileImage {
   position: relative;
@@ -71,6 +73,7 @@ blockquote cite:before {
   width: 100%;
   height: auto;
 }
+
 #tab2, #tab3, #tab4 {
   display: none;
 }
