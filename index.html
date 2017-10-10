@@ -1,333 +1,193 @@
 <!DOCTYPE html>
-<!-- html -->
 <html>
-<!-- head -->
 <head>
-	<title>DPSE Canteen Portal</title>
-	<link rel = "icon" src = "images/dpsIcon.jpg">
-	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" /><!-- bootstrap-CSS -->
-	<link rel="stylesheet" href="css/bootstrap-select.css"><!-- bootstrap-select-CSS -->
-	<link href="css/font-awesome.css" rel="stylesheet" type="text/css" media="all" /><!-- Fontawesome-CSS -->
-	<script type='text/javascript' src='js/jquery-2.2.3.min.js'></script>
-	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+  <title>DPSE Canteen Portal</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <link rel="shortcut icon" href="images/dpsIcon.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Oxygen">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ResponsiveSlides.js/1.55/responsiveslides.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-database.js"></script>
+	<script src="js/script.js"></script>
 </head>
-<body>
+<body onload="window.scrollTo(0,1)">
+  <div id="wrapper">
+  <div id="slideshow">
+
+      <blockquote>
+      The Official Canteen Portal to digitize the the ordering process as part of the CiscoTalent Outreach
+      <cite>Styrchinne</cite>
+      </blockquote><br><br>
+  </div>
+  </div>
+
+
+	<div id="scrollToTop">
+    <i aria-hidden="true" class="fa fa-arrow-up fa-2x"></i>
+  </div>
+
+	<!-- Header -->
 	<header>
-		<div class="container">
-			<div class="logo">
-				<h1><a href="index.html">DPSE Canteen Portal</a></h1>
-			</div>
-		</div>
-	</header>
+    <div class="container">
+      <div class="logo">
+        <h1><a href="index.html">DPSE Canteen Portal</a></h1>
+      </div>
+    </div>
+  </header>
 
-	<!--//-->
-	<div class="header-right">
-		<div class="banner">
-			<div class="slider">
-				<div class="callbacks_container">
-					<ul class="rslides" id="slider">
-						<li>
-							<div class="banner1">
-								<div class="caption">
-									<h3><span>Welcome</span> to DPS East's Parent Canteen Portal</h3>
-									<p><a class = "rchgnow" href = "#tabsC" class="scroll">Recharge now</a></p>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="banner2">
-								<div class="caption">
-									<h3><span>Recharge</span> student's ID Card</h3>
-									<p><a class = "rchgnow" href = "#tabsC"  onclick = "">Recharge now</a></p>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="banner3">
-								<div class="caption">
-									<h3><span>For Faster Payment</span>  at DPSE Canteen</h3>
-									<p><a class = "rchgnow" href = "#tabsC"  onclick="">Recharge now</a></p>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="banner4">
-								<div class="caption">
-									<h3><span>View Student </span> & Transaction History</h3>
-									<p><a class = "rchgnow" href = "#tabsC"  onclick = "">View now</a></p>
-								</div>
-							</div>
-						</li>
-					</ul>
+	<!-- Transactions Modal -->
+	<div class="modal fade custMod" id="transModal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button class="close" data-dismiss="modal" type="button">&times;</button>
+					<h4 class="modal-title">Transaction History</h4>
+				</div>
+				<div class="modal-body">
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Time Stamp</th>
+									<th>Amount</th>
+									<th>Payment Medium</th>
+								</tr>
+							</thead>
+							<tbody id="tranHist"></tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
 
-	<!--Vertical Tab-->
-	<div id = "tabsC" class="categories-section main-grid-border" id="vertTab">
-		<div class="container">
-			<div class="category-list">
-				<div id="parentVerticalTab">
-					<div class="agileits-tab_nav">
-						<ul class="resp-tabs-list hor_1">
-							<li><i class="icon fa fa-credit-card" aria-hidden="true"></i>Wallets Topup</li>
-							<li><i class="icon fa fa-television" aria-hidden="true"></i>Transaction History</li>
-							<li><i class="icon fa fa-file" aria-hidden="true"></i>Menu</li>
-							<li><i class="icon fa fa-home" aria-hidden="true"></i>About</li>
-							<li><i class="icon fa fa-lightbulb-o" aria-hidden="true"></i>Creators</li>
-							<li><i class="icon fa fa-users" aria-hidden="true"></i>Profile</li>
-						</ul>
-					</div>
-					<div class="resp-tabs-container hor_1">
-						<!-- tab1 -->
-						<div>
-							<div class="tabs-box">
-								<i class="icon fa fa-credit-card inner-icon" aria-hidden="true"></i>
 
-								<ul class="tabs-menu">
-									<li><a href="#tab1"><label class="radio"><input type="radio" name="radio" checked=""><i></i>Packages</label></a></li>
-									<li><a href="#tab2"><label class="radio"><input type="radio" name="radio"><i></i>Custom</label></a></li>
-								</ul>
-								<div class="clearfix"> </div>
-								<div class="tab-grids">
-									<div id="tab1" class="tab-grid">
-										<div class="login-form" id = "formIn">
-											<ol>
-												<li>
 
-													<h4>Enter your admission number</h4>
+	<!-- Vertical tabs -->
+  <br>
+  <br>
+  <div class="categories-section main-grid-border" id="vertTab">
+    <div class="container">
+      <div class="category-list">
+        <div id="parentVerticalTab">
+          <div class="agileits-tab_nav">
+            <ul class="resp-tabs-list hor_1">
+              <li><i aria-hidden="true" class="icon fa fa-credit-card"></i>Wallets Topup</li>
+              <li><i aria-hidden="true" class="icon fa fa-television"></i>Transaction History</li>
+              <li><i aria-hidden="true" class="icon fa fa-file"></i>Menu</li>
+              <li><i aria-hidden="true" class="icon fa fa-home"></i>About</li>
+              <li><i aria-hidden="true" class="icon fa fa-lightbulb-o"></i>Creators</li>
+              <li><i aria-hidden="true" class="icon fa fa-users"></i>Profile</li>
+            </ul>
+          </div>
+          <div class="resp-tabs-container hor_1">
 
-													<input id="idNum" name="idNum" placeholder="Enter Admission Number"  value="BE/00012314" readonly = "true" required="required" />
+						<!-- Wallet Topup -->
+            <div>
+              <div class="tabs-box container-fluid">
+                <i aria-hidden="true" class="icon fa fa-credit-card inner-icon"></i>
+                <ul class="tabs-menu">
+                  <li><a href="#tab1"><label class="radio"><input checked name="radio" type="radio"><i></i>Packages</label></a></li>
+                  <li><a href="#tab2"><label class="radio"><input name="radio" type="radio"><i></i>Custom</label></a></li>
+                </ul>
+								<br>
+								<p>Enter your admission number</p>
+								<input id="idNum" name="idNum" placeholder="Enter Admission Number" readonly="true" required="required" value="BE/0001234">
+								<br><br>
+                <div class="tab-grids">
+                  <div class="tab-grid" id="tab1">
+                    <select class="selectpicker show-tick" data-live-search="true" id="foodPlans" name="plans" required>
+                      <option data-tokens="Select Operator" disabled selected>Select Plan</option>
+                      <option data-tokens="day" value="50">1 Day</option>
+                      <option data-tokens="week" value="250">1 Week</option>
+                      <option data-tokens="month" value="1000">1 Month</option>
+                    </select>
+										<br><br>
+										<input class="submit" onclick="topUp('package')" type="submit" value="Recharge Now">
+                  </div>
+                  <div class="tab-grid" id="tab2">
+										<input id="customMon" name="amount" placeholder="Enter amount" type="number" required>
+										<br><br>
+										<input class="submit" onclick="topUp('custom')" type="submit" value="Recharge Now">
+                  </div>
+                </div>
+              </div>
+            </div>
+						<!-- END Wallet Topup -->
 
-												</li>
-												<li>
-													<div class="agileits-select">
-														<select class="selectpicker show-tick" data-live-search="true" required="required" id = "foodPlans" name "plans">
-															<option data-tokens="Select Operator">Select Plan</option>
-															<option value = "day" data-tokens= "day">1 Day</option>
-															<option value = "week" data-tokens= "week">1 Week</option>
-															<option value = "month" data-tokens= "month">1 Month</option>
-														</select>
-														<div id="selectValue" class="modal fade custMod" role="dialog">
-															<div class="modal-dialog">
-																<div class="modal-content">
-																	<div class="modal-header">
-																		<button type="button" class="close" data-dismiss="modal">&times;</button>
-																		<h4 class="modal-title">Invalid Selection</h4>
-																	</div>
-																	<div class="modal-body">
-																		<p id = "modalError" class = "alert-danger">Please Select Valid Lunch Plan!</p>
-																	</div>
-																	<div class="modal-footer">
-																		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-																	</div>
-																</div>
+						<!-- Transaction History -->
+            <div>
+              <i aria-hidden="true" class="icon fa fa-television inner-icon"></i><br><br>
+              <select class="selectpicker show-tick" data-live-search="true" id="transPrec">
+                <option data-tokens="day" value="1">Last Usage</option>
+                <option data-tokens="ten" value="10">Last 10 Usages</option>
+                <option data-tokens="thirty" value="30">Last 30 Usages</option>
+                <option data-tokens="fifty" value="50">Last 50 Usages</option>
+              </select>
+							<br><br>
+              <input class="submit" data-target="#transModal" data-toggle="modal" onclick="transUpdate()" type="submit" value="View Now">
+            </div>
+						<!-- END Transaction history -->
 
-															</div>
-														</div>
-													</div>
-												</li>
+						<!-- Menu -->
+            <div>
+							<img class="img-responsive" src="">
+            </div>
+						<!-- END Menu -->
 
-												<li>
-													<input onclick = "topUpPre()"  type="submit" class="submit" value="Recharge Now" />
-												</li>
-											</ol>
-										</div>
+						<!-- About -->
+            <div>
+							<img class="img-responsive" id="aboutProject" src="images/aboutdpse.png">
+            </div>
+						<!-- END About -->
 
+						<!-- Creators -->
+            <div>
+							<img class="img-responsive" id="aboutCreators" src="images/creatorsdpse.png">
+            </div>
+						<!-- END Creators -->
+
+						<!-- Profile -->
+            <div>
+              <!-- <i aria-hidden="true" class="icon fa fa-user inner-icon"></i> -->
+
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-xs-12 col-md-3">
+										<img id="profileImage" alt="Profile picture" class="img-responsive img-circle" src="">
 									</div>
-									<div id="tab2" class="tab-grid">
-										<div class="login-form">
-											<ol>
-												<li>
-													<h4>Enter your admission number</h4>
-													<input type="id" id="idNum2" name="idNum" value="BE/00012314" readonly = "true" placeholder="Enter Admission Number" required />
-												</li>
-												<li>
-													<div class="wallet-right">
-														<h4>How Much To Pay?</h4>
-														<div class="wallet-rchge">
-															<input id = "customMon" type="text" placeholder="Enter amount" name="amount" required="required"  />
-														</div>
-														<div class="clearfix"></div>
-													</div>
-												</li>
-												<li>
-													<input onclick = "topUp()" type="submit" class="submit" value="Recharge Now" />
-												</li>
-											</ol>
-										</form>
+									<div class="col-xs-12 col-md-9">
+										<br><h4 id="studentName"><span></span></h4>
+										<br><h5 id="admNumber">Admission number: <span>BE00012314</span></h5>
+										<h4 id="walletBal">Wallet balance: ₹ <span></span></h4>
 									</div>
 								</div>
 							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-					<div>
 
-						<div class="login-form" id="formIn">
-							<i class="icon fa fa-television inner-icon" aria-hidden="true"></i>
+            </div>
+						<!-- END Profile -->
 
-							<ol>
-								<li>
-									<div class="agileits-select">
-										<select id = "transPrec" class="selectpicker show-tick" data-live-search="true">
-											<option value = "day" data-tokens="day">Last Usage</option>
-											<option value = "ten" data-tokens="ten">Last 10 Usages</option>
-											<option value = "thirty" data-tokens="thirty">Last 30 Usages</option>
-											<option value = "fifty" data-tokens="fifty">Last 50 Usages </option>
+          </div>
+        </div>
+      </div>
+    </div>
 
-										</select>
-									</div>
-								</li>
-								<li>
-									<input onclick = "transUpdate()" data-toggle = "modal" data-target = "#transModal" type="submit" class="submit" value="View Now" />
-									<div class="modal fade custMod" id="transModal" role="dialog">
-										<div class="modal-dialog">
+    <link href="css/easy-responsive-tabs.css" rel="stylesheet">
+    <script src="js/easyResponsiveTabs.js"></script>
+  </div>
 
-											<!-- Modal content-->
-											<div class="modal-content">
-												<div class="modal-header">
-													<button type="button" class="close" data-dismiss="modal">&times;</button>
-													<h4 class="modal-title">Transaction History</h4>
-												</div>
-												<div class="modal-body">
-													<div class="table-responsive">
-														<table class="table">
-															<thead>
-																<tr>
-																	<th>Time Stamp</th>
-																	<th>Amount</th>
-																	<th>Payment Medium</th>
-																</tr>
-															</thead>
-															<tbody id = "tranHist">
-															</tbody>
-														</table>
-													</div>
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-												</div>
-											</div>
-
-										</div>
-									</div>
-
-								</li>
-							</ol>
-
-						</div>
-					</div>
-					<div>
-						<i class="icon fa fa-file inner-icon" aria-hidden="true"></i>
-						<div id="tab3" class="tab-grid">
-							<div class="login-form">
-								<form action="" method="post" id="formIn">
-									<ol>
-										<li>
-											<img class = "img-responsive"	 src="">
-										</li>
-									</ol>
-								</form>
-
-							</div>
-
-						</div>
-					</div>
-					<div>
-						<i class="icon fa fa-home inner-icon" aria-hidden="true"></i>
-						<div id="tab2" class="tab-grid">
-							<div class="login-form">
-								<form action="" method="post" id="formIn">
-									<ol>
-										<li>
-											<img id = "aboutProject" class = "img-responsive" src="images/aboutdpse.png">
-										</li>
-									</ol>
-								</form>
-
-							</div>
-						</div>
-					</div>
-					<div>
-
-						<i class="icon fa fa-lightbulb-o inner-icon" aria-hidden="true"></i>
-						<div id="tab5" class="tab-grid">
-							<div class="login-form">
-								<form action="" method="post" id="formIn">
-									<ol>
-										<li>
-											<img id = "aboutCreators" class = "img-responsive" src ="images/creatorsdpse.png">
-										</li>
-									</ol>
-								</form>
-
-							</div>
-						</div>
-
-					</div>
-					<div>
-						<i class="icon fa fa-user inner-icon" aria-hidden="true"></i>
-						<div id="tab6" class="tab-grid">
-							<div class="login-form">
-								<form action="pay.html" method="post" id="formIn">
-									<ol>
-										<li>
-
-											<div class = "img-responsive" id = "profileImage"></div>
-										</li>
-										<li>
-											<div class="wallet-rchge">
-												<input readonly = "true" type="text" id="studentName" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required="">
-											</div>
-										</li>
-										<li>
-											<div class="wallet-rchge">
-												<input readonly = "true" type="text" id="adminNumber" value = "BE00012314" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required="">
-											</div>
-										</li>
-										<li>
-											<div class="wallet-right">
-												<h4>Wallet Balance</h4>
-												<div class="wallet-rchge">
-													<input id = "walletBal" readonly = "true" type="text" name="amount" onblur="if (this.value == '') {this.value = '';}" required=""  />
-												</div>
-											</div>
-										</li>
-									</ol>
-								</form>
-
-							</div>
-						</div>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<script type="text/javascript">
-
-	</script>
-	<script src="js/bootstrap.js"></script>
-	<script src="js/responsiveslides.min.js"></script>
-	<script>
-
-	</script>
-	<script src="js/bootstrap-select.js"></script>
-	<script>
-
-	</script>
-	<link rel="stylesheet" type="text/css" href="css/easy-responsive-tabs.css" />
-	<script src="js/easyResponsiveTabs.js"></script>
-	<script type="text/javascript" src="js/move-top.js"></script>
-	<script type="text/javascript" src="js/easing.js"></script>
-	<script type = "text/javascript" src="js/firebase.js"></script>
-	<script type="text/javascript" src = "js/firebaseInit.js"></script>
-	<script type="text/javascript" src = "js/script.js"></script>
 </body>
 </html>
