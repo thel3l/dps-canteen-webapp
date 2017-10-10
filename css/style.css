@@ -728,6 +728,9 @@ ul.callbacks_tabs.callbacks1_tabs {
   . _agile_support_right h3 {
     font-size: 28px;
   }
+  blockquote{
+    font-size: 2.5rem;
+  }
   .modal-title {
     font-size: 26px;
   }
@@ -798,6 +801,9 @@ ul.callbacks_tabs.callbacks1_tabs {
   }
   . ls-supportform select {
     width: 50%;
+  }
+  blockquote{
+    font-size: 1.5rem;
   }
 }
 @media(max-width:480px){
