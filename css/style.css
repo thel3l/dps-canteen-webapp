@@ -2,7 +2,6 @@ html,body{
   background:#fff;
   font-size: 100%;
   font-family: 'Oxygen';
-  overflow: hidden;
 }
 body a{
   transition: 0.5s all;
@@ -11,7 +10,12 @@ body a{
   -moz-transition: 0.5s all;
   -ms-transition: 0.5s all;
 }
-
+.dpsbg{
+  margin: auto;
+}
+.creatorsInfo{
+  zoom: 115%;
+}
 html{
   height: 100%;
 }
@@ -27,6 +31,7 @@ html{
     height:100%;
 }
 #slideshow {
+
     background-color: rgb(0, 0, 0);
     overflow:hidden;
     width:100%;
@@ -40,7 +45,7 @@ html{
 }
 blockquote {
     position:fixed;
-    top:30%;
+    top:35%;
     left:5%;
     font-size:3.5rem;
     opacity : 1;

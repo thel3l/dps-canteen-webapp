@@ -10,6 +10,7 @@ var config = {
 firebase.initializeApp(config);
 
 $(document).ready(function() {
+
   setTimeout(function(){
     $('#wrapper').fadeOut(function() { $(this).remove(); });
     $('#slideshow').fadeOut( function() { $(this).remove(); });
