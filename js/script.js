@@ -57,7 +57,7 @@ $(document).ready(function() {
 
 // Firebase
 var database = firebase.database();
-var userRef = database.ref().child("users").child("BE0001234");
+var userRef = database.ref().child("users").child("BE00012314");
 
 // Update student info
 userRef.on('value', function(snapshot) {
@@ -89,7 +89,7 @@ function topUp(type) {
 }
 
 function transUpdate(){
-  var admNo = 'BE0001234';
+  var admNo = 'BE00012314';
   var limit = parseInt($('#transPrec').val());
 
   database.ref('transactions').child(admNo).orderByChild('timestamp').limitToLast(limit).once('value').then(function(snapshot) {

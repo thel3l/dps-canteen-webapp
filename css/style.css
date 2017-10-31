@@ -282,7 +282,8 @@ ul {
   color: white;
   z-index: 1000000;
   position: fixed;
-  bottom: 5px;
+  top: 5px;
+  zoom: 125%;
   right: 5px;
 }
 /*--top-city--*/
