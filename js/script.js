@@ -9,12 +9,24 @@ var config = {
 };
 firebase.initializeApp(config);
 
+$.urlParam = function (name) {
+  var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+  return results[1] || 0;
+}
+
 $(document).ready(function() {
+
+  var token = $.urlParam('token');
+  console.log('token:', token);
+  if (token) {
+    localStorage['customToken'] = token;
+    history.pushState({}, "DPSE Canteen", "/");
+  }
 
   setTimeout(function(){
     $('#wrapper').fadeOut(function() { $(this).remove(); });
     $('#slideshow').fadeOut( function() { $(this).remove(); });
-}, 1500);
+  }, 1500);
   // Vertical tabs
   $('#parentVerticalTab').easyResponsiveTabs({
     type: 'vertical',
