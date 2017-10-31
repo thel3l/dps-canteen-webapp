@@ -286,6 +286,17 @@ ul {
   zoom: 125%;
   right: 5px;
 }
+.ciscoImage{
+  width: 25%;
+  margin: auto;
+}
+#aboutExp{
+  position: relative;
+  top: 10px;
+  font-family: 'Josefin Slab', serif;
+  font-size: 20px;
+}
+
 /*--top-city--*/
 /*---------------*/
 /***** Layla *****/
