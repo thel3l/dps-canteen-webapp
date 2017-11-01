@@ -1,4 +1,4 @@
-// Initialize Firebase
+//initializeApp
 var config = {
   apiKey: "AIzaSyCas9WSzPdCvatx7ODWMTquCCwiuZEj-UI",
   authDomain: "dpsemca-1f00a.firebaseapp.com",
@@ -12,8 +12,8 @@ firebase.initializeApp(config);
 $(document).ready(function() {
 
   setTimeout(function(){
-    $('#wrapper').fadeOut(function() { $(this).remove(); });
-    $('#slideshow').fadeOut( function() { $(this).remove(); });
+    $('#wrapper').fadeOut(function() { $(this).detach(); });
+    $('#slideshow').fadeOut( function() { $(this).detach(); });
 }, 1500);
   // Vertical tabs
   $('#parentVerticalTab').easyResponsiveTabs({
@@ -40,20 +40,17 @@ $(document).ready(function() {
   });
 
   // Scroll from slider to content below
-  $(".scroll").click(function(){
-      $('html, body').animate({
-          scrollTop: $( $(this).attr('href') ).offset().top
-      }, 500);
-      return false;
-  });
-
   // Scroll to top button
-  $('#scrollToTop').click(function() {
-    $("html, body").animate({ scrollTop: 0 }, "slow");
-    return false;
-  });
-
 });
+
+//signOut
+
+function signOut(){
+  //Rithvik prepend not working...
+  console.log("Hello");
+}
+
+
 
 // Firebase
 var database = firebase.database();
@@ -67,6 +64,8 @@ userRef.on('value', function(snapshot) {
   $('#profileImage').attr('src', userInfo.photo);
   $('#currentWalletBal span').text(userInfo.balance);
   $('#headerProfilePic').attr('src', userInfo.photo);
+  $('#dropdownName').text(userInfo.name);
+  $('#dropdownWallet span').text(userInfo.balance);
 });
 function topUp(type) {
   var admNo = $('#idNum').val();

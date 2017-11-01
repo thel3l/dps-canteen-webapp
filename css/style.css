@@ -296,9 +296,7 @@ ul {
   font-family: 'Josefin Slab', serif;
   font-size: 20px;
 }
-#headerProfilePic{
-  position: relative;
-  float: right;
+.w3-dropdown-hover{
   width: 45px;
 }
 #currentWalletBal{
@@ -960,7 +958,7 @@ ul.callbacks_tabs.callbacks1_tabs {
   .logo {
     float: none;
   }
-  #headerProfilePic{
+  #headerProfilePic, .w3-dropdown-hover{
     float: none;
     margin: auto;
     width: 30px;

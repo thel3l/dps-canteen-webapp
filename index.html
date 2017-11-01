@@ -6,12 +6,13 @@
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
   <link rel="shortcut icon" href="images/dpsIcon.jpg">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Oxygen">
   <link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
@@ -25,7 +26,7 @@
   <div id="wrapper">
   <div id="slideshow">
       <blockquote class = "blockquote">
-      The Official Canteen Portal to digitize the the ordering process as part of the Cisco Talent Outreach
+      The Official Canteen Portal to digitize the ordering process as part of the Cisco Talent Outreach
       <cite>Styrchinne</cite>
       </blockquote><br><br>
             <i id = "dpsnote">Delhi Public School</i>
@@ -39,10 +40,15 @@
       <div class="logo">
         <h1><a href="index.html">DPSE Canteen Portal</a></h1>
       </div>
-        <!--  <h3 id  = "headerProfileName"></h3>-->
-          <img class = "img-responsive img-circle" id = "headerProfilePic" src = "">
-    </div>
+      <div class="w3-dropdown-hover w3-right">
+  <img class = "img-responsive img-circle" id = "headerProfilePic" src = "">
+  <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
+    <p class="w3-bar-item w3-button" id = "dropdownName"></p>
+    <p class="w3-bar-item w3-button" id = "dropdownWallet">Balance: ₹<span></span></p>
+    <p id = "signOut" onclick = "signOut()" class="w3-bar-item w3-button">Sign Out</p>
+  </div>
 
+        </div>
   </header>
 
 	<!-- Transactions Modal -->
