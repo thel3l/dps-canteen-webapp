@@ -8,26 +8,44 @@ var config = {
   messagingSenderId: "696186948502"
 };
 firebase.initializeApp(config);
+var database = firebase.database();
+var userRef, userInfo;
 
-$.urlParam = function (name) {
-  var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-  if (!results) return ''
-  return results[1] || 0;
-}
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    console.log(user);
+    userRef = database.ref().child('users').child(user.uid);
+    userRef.on('value', function(snap) {
+      userInfo = snap.val();
+      userInfo['admid'] = snap.key;
+      setUser(userInfo);
+      $('#wrapper').fadeOut(function() { $(this).remove(); });
+      $('#slideshow').fadeOut( function() { $(this).remove(); });
+    });
+  } else {
+    console.log('logged out');
+    alert('You are not logged in');
+  }
+});
 
 $(document).ready(function() {
 
+  // Login user with token
   var token = $.urlParam('token');
   console.log('token:', token);
   if (token) {
     localStorage['customToken'] = token;
     history.replaceState({}, "DPSE Canteen", "/");
+    firebase.auth().signInWithCustomToken(token).catch(function(err) {
+      console.log(err);
+    });
   }
 
-  setTimeout(function(){
-    $('#wrapper').fadeOut(function() { $(this).remove(); });
-    $('#slideshow').fadeOut( function() { $(this).remove(); });
-  }, 1500);
+  // setTimeout(function(){
+  //   $('#wrapper').fadeOut(function() { $(this).remove(); });
+  //   $('#slideshow').fadeOut( function() { $(this).remove(); });
+  // }, 1500);
+
   // Vertical tabs
   $('#parentVerticalTab').easyResponsiveTabs({
     type: 'vertical',
@@ -68,17 +86,14 @@ $(document).ready(function() {
 
 });
 
-// Firebase
-var database = firebase.database();
-var userRef = database.ref().child("users").child("BE00012314");
-
-// Update student info
-userRef.on('value', function(snapshot) {
-  var userInfo = snapshot.val();
+function setUser(userInfo) {
+  $('#admNumber span').text(userInfo.admid);
   $('#studentName span').text(userInfo.name);
   $('#walletBal span').text(userInfo.balance);
   $('#profileImage').attr('src', userInfo.photo);
-});
+  $('#idNum').val(userInfo.admid); // Wallet topup section
+}
+
 function topUp(type) {
   var admNo = $('#idNum').val();
   if (type == 'package') {
@@ -102,10 +117,8 @@ function topUp(type) {
 }
 
 function transUpdate(){
-  var admNo = 'BE00012314';
   var limit = parseInt($('#transPrec').val());
-
-  database.ref('transactions').child(admNo).orderByChild('timestamp').limitToLast(limit).once('value').then(function(snapshot) {
+  database.ref('transactions').child(userInfo.admid).orderByChild('timestamp').limitToLast(limit).once('value').then(function(snapshot) {
     var html = '';
     snapshot.forEach(function(transaction) {
       var trans = transaction.val();
@@ -115,4 +128,10 @@ function transUpdate(){
     });
     $('#tranHist').html(html);
   });
+}
+
+$.urlParam = function (name) {
+  var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+  if (!results) return ''
+  return results[1] || 0;
 }
