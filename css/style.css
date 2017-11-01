@@ -286,6 +286,26 @@ ul {
   zoom: 125%;
   right: 5px;
 }
+.ciscoImage{
+  width: 25%;
+  margin: auto;
+}
+#aboutExp{
+  position: relative;
+  top: 10px;
+  font-family: 'Josefin Slab', serif;
+  font-size: 20px;
+}
+#headerProfilePic{
+  position: relative;
+  float: right;
+  width: 45px;
+}
+#currentWalletBal{
+  position: relative;
+  top: -30px;
+  left: 30%;
+}
 /*--top-city--*/
 /*---------------*/
 /***** Layla *****/
@@ -592,6 +612,10 @@ ul.callbacks_tabs.callbacks1_tabs {
   .banner1, .banner2, .banner3, .banner4 {
     min-height: 560px;
   }
+  #currentWalletBal{
+    font-size: 15px;
+    left: 50%;
+  }
   . _agile_support_right h3 {
     font-size: 33px;
     letter-spacing: 1px;
@@ -798,6 +822,10 @@ ul.callbacks_tabs.callbacks1_tabs {
   .banner1, .banner2, .banner3, .banner4 {
     min-height: 360px;
   }
+  #currentWalletBal{
+    position:inherit;
+    padding-top: 10px;
+  }
 }
 @media(max-width:568px){
   .caption h3 {
@@ -931,6 +959,12 @@ ul.callbacks_tabs.callbacks1_tabs {
   }
   .logo {
     float: none;
+  }
+  #headerProfilePic{
+    float: none;
+    margin: auto;
+    width: 30px;
+    padding-top: 5px;
   }
   . layouts-login {
     margin-top: 10px;

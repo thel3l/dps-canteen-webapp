@@ -94,6 +94,8 @@ function setUser(userInfo) {
   $('#walletBal span').text(userInfo.balance);
   $('#profileImage').attr('src', userInfo.photo);
   $('#idNum').val(userInfo.admid); // Wallet topup section
+  $('#currentWalletBal span').text(userInfo.balance);
+  $('#headerProfilePic').attr('src', userInfo.photo);
 }
 
 function topUp(type) {
