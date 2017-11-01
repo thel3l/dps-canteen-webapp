@@ -24,7 +24,9 @@ firebase.auth().onAuthStateChanged(function(user) {
     });
   } else {
     console.log('logged out');
-    alert('You are not logged in');
+    if (!$.urlParam('token')) {
+      alert('You are not logged in');
+    }
   }
 });
 
