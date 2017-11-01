@@ -21,7 +21,7 @@ $(document).ready(function() {
   console.log('token:', token);
   if (token) {
     localStorage['customToken'] = token;
-    history.pushState({}, "DPSE Canteen", "/");
+    history.replaceState({}, "DPSE Canteen", "/");
   }
 
   setTimeout(function(){
