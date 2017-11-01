@@ -65,6 +65,8 @@ userRef.on('value', function(snapshot) {
   $('#studentName span').text(userInfo.name);
   $('#walletBal span').text(userInfo.balance);
   $('#profileImage').attr('src', userInfo.photo);
+  $('#currentWalletBal span').text(userInfo.balance);
+  $('#headerProfilePic').attr('src', userInfo.photo);
 });
 function topUp(type) {
   var admNo = $('#idNum').val();
