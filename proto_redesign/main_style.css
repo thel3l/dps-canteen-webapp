@@ -89,7 +89,7 @@ html,body {
     position:absolute;
     left:40%;
     font-size:1.5rem;
-    font-family: "Quicksand";
+   
 }
 #profile img {
     position:absolute;
@@ -112,7 +112,34 @@ html,body {
     width:20%;
     top:36%;
     left:75%;
- 
+}
+#crt_user h1 {
+  position:absolute;
+  left:4%;
+  font-size:1.2rem;
+}
+#crt_user p {
+    position:absolute;
+    top:20%;
+    left:4%;
+    font-size:0.7rem;
+}
+/*the bottom part of the current user tab(crt_user) is input */
+#input {
+    position: absolute;
+    top:80%;
+    height:20%;
+    width:100%;
+  
+}
+#crt_user input {
+    position: absolute;
+    top:15%;
+    left:17%;
+}
+#crt_user i {
+    position: absolute;
+    left:85%;
 }
 #payment {
     background-color: white;
@@ -131,8 +158,7 @@ html,body {
     left:7%;
     background-color: white;
 }
-
 #menu,#payment,#crt_user,#profile {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-   
+    font-family: "Quicksand";
 }
