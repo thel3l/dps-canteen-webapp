@@ -23,19 +23,43 @@
             <i id="graph"class="material-icons">timeline</i>
             <i id="setting" class="material-icons">settings</i>
     </div>
-    <div id="menu"></div>
+    <!--menu-->
+    <div id="menu">
+       <h1>Monday</h1>
+       <div id="line"></div>
+       <div id="breakfast">
+       <span class="menu_card_title">Breakfast</h2>
+       </div>
+       <div id="lunch">
+        <span class="menu_card_title">Lunch</h2>
+       </div>
+      <div id="snacks">
+        <span class="menu_card_title">Snacks</h2>
+     </div>
+    </div>
     <div id="profile">
         <img src="pro_pic.png" alt="notfound">
         <h1>Gokul.j.kurup</h1>
-        <p>BE/10001010 <br>1240</p>
+        <p>BE/10001010 </p>
     </div>
     <div id="crt_user">
-        <h1>Wallet Topup</h1>
+        <h1>Summary: (Choose items )</h1>
         <p>Amt in Wallet: 1234<br>
-         Price of Selected Items:        
+        Selected Items:  
         </p>   
-       <div id="input">Amt: <input type="number" name="price" > <i class="material-icons">done_all</i> </div> 
+        <div id="tags"></div>  
+       
     </div>
-    <div id="payment"></div>
+    <div id="direct_pay">
+        <h4>Custom Amount</h4>
+    
+        <form id="c_form">
+            Input a custom amount:  <input type="number" name="c_price"><br>
+            
+            Feedback:<br><input type="text" name="c_price">
+            
+        </form>
+        </div>
+    <div id="payment"><h2>Proceed to payment..</h2></div>
     <script src="main_script.js"></script>
 </html>
