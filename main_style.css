@@ -286,3 +286,16 @@ html,body {
  font-family: "Dancing Script";
  font-size:1.5rem;
 }
+.menu_item button {
+    background-color:#1C1C28 ; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family:"Dancing Script";
+}
+.menu_item button:hover {
+  background-color:green;
+}
