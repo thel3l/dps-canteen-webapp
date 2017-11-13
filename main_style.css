@@ -233,7 +233,7 @@ html,body {
     font-size:2rem;
     position:absolute;
 }
-/*that horizontal boi*/
+/*the line below the headers*/
 .line {
     height:5%;
     width:90%;
@@ -286,9 +286,12 @@ html,body {
  font-family: "Dancing Script";
  font-size:1.5rem;
 }
+
 .menu_item button {
-    background-color:#1C1C28 ; /* Green */
+    background-color:  #1C1C28 ; 
     border: none;
+    height:40%;
+    width:140%;
     color: white;
     text-align: center;
     text-decoration: none;
@@ -296,6 +299,14 @@ html,body {
     font-size: 16px;
     font-family:"Dancing Script";
 }
+.menu_item button:visited {
+    border:2px solid rgb(51, 51, 226);
+  }
+  .menu_item button:focus {
+    border:2px solid rgb(51, 51, 226);
+  }
 .menu_item button:hover {
-  background-color:green;
+    border:2px solid rgb(51, 51, 226);
 }
+
+  
