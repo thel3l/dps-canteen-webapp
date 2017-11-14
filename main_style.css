@@ -172,7 +172,7 @@ html,body {
 /*end-sidebox*/
 /*menu main */
 #menu {
-    height:80%;
+    height:84%;
     width:65%;
     position:absolute;
     top:15%;
@@ -187,13 +187,13 @@ html,body {
 #menu h1 {
     position:absolute;
     top:2%;
-    left:55%;
+    left:75%;
     font-size:2.8rem;  
 }
 #menu h3 {
     position:absolute;
     top:1%;
-    left:55%;
+    left:75%;
     font-size:1rem;  
 }
 #breakfast {
