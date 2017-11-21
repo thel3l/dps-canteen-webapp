@@ -13,6 +13,7 @@ function main() {
                 document.getElementById(this.getAttribute('id')).disabled =true;
                 price += prices[e];
                   screen.innerHTML = price;
+                  this.style = "color:#27FF00 ";
          }); //end EventListener functionality
     }
 }
