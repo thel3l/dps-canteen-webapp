@@ -2,7 +2,9 @@ html,body {
     background-color:rgb(223, 219, 219);
     font-size:100%;
 }
-
+button {
+    outline:none;
+}
 #header {
     height:11%;
     width:100%;
@@ -304,15 +306,10 @@ html,body {
     font-size: 16px;
     font-family:"Dancing Script";
 }
-.menu_item button:visited {
-    border:2px solid rgb(51, 51, 226);
-  }
-  .menu_item button:focus {
-    border:2px solid rgb(51, 51, 226);
-  }
 .menu_item button:hover {
-    border:2px solid rgb(51, 51, 226);
+   color: #27FF00;
 }
+
 #rupee{
     font-size:2.5rem;
     position:absolute;
@@ -344,4 +341,15 @@ html,body {
       display: inline-block;
       font-size: 16px;
       font-family:"Dancing Script";
+  }
+  #c_amt {
+    height:10%;
+    width:40%;
+    position:absolute;
+    top:87%;
+    border: none;
+    background-color:rgb(255, 255, 255);
+    text-align:left;
+    text-decoration: none;
+    left:25%;
   }
