@@ -55,11 +55,12 @@ function main() {
      crt_userbutton = "color:grey";
    })
 
-   function openmodal(meh)
+   function openmodal()
    {
        var x = screen.width/2 - 700/2;
        var y = screen.height/2 - 450/2;
-       window.open("https://paytm.com", 'sharegplus','height=600,width=1000,left='+x+',top='+y);
+       console.log(x);
+       window.open("https://paytm.com", 'paytm','height=100%,width=100%,left='+x+',top='+y);
    }
 
    //procceed to payment
