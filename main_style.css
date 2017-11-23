@@ -307,7 +307,7 @@ button {
     font-family:"Dancing Script";
 }
 .menu_item button:hover {
-   color: #27FF00;
+   color: #27FF00 !important;
 }
 
 #rupee{
@@ -342,9 +342,7 @@ button {
       font-size: 16px;
       font-family:"Dancing Script";
   }
-  .clicked button:hover {
-      color:#27FF00;
-  }
+ 
   #c_amt {
     height:10%;
     width:40%;

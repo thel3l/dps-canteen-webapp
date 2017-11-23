@@ -85,15 +85,14 @@ function main() {
      dpay.style="color:black";
      dpayinputs[0].disabled =false;
      dpayinputs[1].disabled =false;
-     crt_userbutton = "color:grey";
+     this.style = "color:grey";
+     clear.style="color:grey";
    })
 
    function openmodal()
    {
-       var x = screen.width/2 - 700/2;
-       var y = screen.height/2 - 450/2;
-       console.log(x);
-       window.open("https://paytm.com", 'paytm','height=100%,width=100%,left='+x+',top='+y);
+       
+       window.open("https://paytm.com", 'paytm',"height=700,width=1000,left='10%',top='20%'" );
    }
 
    //procceed to payment
