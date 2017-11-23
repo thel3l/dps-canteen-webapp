@@ -1,5 +1,19 @@
+//initializeFirebase
+var config = {
+  apiKey: "AIzaSyCas9WSzPdCvatx7ODWMTquCCwiuZEj-UI",
+  authDomain: "dpsemca-1f00a.firebaseapp.com",
+  databaseURL: "https://dpsemca-1f00a.firebaseio.com",
+  projectId: "dpsemca-1f00a",
+  storageBucket: "dpsemca-1f00a.appspot.com",
+  messagingSenderId: "696186948502"
+};
+firebase.initializeApp(config);
+
+
+
 window.addEventListener("load",main);
 function main() {
+
     //Death to frameworks !! 
     var item=document.getElementsByClassName('items');
     var screen = document.getElementById("tags");
@@ -11,6 +25,9 @@ function main() {
     var crt_userbutton = document.getElementById("crt_user").getElementsByTagName('button'); 
     var proceed  = document.getElementById("payment");
     var price=0;
+    //firebase declarations
+    var database = firebase.database();
+    var userRef = database.ref().child("users").child("BE00012314");
     /*Loop to automatically populate the array comes here 
      source of the array could be in firebase ??
      prices.forEach(getFromFirebase)
