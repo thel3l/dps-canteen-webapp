@@ -15,6 +15,7 @@ var database = firebase.database();
 var userRef = database.ref().child("users").child(id);
 var st_name = document.getElementById("st_name");
 var money = document.getElementById("money");
+var st_pic = document.getElementById("st_pic");
 //firebase code
 userRef.on('value', function(snapshot) {
   var userInfo = snapshot.val();
@@ -35,15 +36,7 @@ userRef.on('value', function(snapshot) {
   }
   st_name.innerHTML = name.substring(0,++index);
   money.innerHTML = userInfo.balance;
-
-  /*
-  $('#walletBal span').text(userInfo.balance);
-  $('#profileImage').attr('src', userInfo.photo);
-  $('#currentWalletBal span').text(userInfo.balance);
-  $('#headerProfilePic').attr('src', userInfo.photo);
-  $('#dropdownName').text(userInfo.name);
-  $('#dropdownWallet span').text(userInfo.balance);
-  */
+  st_pic.setAttribute("src",userInfo.photo);
 });
 
 
