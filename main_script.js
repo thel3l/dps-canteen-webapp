@@ -18,7 +18,6 @@ userRef.on('value', function(snapshot) {
   var userInfo = snapshot.val();
   st_name.innerHTML = userInfo.name;
   /*
-  $('#studentName span').text(userInfo.name);
   $('#walletBal span').text(userInfo.balance);
   $('#profileImage').attr('src', userInfo.photo);
   $('#currentWalletBal span').text(userInfo.balance);
