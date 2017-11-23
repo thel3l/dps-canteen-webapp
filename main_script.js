@@ -13,10 +13,14 @@ firebase.initializeApp(config);
 var id = "BE000111";
 var database = firebase.database();
 var userRef = database.ref().child("users").child(id);
+var st_name = document.getElementById("st_name");
+var money = document.getElementById("money");
 //firebase code
 userRef.on('value', function(snapshot) {
   var userInfo = snapshot.val();
   st_name.innerHTML = userInfo.name;
+  money.innerHTML = userInfo.balance;
+
   /*
   $('#walletBal span').text(userInfo.balance);
   $('#profileImage').attr('src', userInfo.photo);
@@ -41,7 +45,6 @@ function main() {
     var crt_user = document.getElementById("crt_user");
     var crt_userbutton = document.getElementById("crt_user").getElementsByTagName('button'); 
     var proceed  = document.getElementById("payment");
-    var st_name = document.getElementById("st_name");
     var price=0;
     
     /*Loop to automatically populate the array comes here 
