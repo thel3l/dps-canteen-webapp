@@ -18,7 +18,22 @@ var money = document.getElementById("money");
 //firebase code
 userRef.on('value', function(snapshot) {
   var userInfo = snapshot.val();
-  st_name.innerHTML = userInfo.name;
+  var name = userInfo.name;
+  var count =0;
+  var countspaces =0;
+  var index ;
+  //to stop the interface from breaking on input of long names
+   for (var i = 0;(i < name.length) || (count!=12); i++) {
+      count++;
+      if(name[i] == " ") {
+       countspaces++;
+    }
+    if(countspaces == 2) {
+      index = i;
+      break; 
+    }
+  }
+  st_name.innerHTML = name.substring(0,++index);
   money.innerHTML = userInfo.balance;
 
   /*
