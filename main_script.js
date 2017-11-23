@@ -1,3 +1,4 @@
+
 //initializeFirebase
 var config = {
   apiKey: "AIzaSyCas9WSzPdCvatx7ODWMTquCCwiuZEj-UI",
@@ -98,6 +99,12 @@ function main() {
      dpayinputs[1].disabled =false;
      this.style = "color:grey";
      clear.style="color:grey";
+     for(var i=0;i<item.length;i++) {
+      item[i].style="color:white"
+      price = 0;
+      screen.innerHTML = "0";
+      // item[i].disabled = false;
+    }
    })
 
    function openmodal()
