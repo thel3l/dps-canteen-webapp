@@ -65,7 +65,7 @@ function main() {
           item[i].addEventListener("click",function() {
                var e = parseInt(this.getAttribute('id'));
                console.log(prices[e]); 
-                document.getElementById(this.getAttribute('id')).disabled =true;
+                // document.getElementById(this.getAttribute('id')).disabled =true;
                 price += prices[e];
                   screen.innerHTML = price;
                   this.style = "color:#27FF00 ";
@@ -84,7 +84,7 @@ function main() {
           item[i].style="color:white"
           price = 0;
           screen.innerHTML = "0";
-          item[i].disabled = false;
+          // item[i].disabled = false;
         }
     })
 
