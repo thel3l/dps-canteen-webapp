@@ -38,9 +38,29 @@ userRef.on('value', function(snapshot) {
   st_name.innerHTML = name.substring(0,++index);
   money.innerHTML = userInfo.balance;
   st_pic.setAttribute("src",userInfo.photo);
+ 
 });
-
-
+//onclick of proceed payment
+function openmodal() {
+  window.open("https://paytm.com", 'paytm',"height=700,width=1000,left='10%',top='20%'" );
+  var money = parseInt(document.getElementById('money').innerHTML);
+  var price = parseInt(document.getElementById("tags").innerHTML);
+  console.log("Wallet:" +money);
+  console.log("price:" + price);
+  console.log(typeof money);
+  console.log(typeof price);
+   var current = money-price; 
+  console.log(current);
+   if(current >=0) {
+     return current;
+   } else {
+     window.alert(Math.abs(current) + " needs to be toped up");
+     current =0;
+   }
+   userRef.child('balance').set({
+     balance: current
+   });
+}
 window.addEventListener("load",main);
 function main() {
 
@@ -65,7 +85,6 @@ function main() {
     for(var i=0;i<item.length;i++) {
           item[i].addEventListener("click",function() {
                var e = parseInt(this.getAttribute('id'));
-               console.log(prices[e]); 
                 // document.getElementById(this.getAttribute('id')).disabled =true;
                 price += prices[e];
                   screen.innerHTML = price;
@@ -107,11 +126,7 @@ function main() {
     }
    })
 
-   function openmodal()
-   {
-       
-       window.open("https://paytm.com", 'paytm',"height=700,width=1000,left='10%',top='20%'" );
-   }
+   
 
    //procceed to payment
    proceed.addEventListener("click",openmodal);   
