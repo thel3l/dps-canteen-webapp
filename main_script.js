@@ -9,6 +9,24 @@ var config = {
 };
 firebase.initializeApp(config);
 
+//firebase declarations
+var id = "BE000111";
+var database = firebase.database();
+var userRef = database.ref().child("users").child(id);
+//firebase code
+userRef.on('value', function(snapshot) {
+  var userInfo = snapshot.val();
+  st_name.innerHTML = userInfo.name;
+  /*
+  $('#studentName span').text(userInfo.name);
+  $('#walletBal span').text(userInfo.balance);
+  $('#profileImage').attr('src', userInfo.photo);
+  $('#currentWalletBal span').text(userInfo.balance);
+  $('#headerProfilePic').attr('src', userInfo.photo);
+  $('#dropdownName').text(userInfo.name);
+  $('#dropdownWallet span').text(userInfo.balance);
+  */
+});
 
 
 window.addEventListener("load",main);
@@ -24,10 +42,9 @@ function main() {
     var crt_user = document.getElementById("crt_user");
     var crt_userbutton = document.getElementById("crt_user").getElementsByTagName('button'); 
     var proceed  = document.getElementById("payment");
+    var st_name = document.getElementById("st_name");
     var price=0;
-    //firebase declarations
-    var database = firebase.database();
-    var userRef = database.ref().child("users").child("BE00012314");
+    
     /*Loop to automatically populate the array comes here 
      source of the array could be in firebase ??
      prices.forEach(getFromFirebase)
@@ -81,5 +98,5 @@ function main() {
    }
 
    //procceed to payment
-   proceed.addEventListener("click",openmodal);
+   proceed.addEventListener("click",openmodal);   
 }
