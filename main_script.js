@@ -105,27 +105,32 @@ function main() {
     }
    })
 
-   
+   function writeUserData(userId, price) {
+    firebase.database().ref('users/' + userId).set({
+      username: name,
+      balance: price
+    });
+  }
 
    //procceed to payment
    proceed.addEventListener("click",function() {
     window.open("https://paytm.com", 'paytm',"height=700,width=1000,left='10%',top='20%'" );
     var money = parseInt(document.getElementById('money').innerHTML);
     var price = parseInt(document.getElementById("tags").innerHTML);
-    console.log("Wallet:" +money);
-    console.log("price:" + price);
-    console.log(typeof money);
-    console.log(typeof price);
      var current = money-price; 
+     console.log("initial: " + current);
      if(current >=0) {
        return current;
+       window.alert("this works");
      } else {
        window.alert(Math.abs(current) + " needs to be toped up");
        current =0;
+       window.alert("this works");
      }
-     console.log(current);
-     userRef.child('balance').update({
-       balance: current
-     });
-   });   
+     console.log("this " + current);
+     console.log(id + " " + current)
+       writeUserData(id,current);
+     //ev end
+   });
+  //main end
 }
