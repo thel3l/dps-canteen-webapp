@@ -111,27 +111,42 @@ function main() {
     }
    })
 
+<<<<<<< HEAD
    function writeUserData(userId, price) {
     firebase.database().ref('users/' + userId).set({
             balance: price
     });
   }
+=======
+   
+>>>>>>> parent of 01e80e9... eslint local capability
 
    //procceed to payment
    proceed.addEventListener("click",function() {
     window.open("https://paytm.com", 'paytm',"height=700,width=1000,left='10%',top='20%'" );
     var money = parseInt(document.getElementById('money').innerHTML);
     var price = parseInt(document.getElementById("tags").innerHTML);
+    console.log("Wallet:" +money);
+    console.log("price:" + price);
+    console.log(typeof money);
+    console.log(typeof price);
      var current = money-price; 
+<<<<<<< HEAD
      console.log("initial: " + current);
      if(current < 0) {
       window.alert(Math.abs(current) + " needs to be toped up");
       current =0;
+=======
+     if(current >=0) {
+       return current;
+     } else {
+       window.alert(Math.abs(current) + " needs to be toped up");
+       current =0;
+>>>>>>> parent of 01e80e9... eslint local capability
      }
-     console.log("this " + current);
-     console.log(id + " " + current)
-       writeUserData(id,current);
-     //ev end
-   });
-  //main end
+     console.log(current);
+     userRef.child('balance').update({
+       balance: current
+     });
+   });   
 }
