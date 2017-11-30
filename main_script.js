@@ -102,11 +102,6 @@ function main() {
     }
    })
 
-   function openmodal()
-   {
-       
-       window.open("https://paytm.com", 'paytm',"height=700,width=1000,left='10%',top='20%'" );
-   }
     function update(id,price) {
         firebase.database().ref('users/'+id).update({
            balance: price  
@@ -124,6 +119,12 @@ function main() {
           window.open("https://paytm.com", 'paytm',"height=700,width=1000,left='10%',top='20%'" );
         } else {
           window.alert("Purchase Successful :-)");
+          for(var i=0;i<item.length;i++) {
+            item[i].style="color:white"
+            price = 0;
+            screen.innerHTML = "0";
+            // item[i].disabled = false;
+          }
         }
 
         console.log(current);
