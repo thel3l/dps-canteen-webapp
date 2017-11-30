@@ -30,6 +30,11 @@ var st_pic = document.getElementById("st_pic");
         } else {
         window.alert("Oops ! \n Your wallet money has not been properly configured into our database \n  Please get in touch with school authorities");
         }
+        if(userInfo.pic) {
+          st_pic.setAttribute('src',userInfo.pic);
+        } else {
+        window.alert("Oops ! \n Your profile pic has not been properly configured into our database \n  Please get in touch with school authorities");
+        }
     } else {
       window.alert("Oops ! \n You have not been registered with our database.\n please contact school autorities");
     }
