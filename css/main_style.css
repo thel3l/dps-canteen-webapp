@@ -1,6 +1,7 @@
 html,body {
     background-color:rgb(223, 219, 219);
     font-size:100%;
+    overflow: hidden;
 }
 button {
     outline:none;
@@ -13,7 +14,7 @@ button {
     left:5%;
     box-shadow: 0px 3px 1px rgb(206, 201, 201);
    background-color:white;
-
+   transform: translate(-4.8%,0);
 }
 .hamburger {   
         width: 8%;
@@ -43,10 +44,10 @@ button {
 #sidenav {
     height: 100%;
     width:5%;
-    position:absolute;
+    position:fixed;
     top:0%;
     left:0%;
-  
+    transform: translate3d(-98%,0,0);
     background-color:#2F313D;
 }
 
@@ -185,6 +186,7 @@ button {
     background-color: 	#1C1C28;
     font-family:"Architects Daughter";
     color:white;
+     transform: translate(-5%,-2%);  
   /*  background-image: url("bg_green.jpg");
     background-repeat: no-repeat;
     background-size:cover; */

@@ -15,6 +15,7 @@ var id = "BE000111";
 var st_name = document.getElementById("st_name");
 var money = document.getElementById("money");
 var st_pic = document.getElementById("st_pic");
+var menu = [];
 //firebase code 
   firebase.database().ref('users/' + id).on('value', function(snapshot) {
     var userInfo = snapshot.val();
@@ -38,10 +39,15 @@ var st_pic = document.getElementById("st_pic");
     } else {
       window.alert("Oops ! \n You have not been registered with our database.\n please contact school autorities");
     }
-
  });
-
-
+ if(firebase.database().ref('menu/')) {
+ firebase.database().ref('menu/').on('value', function(snapshot) {
+     var menuref = snapshot.val();
+     for(var item in menuref) {
+       menu[item] = menuref[item]
+     }
+ });
+}
 window.addEventListener("load",main);
 function main() {
 
@@ -62,12 +68,16 @@ function main() {
      prices.forEach(getFromFirebase)
     */ 
     var prices = [50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50];
-
+    //bill
+    var items = [];
+    var c = 0;
     for(var i=0;i<item.length;i++) {
           item[i].addEventListener("click",function() {
                var e = parseInt(this.getAttribute('id'));
                 // document.getElementById(this.getAttribute('id')).disabled =true;
                 price += prices[e];
+                items[c] = menu[e];
+                c++;
                   screen.innerHTML = price;
                   this.style = "color:#27FF00 ";
                   //custom amount sidebox mods
@@ -112,6 +122,19 @@ function main() {
            balance: price  
        });
     }
+
+    var time = Date.now || function() {
+      return +new Date;
+    };
+    
+    console.log(time());
+    function menuUpdate(id,items) {
+      firebase.database().ref('transactions/').push({
+          "st_id": id,
+          "time of purchase": time(),
+          "items_bought": items
+      });
+    }
    //procceed to payment
    proceed.addEventListener("click",function() {
         var money = parseInt(document.getElementById('money').innerHTML);
@@ -131,8 +154,7 @@ function main() {
             // item[i].disabled = false;
           }
         }
-
-        console.log(current);
         update(id,current);
+        menuUpdate(id,items)
    });
 }
