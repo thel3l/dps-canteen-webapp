@@ -111,15 +111,7 @@ function main() {
     }
    })
 
-<<<<<<< HEAD
-   function writeUserData(userId, price) {
-    firebase.database().ref('users/' + userId).set({
-            balance: price
-    });
-  }
-=======
    
->>>>>>> parent of 01e80e9... eslint local capability
 
    //procceed to payment
    proceed.addEventListener("click",function() {
@@ -131,18 +123,10 @@ function main() {
     console.log(typeof money);
     console.log(typeof price);
      var current = money-price; 
-<<<<<<< HEAD
      console.log("initial: " + current);
      if(current < 0) {
       window.alert(Math.abs(current) + " needs to be toped up");
       current =0;
-=======
-     if(current >=0) {
-       return current;
-     } else {
-       window.alert(Math.abs(current) + " needs to be toped up");
-       current =0;
->>>>>>> parent of 01e80e9... eslint local capability
      }
      console.log(current);
      userRef.child('balance').update({
