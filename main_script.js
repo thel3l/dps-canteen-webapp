@@ -36,6 +36,7 @@ try {
         break; 
       }
     }
+<<<<<<< HEAD
     st_name.innerHTML = name.substring(0,++index);
     money.innerHTML = userInfo.balance;
     st_pic.setAttribute("src",userInfo.photo);
@@ -44,6 +45,18 @@ try {
 } catch(e) {
   window.alert("Your data appears to be unavialable \n Please contact the school authorities")
 }
+=======
+    if(countspaces == 2) {
+      index = i;
+      break; 
+    }
+  }
+  st_name.innerHTML = name.substring(0,++index);
+  money.innerHTML = userInfo.balance;
+  st_pic.setAttribute("src",userInfo.photo);
+});
+
+>>>>>>> parent of 31b79c0... refined
 
 window.addEventListener("load",main);
 function main() {
@@ -69,6 +82,7 @@ function main() {
     for(var i=0;i<item.length;i++) {
           item[i].addEventListener("click",function() {
                var e = parseInt(this.getAttribute('id'));
+               console.log(prices[e]); 
                 // document.getElementById(this.getAttribute('id')).disabled =true;
                 price += prices[e];
                   screen.innerHTML = price;
@@ -110,11 +124,19 @@ function main() {
     }
    })
 
+<<<<<<< HEAD
    function writeUserData(userId, price) {
     firebase.database().ref('users/' + userId).set({
             balance: price
     });
   }
+=======
+   function openmodal()
+   {
+       
+       window.open("https://paytm.com", 'paytm',"height=700,width=1000,left='10%',top='20%'" );
+   }
+>>>>>>> parent of 31b79c0... refined
 
    //procceed to payment
    proceed.addEventListener("click",function() {
