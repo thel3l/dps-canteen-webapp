@@ -100,11 +100,19 @@ function main() {
     }
    //procceed to payment
    proceed.addEventListener("click",function() {
-      window.open("https://paytm.com", 'paytm',"height=700,width=1000,left='10%',top='20%'" );
-      var money = parseInt(document.getElementById('money').innerHTML);
-      var price = parseInt(document.getElementById("tags").innerHTML);
-      var current =money-price;
-      console.log(current);
-      update(id,price);
+        var money = parseInt(document.getElementById('money').innerHTML);
+        var price = parseInt(document.getElementById("tags").innerHTML);
+        var current =money-price;
+        if(current < 0) {
+          var temp  = -1 * current;
+          window.alert(temp+ " must be topped in the wallet");
+          current = 0;
+          window.open("https://paytm.com", 'paytm',"height=700,width=1000,left='10%',top='20%'" );
+        } else {
+          window.alert("Purchase Successful :-)");
+        }
+
+        console.log(current);
+        update(id,current);
    });
 }
