@@ -18,7 +18,6 @@ var st_name = document.getElementById("st_name");
 var money = document.getElementById("money");
 var st_pic = document.getElementById("st_pic");
 //firebase code
-try {
   userRef.on('value', function(snapshot) {
     var userInfo = snapshot.val();
     var name = userInfo.name;
@@ -36,27 +35,15 @@ try {
         break; 
       }
     }
-<<<<<<< HEAD
-    st_name.innerHTML = name.substring(0,++index);
-    money.innerHTML = userInfo.balance;
-    st_pic.setAttribute("src",userInfo.photo);
-  
-  });
-} catch(e) {
-  window.alert("Your data appears to be unavialable \n Please contact the school authorities")
-}
-=======
     if(countspaces == 2) {
       index = i;
       break; 
     }
-  }
   st_name.innerHTML = name.substring(0,++index);
   money.innerHTML = userInfo.balance;
   st_pic.setAttribute("src",userInfo.photo);
 });
 
->>>>>>> parent of 31b79c0... refined
 
 window.addEventListener("load",main);
 function main() {
