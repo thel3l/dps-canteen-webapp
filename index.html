@@ -11,7 +11,7 @@
     <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
-    
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -176,12 +176,6 @@
         </form>
         </div>
     <div id="payment"><h2>Proceed to payment..</h2></div>
-    <script src="main_script.js"></script>
-    <script>
-        if('serviceWorker' in navigator) {
-          navigator.serviceWorker
-                   .register('sw.js')
-                   .then(function() { console.log("Service Worker Registered"); });
-        }
-     </script>
+    <script src="scripts/main_script.js"></script>
+    <script src="scripts/app.js"></script>
 </html>
