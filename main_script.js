@@ -15,11 +15,25 @@ var id = "BE000111";
 var st_name = document.getElementById("st_name");
 var money = document.getElementById("money");
 var st_pic = document.getElementById("st_pic");
-//firebase code
+//firebase code 
   firebase.database().ref('users/' + id).on('value', function(snapshot) {
     var userInfo = snapshot.val();
-    st_name.innerHTML = userInfo.name;
-    money.innerHTML = userInfo.balance;
+    if(userInfo) {
+        if(userInfo.name) {
+          st_name.innerHTML = userInfo.name;
+         } else {
+          window.alert("Oops ! \n Your name has not been properly added into our database \n  Please get in touch with school authorities");
+        }
+
+        if(userInfo.balance) {
+          money.innerHTML = userInfo.balance;
+        } else {
+        window.alert("Oops ! \n Your wallet money has not been properly configured into our database \n  Please get in touch with school authorities");
+        }
+    } else {
+      window.alert("Oops ! \n You have not been registered with our database.\n please contact school autorities");
+    }
+
  });
 
 
