@@ -1,12 +1,12 @@
 
 //initializeFirebase
 var config = {
-    apiKey: "AIzaSyA5mYI6Aqnh7IhVcnPUIzhUiMMJmB-3dKQ",
-    authDomain: "dpsetab.firebaseapp.com",
-    databaseURL: "https://dpsetab.firebaseio.com",
-    projectId: "dpsetab",
-    storageBucket: "dpsetab.appspot.com",
-    messagingSenderId: "960247580281"
+  apiKey: "AIzaSyCas9WSzPdCvatx7ODWMTquCCwiuZEj-UI",
+  authDomain: "dpsemca-1f00a.firebaseapp.com",
+  databaseURL: "https://dpsemca-1f00a.firebaseio.com",
+  projectId: "dpsemca-1f00a",
+  storageBucket: "dpsemca-1f00a.appspot.com",
+  messagingSenderId: "696186948502"
 };
 firebase.initializeApp(config);
 
