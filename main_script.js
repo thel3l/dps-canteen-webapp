@@ -18,28 +18,33 @@ var st_name = document.getElementById("st_name");
 var money = document.getElementById("money");
 var st_pic = document.getElementById("st_pic");
 //firebase code
-userRef.on('value', function(snapshot) {
-  var userInfo = snapshot.val();
-  var name = userInfo.name;
-  var count =0;
-  var countspaces =0;
-  var index ;
-  //to stop the interface from breaking on input of long names
-   for (var i = 0;(i < name.length) || (count!=12); i++) {
-      count++;
-      if(name[i] == " ") {
-       countspaces++;
+try {
+  userRef.on('value', function(snapshot) {
+    var userInfo = snapshot.val();
+    var name = userInfo.name;
+    var count =0;
+    var countspaces =0;
+    var index ;
+    //to stop the interface from breaking on input of long names
+     for (var i = 0;(i < name.length) || (count!=12); i++) {
+        count++;
+        if(name[i] == " ") {
+         countspaces++;
+      }
+      if(countspaces == 2) {
+        index = i;
+        break; 
+      }
     }
-    if(countspaces == 2) {
-      index = i;
-      break; 
-    }
-  }
-  st_name.innerHTML = name.substring(0,++index);
-  money.innerHTML = userInfo.balance;
-  st_pic.setAttribute("src",userInfo.photo);
- 
-});
+    st_name.innerHTML = name.substring(0,++index);
+    money.innerHTML = userInfo.balance;
+    st_pic.setAttribute("src",userInfo.photo);
+  
+  });
+} catch(e) {
+  window.alert("Your data appears to be unavialable \n Please contact the school authorities")
+}
+
 window.addEventListener("load",main);
 function main() {
 
@@ -107,8 +112,7 @@ function main() {
 
    function writeUserData(userId, price) {
     firebase.database().ref('users/' + userId).set({
-      username: name,
-      balance: price
+            balance: price
     });
   }
 
@@ -119,13 +123,9 @@ function main() {
     var price = parseInt(document.getElementById("tags").innerHTML);
      var current = money-price; 
      console.log("initial: " + current);
-     if(current >=0) {
-       return current;
-       window.alert("this works");
-     } else {
-       window.alert(Math.abs(current) + " needs to be toped up");
-       current =0;
-       window.alert("this works");
+     if(current < 0) {
+      window.alert(Math.abs(current) + " needs to be toped up");
+      current =0;
      }
      console.log("this " + current);
      console.log(id + " " + current)
