@@ -131,6 +131,7 @@ var menu = [];
    })
     var d = new Date();
     function menuUpdate(id,items) {
+      console.log(d);
       firebase.database().ref('users/' + id +'/transactions/'+ d).set({
           "time of purchase":  new Date(),
           "items_bought": items,
