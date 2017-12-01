@@ -63,6 +63,9 @@ var menu = [];
      source of the array could be in firebase ??
      prices.forEach(getFromFirebase)
     */
+    var state = 0;
+    //state 0 is menu 
+    //state 1 is custom amt 
     var prices = [50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50];
     //bill
     var items = [];
@@ -80,6 +83,13 @@ var menu = [];
                   dpay.style="color:grey";
                   dpayinputs[0].disabled =true;
                   dpayinputs[1].disabled =true;
+                  if(state == 1) {
+                    crt_user.style="color:black;";
+                    state =0;
+                    clear.style = "color:black";
+                    c_amt.style = "color:black";
+                    document.getElementById('c_form').reset();
+                  }
          }); //end EventListener functionality
     }
 
@@ -101,9 +111,10 @@ var menu = [];
      });
   }
 
-   //custom amount on the summart tab
+   //custom amount on the summary tab
    c_amt.addEventListener("click",function() {
      current =0 ;
+     state = 1;
      crt_user.style="color:grey";
      crt_userbutton.disabled =true;
      dpay.style="color:black";
@@ -146,7 +157,7 @@ var menu = [];
             // item[i].disabled = false;
           }
         }
-        if(isNaN(custom_amt)) {
+        if(isNaN(custom_amt) ) {
           update(id,current);
           menuUpdate(id,items);
         } else {
