@@ -11,7 +11,7 @@ var config = {
 firebase.initializeApp(config);
 
 //firebase declarations
-var id = "BE00012314";
+var id = "BE000111";
 var st_name = document.getElementById("st_name");
 var money = document.getElementById("money");
 var st_pic = document.getElementById("st_pic");
