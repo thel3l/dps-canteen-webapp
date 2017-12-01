@@ -48,9 +48,6 @@ var menu = [];
      }
  });
 }
-window.addEventListener("load",main);
-function main() {
-
     //Death to frameworks !! 
     var item=document.getElementsByClassName('items');
     var screen = document.getElementById("tags");
@@ -157,4 +154,5 @@ function main() {
         update(id,current);
         menuUpdate(id,items)
    });
-}
+   
+
