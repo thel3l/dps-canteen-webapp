@@ -118,16 +118,12 @@ var menu = [];
       // item[i].disabled = false;
     }
    })
-
-    var time = Date.now || function() {
-      return +new Date;
-    };
-    
+    var d = new Date();
     function menuUpdate(id,items) {
-      firebase.database().ref('transactions/').push({
-          "st_id": id,
-          "time of purchase": time(),
-          "items_bought": items
+      firebase.database().ref('users/' + id +'/transactions/'+ d).set({
+          "time of purchase":  new Date(),
+          "items_bought": items,
+           "status": "Pending Order"
       });
     }
    //procceed to payment
@@ -150,7 +146,6 @@ var menu = [];
             // item[i].disabled = false;
           }
         }
-        
         if(isNaN(custom_amt)) {
           update(id,current);
           menuUpdate(id,items);
