@@ -162,7 +162,7 @@ button {
 }
 #payment:hover {
     background-color:rgb(16, 16, 40);
-    color:White;
+    color:White !important; 
 }
 /*bill amount*/
 #tags {
