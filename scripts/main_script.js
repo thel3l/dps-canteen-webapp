@@ -59,11 +59,10 @@ var menu = [];
     var crt_userbutton = document.getElementById("crt_user").getElementsByTagName('button'); 
     var proceed  = document.getElementById("payment");
     var price=0;
-    
     /*Loop to automatically populate the array comes here 
      source of the array could be in firebase ??
      prices.forEach(getFromFirebase)
-    */ 
+    */
     var prices = [50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50];
     //bill
     var items = [];
@@ -96,9 +95,15 @@ var menu = [];
         }
     })
 
+    function update(id,price) {
+      firebase.database().ref('users/'+id).update({
+         balance: price  
+     });
+  }
 
-   //custom amount
+   //custom amount on the summart tab
    c_amt.addEventListener("click",function() {
+     current =0 ;
      crt_user.style="color:grey";
      crt_userbutton.disabled =true;
      dpay.style="color:black";
@@ -114,17 +119,10 @@ var menu = [];
     }
    })
 
-    function update(id,price) {
-        firebase.database().ref('users/'+id).update({
-           balance: price  
-       });
-    }
-
     var time = Date.now || function() {
       return +new Date;
     };
     
-    console.log(time());
     function menuUpdate(id,items) {
       firebase.database().ref('transactions/').push({
           "st_id": id,
@@ -136,6 +134,7 @@ var menu = [];
    proceed.addEventListener("click",function() {
         var money = parseInt(document.getElementById('money').innerHTML);
         var price = parseInt(document.getElementById("tags").innerHTML);
+        var custom_amt = parseInt(dpayinputs[0].value);
         var current =money-price;
         if(current < 0) {
           var temp  = -1 * current;
@@ -151,8 +150,21 @@ var menu = [];
             // item[i].disabled = false;
           }
         }
-        update(id,current);
-        menuUpdate(id,items)
+        
+        if(isNaN(custom_amt)) {
+          update(id,current);
+          menuUpdate(id,items);
+        } else {
+          current = money - custom_amt;
+          update(id,current);
+        }
+        crt_user.style="color:black";
+        crt_userbutton.disabled =false;
+        dpay.style="color:black";
+        dpayinputs[0].disabled =false;
+        dpayinputs[1].disabled =false;
+        this.style = "color:black";
+        clear.style="color:black";
    });
    
 
