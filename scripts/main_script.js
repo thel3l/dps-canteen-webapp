@@ -130,18 +130,27 @@ var menu = [];
     }
    })
     var d = new Date();
-    function menuUpdate(id,items) {
+    function menuUpdate(id,items,price) {
       console.log(d);
       firebase.database().ref('users/' + id +'/transactions/'+ d).set({
-          "time of purchase":  new Date(),
+          "bill_amt":  price,
           "items_bought": items,
            "status": "Pending Order"
+      });
+    }
+
+    function customUpdate(id,price) {
+      console.log(d);
+      firebase.database().ref('users/' + id +'/transactions/'+ d).set({
+          "bill_amt":  price,
+           "status": "Pending Pickup"
       });
     }
    //procceed to payment
    proceed.addEventListener("click",function() {
         var money = parseInt(document.getElementById('money').innerHTML);
         var price = parseInt(document.getElementById("tags").innerHTML);
+        console.log(price);
         var custom_amt = parseInt(dpayinputs[0].value);
         var current =money-price;
         if(current < 0) {
@@ -160,10 +169,11 @@ var menu = [];
         }
         if(isNaN(custom_amt) ) {
           update(id,current);
-          menuUpdate(id,items);
+          menuUpdate(id,items,price);
         } else {
           current = money - custom_amt;
           update(id,current);
+          customUpdate(id,price);
         }
         crt_user.style="color:black";
         crt_userbutton.disabled =false;
@@ -173,5 +183,6 @@ var menu = [];
         this.style = "color:black";
         clear.style="color:black";
    });
-   
+   //the transaction history modal
+  
 
