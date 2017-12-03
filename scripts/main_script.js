@@ -16,23 +16,23 @@ var st_name = document.getElementById("st_name");
 var money = document.getElementById("money");
 var st_pic = document.getElementById("st_pic");
 var menu = [];
-var userInfo;
+
 //firebase code 
   firebase.database().ref('users/' + id).on('value', function(snapshot) {
-     userInfo = snapshot.val();
+    var userInfo = snapshot.val();
     if(userInfo) {
-        if(userInfo.name) {
+        if(snapshot.hasChild('name')) {
           st_name.innerHTML = userInfo.name;
          } else {
           window.alert("Oops ! \n Your name has not been properly added into our database \n  Please get in touch with school authorities");
         }
 
-        if(userInfo.balance) {
+        if(snapshot.hasChild('balance')) {
           money.innerHTML = userInfo.balance;
         } else {
         window.alert("Oops ! \n Your wallet money has not been properly configured into our database \n  Please get in touch with school authorities");
         }
-        if(userInfo.pic) {
+        if(snapshot.hasChild('pic')) {
           st_pic.src = userInfo.pic ;
         } else {
         window.alert("Oops ! \n Your profile pic has not been properly configured into our database \n  Please get in touch with school authorities");
@@ -149,7 +149,7 @@ var userInfo;
       console.log(d);
       firebase.database().ref('users/' + id +'/transactions/'+ d).set({
           "bill_amt":  price,
-           "status": "Payed-Transaction Incomplete"
+           "status": "Funds transferred-Transaction Incomplete"
       });
     }
     function hideSuccess() {
@@ -158,29 +158,81 @@ var userInfo;
         element.style = "display:none";
       }
     }
-    function checkOverwrite(id,d,state) {
+   /* function checkOverwrite(id,d,state) {
       var user;
       var t_history;
+      
       firebase.database().ref('users/' + id).once('value').then(function(snapshot) {
             user = snapshot.val();      
             firebase.database().ref('users/' + id +'/transactions/').once('value').then(function(datasnapshot) {
               t_history = datasnapshot.val();
-              if(state == 0) {
-               
-
-             }
-        });       
-    }); 
-    }
-    checkOverwrite(id,d,state);
+          /*    var count=-1;
+              var keys = [];
+              for(var key in t_history) {
+                count++;
+                keys[count] = key;
+              }
+              var lastItem = keys[count];
+              var userAmt = user.balance;
+            var confirm = window.confirm("Do you wish to rewrite your previous order");
+            if(confirm) {
+               firebase.database().ref('users/' + id +'/transactions/'+lastItem).once('value').then(function(snapshot) {
+                  var transaction = snapshot.val();
+                  var lastPurchase = transaction.bill_amt;
+                  var money = parseInt(document.getElementById('money').innerHTML);
+                  console.log(lastPurchase);
+                  console.log(money);
+                  var amount = money + lastPurchase;
+                 update(id,amount);
+                 var money = parseInt(document.getElementById('money').innerHTML);
+                 var bill_amt_temp = parseInt(document.getElementById("tags").innerHTML);
+                 var current =money-bill_amt_temp;
+                 if(current < 0) {
+                  var temp  = -1 * current;
+                  window.alert(temp+ " must be topped in the wallet");
+                  current = 0;
+                  window.open("https://paytm.com", 'paytm',"height=700,width=1000,left='10%',top='20%'" );
+                } else {
+                  for(var i=0;i<item.length;i++) {
+                    item[i].style="color:white"
+                    price = 0;
+                    screen.innerHTML = "0";
+                    // item[i].disabled = false;
+                  }
+                  if(transaction.items_bought) {
+                    menuUpdate(id,items,current);
+                    
+                   } else {
+                    customUpdate(id,current);
+                   }
+                   window.alert("Purchase Successful :-)");
+                } */
+                
+            //   });
+              
+               // the reset is done at this point.
+          //  if(lastItem.items_bought){
+           //     var confirmation  = window.confirm("Do you wish to override your previous order ?");
+            //    if(confirmation){
+               //   var reset = userAmt + t_history.lastItem;
+              //    firebase.databse().ref('users/' + id).update({
+          //           balance: userAmt
+            //      });  
+            //    }
+           //    }
+      //   }   // end of if statement     
+     //   });       
+ //   }); 
+ //  }
+   
    //procceed to payment
-   function createSuccess() {
+   function createTransactionresult(message,bgcolor,color) {
      var box  = document.createElement('div');
-     var text = document.createTextNode('TransactionSuccessful!!')
+     var text = document.createTextNode(message) //'TransactionSuccessful!!' #dff0d8 #3c763d
      box.appendChild(text);
      box.id = 'success';
-     box.style = 'color: #3c763d; \
-     background-color: #dff0d8; \
+     box.style = 'color:'+color+' ; \
+     background-color: '+bgcolor +'; \
      border-color: #d6e9c6; \
      margin-bottom: 1%; \
      border: 1px solid transparent; \
@@ -218,16 +270,20 @@ var userInfo;
             // item[i].disabled = false;
           }
         }
-        if(isNaN(custom_amt) ) {
-          update(id,current);
-          menuUpdate(id,items,bill_amt);
-        } else {
-          current = money - custom_amt;
-          update(id,current);
-          customUpdate(id,custom_amt);
-        }
+        if(visits == 0) {
+          if(isNaN(custom_amt) ) {
+            update(id,current);
+            menuUpdate(id,items,bill_amt);
+          } else {
+            current = money - custom_amt;
+            update(id,current);
+            customUpdate(id,custom_amt);
+          }
         //reseting the entire interface
-        createSuccess();
+        createTransactionresult('TransactionSuccessful!!','#dff0d8','#3c763d')
+        } else {
+          checkOverwrite(id,d,state);
+        }
         visits++;
         crt_user.style="color:black";
         crt_userbutton.disabled =false;
