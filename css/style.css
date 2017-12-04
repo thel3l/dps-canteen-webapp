@@ -463,7 +463,7 @@ ul.tabs-menu li input[type="radio"] {
   margin-right:5px;
 }
 ul.tabs-menu {
-  margin: 35px 0px 5px 0;
+  margin: 5px 0px 5px 0;
 }
 ul.tabs-menu li a {
   color: #28ece3;
@@ -529,19 +529,46 @@ label.radio {
 .dropdown-menu > li > a {
   padding: 12px 20px;
 }
+
 .bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a span.check-mark {
   margin-top: 14px;
 }
 .categories-section.main-grid-border {
   padding: 80px 0;
 }
-
+#monday, #tuesday, #wednesday, #thursday, #friday{
+  background-color: #93B48B !important;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 20px;
+  word-wrap: normal;
+  text-align: center;
+}
+#mondayItem1, #mondayItem2, #mondayItem3, #mondayItem4,#tuesdayItem1, #tuesdayItem2, #tuesdayItem3, #tuesdayItem4,#wednesdayItem1, #wednesdayItem2, #wednesdayItem3, #wednesdayItem4,#thursdayItem1, #thursdayItem2, #thursdayItem3, #thursdayItem4,#fridayItem1, #fridayItem2, #fridayItem3, #fridayItem4{
+  background-color: #8491A3;
+  padding-top: 23.5px;
+  padding-bottom: 23.5px;
+  font-size: 15px;
+  word-wrap: normal;
+  text-align: center;
+}
+#mondayItem1:hover, #mondayItem2:hover, #mondayItem3:hover, #mondayItem4:hover,#tuesdayItem1:hover, #tuesdayItem2:hover, #tuesdayItem3:hover, #tuesdayItem4:hover,#wednesdayItem1:hover, #wednesdayItem2:hover, #wednesdayItem3:hover, #wednesdayItem4:hover,#thursdayItem1:hover, #thursdayItem2:hover, #thursdayItem3:hover, #thursdayItem4:hover,#fridayItem1:hover,#fridayItem2:hover, #fridayItem3:hover, #fridayItem4:hover{
+  background-color: #BCEBCB;
+}
+#bill{
+  background-color: #F7FFF6;
+  padding-top: 23.5px;
+  padding-bottom: 23.5px;
+  font-size: 15px;
+  word-wrap: normal;
+  text-align: center;
+}
 
 /*-- icons --*/
 /*-- //icons --*/
 /*-- //buttons --*/
 input.submit {
-  background: #28ece3;
+  background: #87D68D;
   border: none;
   color: #fff;
   padding: 9px 20px;

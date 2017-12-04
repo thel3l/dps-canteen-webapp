@@ -9,13 +9,17 @@ var config = {
 };
 firebase.initializeApp(config);
 
-$(document).ready(function() {
+var billAmount = 0;
+var trig = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
+
+$(document).ready(function() {
   setTimeout(function(){
     $('#wrapper').fadeOut(function() { $(this).detach(); });
     $('#slideshow').fadeOut( function() { $(this).detach(); });
 }, 1500);
   // Vertical tabs
+  $("#billAmount").text(billAmount);
   $('#parentVerticalTab').easyResponsiveTabs({
     type: 'vertical',
     width: 'auto',
@@ -103,4 +107,17 @@ function transUpdate(){
     });
     $('#tranHist').html(html);
   });
+}
+function highlight(x, y){
+  if(trig[y] == 0){
+    document.getElementById(x).style.backgroundColor = "#BCEBCB";
+    billAmount += 50;
+    $('#billAmount').text(billAmount);
+    trig[y] = 1;
+  }else if(trig[y] == 1){
+    document.getElementById(x).style.backgroundColor = "#8491A3";
+    billAmount -= 50;
+    $('#billAmount').text(billAmount);
+    trig[y] = 0;
+  }
 }
