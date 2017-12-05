@@ -176,14 +176,15 @@ var menu = [];
         element.style = "display:none";
       }
     }
-   function checkOverwrite(id,d,state) {
+   /* function checkOverwrite(id,d,state) {
       var user;
       var t_history;
+      
       firebase.database().ref('users/' + id).once('value').then(function(snapshot) {
             user = snapshot.val();      
             firebase.database().ref('users/' + id +'/transactions/').once('value').then(function(datasnapshot) {
               t_history = datasnapshot.val();
-            var count=-1;
+          /*    var count=-1;
               var keys = [];
               for(var key in t_history) {
                 count++;
@@ -191,20 +192,56 @@ var menu = [];
               }
               var lastItem = keys[count];
               var userAmt = user.balance;
+            var confirm = window.confirm("Do you wish to rewrite your previous order");
+            if(confirm) {
+               firebase.database().ref('users/' + id +'/transactions/'+lastItem).once('value').then(function(snapshot) {
+                  var transaction = snapshot.val();
+                  var lastPurchase = transaction.bill_amt;
+                  var money = parseInt(document.getElementById('money').innerHTML);
+                  console.log(lastPurchase);
+                  console.log(money);
+                  var amount = money + lastPurchase;
+                 update(id,amount);
+                 var money = parseInt(document.getElementById('money').innerHTML);
+                 var bill_amt_temp = parseInt(document.getElementById("tags").innerHTML);
+                 var current =money-bill_amt_temp;
+                 if(current < 0) {
+                  var temp  = -1 * current;
+                  window.alert(temp+ " must be topped in the wallet");
+                  current = 0;
+                  window.open("https://paytm.com", 'paytm',"height=700,width=1000,left='10%',top='20%'" );
+                } else {
+                  for(var i=0;i<item.length;i++) {
+                    item[i].style="color:white"
+                    price = 0;
+                    screen.innerHTML = "0";
+                    // item[i].disabled = false;
+                  }
+                  if(transaction.items_bought) {
+                    menuUpdate(id,items,current);
+                    
+                   } else {
+                    customUpdate(id,current);
+                   }
+                   window.alert("Purchase Successful :-)");
+                } */
+                
+            //   });
               
-           var confirm = window.confirm("Do you wish to rewrite your previous order");
-          if(confirm) {
-            
-          } else {
-            console.log('...');
-          }
-         });       
-      }); 
-      if(visits == 1) {
-        window.alert('Cannot reorder more than once.');
-         document.getElementById('payment').removeEventListener('click',onProceed);
-      } 
-   }
+               // the reset is done at this point.
+          //  if(lastItem.items_bought){
+           //     var confirmation  = window.confirm("Do you wish to override your previous order ?");
+            //    if(confirmation){
+               //   var reset = userAmt + t_history.lastItem;
+              //    firebase.databse().ref('users/' + id).update({
+          //           balance: userAmt
+            //      });  
+            //    }
+           //    }
+      //   }   // end of if statement     
+     //   });       
+ //   }); 
+ //  }
    
    //procceed to payment
    function createTransactionresult(message,bgcolor,color) {
@@ -230,61 +267,58 @@ var menu = [];
     font-size:0.8rem; '
     document.body.appendChild(box); 
    }
-    function onProceed() {
-      var money = parseInt(document.getElementById('money').innerHTML);
-      var bill_amt = parseInt(document.getElementById("tags").innerHTML);
-      var custom_amt = parseInt(dpayinputs[0].value);
-      //there are two seprate states and therefore two seperate variable sets
-      console.log('bill_amt:on' + bill_amt);
-      var current =money-bill_amt;
-      if(current < 0) {
-        var temp  = -1 * current;
-        window.alert(temp+ " must be topped in the wallet");
-        current = 0;
-        window.open("https://paytm.com", 'paytm',"height=700,width=1000,left='10%',top='20%'" );
-      } else {
-        if(visits == 0) {
+  
+   proceed.addEventListener("click",function() {
+        var money = parseInt(document.getElementById('money').innerHTML);
+        var bill_amt = parseInt(document.getElementById("tags").innerHTML);
+        var custom_amt = parseInt(dpayinputs[0].value);
+        //there are two seprate states and therefore two seperate variable sets
+        var current =money-bill_amt;
+        if(current < 0) {
+          var temp  = -1 * current;
+          window.alert(temp+ " must be topped in the wallet");
+          current = 0;
+          window.open("https://paytm.com", 'paytm',"height=700,width=1000,left='10%',top='20%'" );
+        } else {
           window.alert("Purchase Successful :-)");
+          for(var i=0;i<item.length;i++) {
+            item[i].style="color:white"
+            price = 0;
+            screen.innerHTML = "0";
+            // item[i].disabled = false;
+          }
         }
+        if(visits == 0) {
+          if(isNaN(custom_amt) ) {
+            update(id,current);
+            menuUpdate(id,items,bill_amt);
+          } else {
+            current = money - custom_amt;
+            update(id,current);
+            customUpdate(id,custom_amt);
+          }
+        //reseting the entire interface
+        createTransactionresult('TransactionSuccessful!!','#dff0d8','#3c763d')
+        } else {
+          checkOverwrite(id,d,state);
+        }
+        visits++;
+        crt_user.style="color:black";
+        crt_userbutton.disabled =false;
+        dpay.style="color:black";
+        dpayinputs[0].disabled =false;
+        feedback.disabled =false;
+        this.style = "color:black";
+        clear.style="color:black";
+        items.length = 0;
+        document.getElementById('c_form').reset();
         for(var i=0;i<item.length;i++) {
           item[i].style="color:white"
-           
-          }
           price = 0;
+          screen.innerHTML = "0";
           // item[i].disabled = false;
         }
-      if(visits == 0) {
-        if(isNaN(custom_amt) ) {
-          update(id,current);
-          menuUpdate(id,items,bill_amt);
-        } else {
-          current = money - custom_amt;
-          update(id,current);
-          customUpdate(id,custom_amt);
-        }
-      //reseting the entire interface
-      createTransactionresult('TransactionSuccessful!!','#dff0d8','#3c763d')
-      } else {
-        checkOverwrite(id,d,state);
-      }
-      visits++;
-      crt_user.style="color:black";
-      crt_userbutton.disabled =false;
-      dpay.style="color:black";
-      dpayinputs[0].disabled =false;
-      feedback.disabled =false;
-      this.style = "color:black";
-      clear.style="color:black";
-      items.length = 0;
-      document.getElementById('c_form').reset();
-      screen.innerHTML = "0";
-      price = 0;
-      for(var i=0;i<item.length;i++) {
-        item[i].style="color:white";
-        // item[i].disabled = false;
-      }
-    }
-   proceed.addEventListener("click",onProceed);
+   });
    //the transaction history modal
   
 
