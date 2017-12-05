@@ -1,12 +1,12 @@
 
 //initializeFirebase
 var config = {
-  apiKey: "AIzaSyCas9WSzPdCvatx7ODWMTquCCwiuZEj-UI",
-  authDomain: "dpsemca-1f00a.firebaseapp.com",
-  databaseURL: "https://dpsemca-1f00a.firebaseio.com",
-  projectId: "dpsemca-1f00a",
-  storageBucket: "dpsemca-1f00a.appspot.com",
-  messagingSenderId: "696186948502"
+  apiKey: "AIzaSyCHx_-QC5P1_QORJIIkCITvMwXIYTUJVLw",
+  authDomain: "proto-2f04b.firebaseapp.com",
+  databaseURL: "https://proto-2f04b.firebaseio.com",
+  projectId: "proto-2f04b",
+  storageBucket: "proto-2f04b.appspot.com",
+  messagingSenderId: "887937106902"
 };
 firebase.initializeApp(config);
 
@@ -74,6 +74,24 @@ var menu = [];
     //bill
     var items = [];
     var c = 0;
+		var mql = [window.matchMedia("(max-width: 500px)"),window.matchMedia("(max-width: 600px)")];
+		for (var i=0; i<mql.length; i++){
+			widthChange(mql[i]) // call action function explicitly at run time
+			mql[i].addListener(widthChange); // call action function whenever each media query is triggered
+    }
+    function widthChange(mq) {
+      if (mql[0].matches){
+				alert(mq);
+			}
+			else {
+				if(mql[1].matches){
+					document.getElementById('demo').style.width = '150px';
+					document.getElementById("demo").innerHTML = "My width is 150px"	
+				}else{
+					document.getElementById('demo').style.width = '250px';
+					document.getElementById("demo").innerHTML = "My width is 250px"
+				}
+    }
     for(var i=0;i<item.length;i++) {
           item[i].addEventListener("click",function() {
                var e = parseInt(this.getAttribute('id'));
