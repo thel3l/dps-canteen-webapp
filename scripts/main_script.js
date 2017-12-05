@@ -312,12 +312,6 @@ var menu = [];
         clear.style="color:black";
         items.length = 0;
         document.getElementById('c_form').reset();
-        for(var i=0;i<item.length;i++) {
-          item[i].style="color:white"
-          price = 0;
-          screen.innerHTML = "0";
-          // item[i].disabled = false;
-        }
    });
    //the transaction history modal
   
