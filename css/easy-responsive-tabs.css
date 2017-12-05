@@ -101,7 +101,7 @@ h2.resp-tab-title:last-child {
 /*-----------Vertical tabs-----------*/
 .agileits-tab_nav {
     float: left;
-    width: 30%;
+    width: 5%;
 	margin-top: 0!important;
 	min-height: 650px;
 }
@@ -125,8 +125,7 @@ a.w3ls-ads:hover {
     margin: 0 0 20px;
     cursor: pointer;
     float: none;
-    border: 1px solid #F5F5F5;
-    border-color: rgb(241, 241, 241)!important;
+
     background-color: #ffffff!important;
 }
 
@@ -135,7 +134,7 @@ a.w3ls-ads:hover {
     background-color: rgba(243, 243, 243, 0.25);
     border: none;
     float: left;
-    width: 70%;
+    width: 80%;
     border: 1px solid transparent !important;
     border-radius: 0;
     clear: none;
@@ -167,37 +166,12 @@ li.resp-tab-item.hor_1.resp-tab-active:after {
     margin-right: 0px !important;
     padding: 0px 0px 0px 0px !important;
     margin: 0 0 20px 0 !important;
-    background-color: #87D68D! important;
-    background: #87D68D;
+    background-color: #28ece3! important;
+    background: #28ece3;
     color: #fff;
     position: relative;
 }
-.resp-vtabs li.resp-tab-active:after {
-    content: '';
-    border-top: 36px solid #87D68D;
-    border-right: 0px solid #87D68D;
-    border-left: 36px solid rgba(40, 236, 227, 0);
-    transform: rotate(45deg);
-    position: absolute;
-    top: 7px;
-    right: -17px;
-}
-.resp-arrow {
-    width: 0;
-    height: 0;
-    float: right;
-    margin-top: 3px;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 12px solid #c1c1c1;
-}
 
-h2.resp-tab-active span.resp-arrow {
-    border: none;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-bottom: 12px solid #9B9797;
-}
 
 /*-----------Accordion styles-----------*/
 h2.resp-tab-active {

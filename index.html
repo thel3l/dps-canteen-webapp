@@ -22,7 +22,7 @@
   <script src="js/script.js"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body onload="window.scrollTo(0,1)">
+<body onload="updateMenu()">
   <div id="wrapper">
     <div id="slideshow">
       <blockquote class = "blockquote">
@@ -36,7 +36,7 @@
 
   <!-- Header -->
   <header>
-    <div class="container">
+    <div>
       <div class="logo">
         <h1><a href="index.html">DPSE Canteen Portal</a></h1>
       </div>
@@ -83,18 +83,19 @@
     <br>
     <br>
     <div class="categories-section main-grid-border" id="vertTab">
-      <div id = "cont" class="container">
+      <div id = "cont" >
         <div class="category-list">
           <div id="parentVerticalTab">
             <div class="agileits-tab_nav">
               <ul class="resp-tabs-list hor_1">
-                <li><i aria-hidden="true" class="icon fa fa-credit-card"></i>Wallets Topup</li>
-                <li><i aria-hidden="true" class="icon fa fa-television"></i>Transaction History</li>
-                <li><i aria-hidden="true" class="icon fa fa-home"></i>About</li>
-                <li><i aria-hidden="true" class="icon fa fa-lightbulb-o"></i>Creators</li>
-                <li><i aria-hidden="true" class="icon fa fa-users"></i>Profile</li>
+                <li><i aria-hidden="true" class="icon fa fa-credit-card"></i></li>
+                <li><i aria-hidden="true" class="icon fa fa-television"></i></li>
+                <li><i aria-hidden="true" class="icon fa fa-home"></i></li>
+                <li><i aria-hidden="true" class="icon fa fa-lightbulb-o"></i></li>
+                <li><i aria-hidden="true" class="icon fa fa-users"></i></li>
               </ul>
             </div>
+
             <div class="resp-tabs-container hor_1">
 
               <!-- Wallet Topup -->
@@ -106,51 +107,57 @@
                   </ul>
                   <br><br>
                   <div class = "tab-grids">
-                    <div class = "tab-grid" id = "tab1">
-                  <div id = "foodMenu">
-                    <div class = "row">
-                      <div class = "col-sm-3" id = "monday" >Monday</div>
-                      <div class = "col-sm-2" id = "mondayItem1" onclick = "highlight('mondayItem1', 0)">Pani Puri</div>
-                      <div class = "col-sm-2" id = "mondayItem2" onclick = "highlight('mondayItem2', 1)">Dosa</div>
-                      <div class = "col-sm-2" id = "mondayItem3" onclick = "highlight('mondayItem3', 2)">Rice</div>
-                      <div class = "col-sm-2" id = "mondayItem4" onclick = "highlight('mondayItem4', 3)">Meals</div>
+                      <div class = "tab-grid" id = "tab1">
+                      <div id = "foodMenu">
+                        <div class = "row">
+                          <div class = "col-sm-3" id = "monday" >Monday</div>
+                          <div class = "col-sm-2 menuItems" id = "mondayItem1" onclick = "highlight('mondayItem1', 0)"></div>
+                          <div class = "col-sm-2 menuItems" id = "mondayItem2" onclick = "highlight('mondayItem2', 1)"></div>
+                          <div class = "col-sm-2 menuItems" id = "mondayItem3" onclick = "highlight('mondayItem3', 2)"></div>
+                          <div class = "col-sm-2 menuItems" id = "mondayItem4" onclick = "highlight('mondayItem4', 3)"></div>
 
+                        </div>
+                        <div class = "row">
+                          <div class = "col-sm-3" id = "tuesday">Tuesday</div>
+                          <div class = "col-sm-2 menuItems" id = "tuesdayItem1" onclick = "highlight('tuesdayItem1', 4)"></div>
+                          <div class = "col-sm-2 menuItems" id = "tuesdayItem2" onclick = "highlight('tuesdayItem2', 5)"></div>
+                          <div class = "col-sm-2 menuItems" id = "tuesdayItem3" onclick = "highlight('tuesdayItem3', 6)"></div>
+                          <div class = "col-sm-2 menuItems" id = "tuesdayItem4" onclick = "highlight('tuesdayItem4', 7)"></div>
+                        </div>
+                        <div class = "row">
+                          <div class = "col-sm-3" id = "wednesday">Wednesday</div>
+                          <div class = "col-sm-2 menuItems" id = "wednesdayItem1" onclick = "highlight('wednesdayItem1', 8)"></div>
+                          <div class = "col-sm-2 menuItems" id = "wednesdayItem2" onclick = "highlight('wednesdayItem2', 9)"></div>
+                          <div class = "col-sm-2 menuItems" id = "wednesdayItem3" onclick = "highlight('wednesdayItem3', 10)"></div>
+                          <div class = "col-sm-2 menuItems" id = "wednesdayItem4" onclick = "highlight('wednesdayItem4', 11)"></div>
+                        </div>
+                        <div class = "row">
+                          <div class = "col-sm-3" id = "thursday">Thursday</div>
+                          <div class = "col-sm-2 menuItems"  id = "thursdayItem1" onclick = "highlight('thursdayItem1', 12)"></div>
+                          <div class = "col-sm-2 menuItems"  id = "thursdayItem2" onclick = "highlight('thursdayItem2', 13)"></div>
+                          <div class = "col-sm-2 menuItems"  id = "thursdayItem3" onclick = "highlight('thursdayItem3', 14)"></div>
+                          <div class = "col-sm-2 menuItems"  id = "thursdayItem4" onclick = "highlight('thursdayItem4', 15)"></div>
+                        </div>
+                        <div class = "row">
+                          <div class = "col-sm-3" id = "friday">Friday</div>
+                          <div class = "col-sm-2 menuItems" id = "fridayItem1" onclick = "highlight('fridayItem1', 16)"></div>
+                          <div class = "col-sm-2 menuItems" id = "fridayItem2" onclick = "highlight('fridayItem2', 17)"></div>
+                          <div class = "col-sm-2 menuItems" id = "fridayItem3" onclick = "highlight('fridayItem3', 18)"></div>
+                          <div class = "col-sm-2 menuItems" id = "fridayItem4" onclick = "highlight('fridayItem4', 19)"></div>
+                          <div class = "col-sm-1" id = "bill">₹<span id = "billAmount"></span></div>
+                        </div>
+                      </div>
+                      <br><br>
+                      <input class="submit" onclick="topUp('menu')" type="submit" value="Recharge Now">
                     </div>
-                    <div class = "row">
-                      <div class = "col-sm-3" id = "tuesday">Tuesday</div>
-                      <div class = "col-sm-2" id = "tuesdayItem1" onclick = "highlight('tuesdayItem1', 4)">Pani Puri</div>
-                      <div class = "col-sm-2" id = "tuesdayItem2" onclick = "highlight('tuesdayItem2', 5)">Dosa</div>
-                      <div class = "col-sm-2" id = "tuesdayItem3" onclick = "highlight('tuesdayItem3', 6)">Rice</div>
-                      <div class = "col-sm-2" id = "tuesdayItem4" onclick = "highlight('tuesdayItem4', 7)">Meals</div>
-                    </div>
-                    <div class = "row">
-                      <div class = "col-sm-3" id = "wednesday">Wednesday</div>
-                      <div class = "col-sm-2" id = "wednesdayItem1" onclick = "highlight('wednesdayItem1', 8)">Pani Puri</div>
-                      <div class = "col-sm-2" id = "wednesdayItem2" onclick = "highlight('wednesdayItem2', 9)">Dosa</div>
-                      <div class = "col-sm-2" id = "wednesdayItem3" onclick = "highlight('wednesdayItem3', 10)">Rice</div>
-                      <div class = "col-sm-2" id = "wednesdayItem4" onclick = "highlight('wednesdayItem4', 11)">Meals</div>
-                    </div>
-                    <div class = "row">
-                      <div class = "col-sm-3" id = "thursday">Thursday</div>
-                      <div class = "col-sm-2" id = "thursdayItem1" onclick = "highlight('thursdayItem1', 12)">Pani Puri</div>
-                      <div class = "col-sm-2" id = "thursdayItem2" onclick = "highlight('thursdayItem2', 13)">Dosa</div>
-                      <div class = "col-sm-2" id = "thursdayItem3" onclick = "highlight('thursdayItem3', 14)">Rice</div>
-                      <div class = "col-sm-2" id = "thursdayItem4" onclick = "highlight('thursdayItem4', 15)">Meals</div>
-                    </div>
-                    <div class = "row">
-                      <div class = "col-sm-3" id = "friday">Friday</div>
-                      <div class = "col-sm-2" id = "fridayItem1" onclick = "highlight('fridayItem1', 16)">Pani Puri</div>
-                      <div class = "col-sm-2" id = "fridayItem2" onclick = "highlight('fridayItem2', 17)">Dosa</div>
-                      <div class = "col-sm-2" id = "fridayItem3" onclick = "highlight('fridayItem3', 18)">Rice</div>
-                      <div class = "col-sm-2" id = "fridayItem4" onclick = "highlight('fridayItem4', 19)">Meals</div>
-                      <div class = "col-sm-1" id = "bill">₹<span id = "billAmount"></span></div>
+                    <div class = "tab-grid" id = "tab2">
+                      <input id="customMon" name="amount" placeholder="Enter amount" type="number" required>
+                      <br><br>
                     </div>
                   </div>
-                </div>
-              </div>
-              <br>
-              <br>
-              <input class="submit" onclick="topUp('package')" type="submit" value="Recharge Now">
+                  <br>
+                  <br>
+
 
                 </div>
               </div>

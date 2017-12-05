@@ -11,6 +11,7 @@ firebase.initializeApp(config);
 
 var billAmount = 0;
 var trig = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+var prices = [50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50];
 
 
 $(document).ready(function() {
@@ -55,6 +56,23 @@ function signOut(){
 }
 
 
+function updateMenu(){
+  var menuItems = document.getElementsByClassName("menuItems");
+  console.log(menuItems.length);
+  var menuRef = firebase.database().ref().child("menu").once("value").then(function(snapshot) {
+    var i = 0;
+    console.log("hello world");
+    while(i < 20){
+      snapshot.forEach(function(childSnapshot) {
+        var childData = childSnapshot.val();
+        console.log("childData");
+        menuItems[i].innerHTML = childData;
+        i++;
+});
+}
+
+  });
+}
 
 // Firebase
 var database = firebase.database();
@@ -73,7 +91,7 @@ userRef.on('value', function(snapshot) {
 });
 function topUp(type) {
   var admNo = $('#idNum').val();
-  if (type == 'package') {
+  if (type == 'menus') {
     var amount = parseInt($('#foodPlans').val());
   } else  if (type == 'custom') {
     var amount = parseInt($('#customMon').val());

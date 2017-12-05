@@ -1,7 +1,7 @@
 html,body{
   background:#fff;
   font-size: 100%;
-  font-family: 'Oxygen';
+  font-family: 'Oxygen'
 }
 body a{
   transition: 0.5s all;
@@ -61,17 +61,7 @@ blockquote cite {
 blockquote cite:before {
   content: "\2014 \2009";
 }
-#scrollToTop {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  padding: 10px;
-  z-index: 10;
-  background: #ffffff;
-  color: #000000;
-  border-radius: 8px;
 
-}
 #profileImage {
   position: relative;
   margin: auto;
@@ -159,8 +149,11 @@ header{
 .logo h1 a{
   text-decoration: none;
   color:#fff905;
+  left: 35%;
+  position: fixed;
 }
-. layouts-login a{
+
+.layouts-login a{
   display: block;
   letter-spacing: 2px;
   font-size: 13px;
@@ -534,7 +527,7 @@ label.radio {
   margin-top: 14px;
 }
 .categories-section.main-grid-border {
-  padding: 80px 0;
+  padding: 40px 0;
 }
 #monday, #tuesday, #wednesday, #thursday, #friday{
   background-color: #93B48B !important;
@@ -552,6 +545,10 @@ label.radio {
   word-wrap: normal;
   text-align: center;
 }
+/*#mondayItem1, #mondayItem2, #mondayItem3, #mondayItem4,#thursdayItem1, #thursdayItem2, #thursdayItem3, #thursdayItem4,#fridayItem1{
+  padding-bottom: 24px;
+}*/
+
 #mondayItem1:hover, #mondayItem2:hover, #mondayItem3:hover, #mondayItem4:hover,#tuesdayItem1:hover, #tuesdayItem2:hover, #tuesdayItem3:hover, #tuesdayItem4:hover,#wednesdayItem1:hover, #wednesdayItem2:hover, #wednesdayItem3:hover, #wednesdayItem4:hover,#thursdayItem1:hover, #thursdayItem2:hover, #thursdayItem3:hover, #thursdayItem4:hover,#fridayItem1:hover,#fridayItem2:hover, #fridayItem3:hover, #fridayItem4:hover{
   background-color: #BCEBCB;
 }
@@ -986,8 +983,9 @@ ul.callbacks_tabs.callbacks1_tabs {
     float: none;
   }
   #headerProfilePic, .w3-dropdown-hover{
-    float: none;
+    float: left;
     margin: auto;
+    position: fixed;
     width: 30px;
     padding-top: 5px;
   }
