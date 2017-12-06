@@ -146,7 +146,8 @@ function topUp(type) {
   userRef.child('balance').transaction(function(balance) {
     return balance + amount
   }).then(function() {
-    console.log('Recharge successful');
+    window.alert('Recharge successful');
+
   });
 }
 
