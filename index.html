@@ -88,11 +88,11 @@
           <div id="parentVerticalTab">
             <div class="agileits-tab_nav">
               <ul class="resp-tabs-list hor_1">
-                <li><i aria-hidden="true" class="icon fa fa-credit-card"></i></li>
-                <li><i aria-hidden="true" class="icon fa fa-television"></i></li>
+                <li><i aria-hidden="true" class="icon fa fa-id-card-o"></i></li>
+                <li><i aria-hidden="true" class="icon fa fa-list"></i></li>
                 <li><i aria-hidden="true" class="icon fa fa-home"></i></li>
                 <li><i aria-hidden="true" class="icon fa fa-lightbulb-o"></i></li>
-                <li><i aria-hidden="true" class="icon fa fa-users"></i></li>
+                <li><i aria-hidden="true" class="icon fa fa-user-circle-o"></i></li>
               </ul>
             </div>
 
@@ -111,48 +111,50 @@
                       <div id = "foodMenu">
                         <div class = "row">
                           <div class = "col-sm-3" id = "monday" >Monday</div>
-                          <div class = "col-sm-2 menuItems" id = "mondayItem1" onclick = "highlight('mondayItem1', 0)"></div>
-                          <div class = "col-sm-2 menuItems" id = "mondayItem2" onclick = "highlight('mondayItem2', 1)"></div>
-                          <div class = "col-sm-2 menuItems" id = "mondayItem3" onclick = "highlight('mondayItem3', 2)"></div>
-                          <div class = "col-sm-2 menuItems" id = "mondayItem4" onclick = "highlight('mondayItem4', 3)"></div>
+                          <a data-toggle="tooltip" class = "priceTool" data-placement="top"><div class = "col-sm-2 menuItems" id = "mondayItem1" onclick = "highlight('mondayItem1', 0)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "mondayItem2" onclick = "highlight('mondayItem2', 1)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "mondayItem3" onclick = "highlight('mondayItem3', 2)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "mondayItem4" onclick = "highlight('mondayItem4', 3)"></div></a>
+                          <a data-toggle="tooltip" title="Wallet Balance"><div class = "col-sm-1" id = "currentBal"><span>₹</span><span id = "currentWalletBal"></span></div></a>
 
                         </div>
                         <div class = "row">
                           <div class = "col-sm-3" id = "tuesday">Tuesday</div>
-                          <div class = "col-sm-2 menuItems" id = "tuesdayItem1" onclick = "highlight('tuesdayItem1', 4)"></div>
-                          <div class = "col-sm-2 menuItems" id = "tuesdayItem2" onclick = "highlight('tuesdayItem2', 5)"></div>
-                          <div class = "col-sm-2 menuItems" id = "tuesdayItem3" onclick = "highlight('tuesdayItem3', 6)"></div>
-                          <div class = "col-sm-2 menuItems" id = "tuesdayItem4" onclick = "highlight('tuesdayItem4', 7)"></div>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "tuesdayItem1" onclick = "highlight('tuesdayItem1', 4)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "tuesdayItem2" onclick = "highlight('tuesdayItem2', 5)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "tuesdayItem3" onclick = "highlight('tuesdayItem3', 6)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "tuesdayItem4" onclick = "highlight('tuesdayItem4', 7)"></div></a>
                         </div>
                         <div class = "row">
                           <div class = "col-sm-3" id = "wednesday">Wednesday</div>
-                          <div class = "col-sm-2 menuItems" id = "wednesdayItem1" onclick = "highlight('wednesdayItem1', 8)"></div>
-                          <div class = "col-sm-2 menuItems" id = "wednesdayItem2" onclick = "highlight('wednesdayItem2', 9)"></div>
-                          <div class = "col-sm-2 menuItems" id = "wednesdayItem3" onclick = "highlight('wednesdayItem3', 10)"></div>
-                          <div class = "col-sm-2 menuItems" id = "wednesdayItem4" onclick = "highlight('wednesdayItem4', 11)"></div>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "wednesdayItem1" onclick = "highlight('wednesdayItem1', 8)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "wednesdayItem2" onclick = "highlight('wednesdayItem2', 9)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "wednesdayItem3" onclick = "highlight('wednesdayItem3', 10)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "wednesdayItem4" onclick = "highlight('wednesdayItem4', 11)"></div></a>
                         </div>
                         <div class = "row">
                           <div class = "col-sm-3" id = "thursday">Thursday</div>
-                          <div class = "col-sm-2 menuItems"  id = "thursdayItem1" onclick = "highlight('thursdayItem1', 12)"></div>
-                          <div class = "col-sm-2 menuItems"  id = "thursdayItem2" onclick = "highlight('thursdayItem2', 13)"></div>
-                          <div class = "col-sm-2 menuItems"  id = "thursdayItem3" onclick = "highlight('thursdayItem3', 14)"></div>
-                          <div class = "col-sm-2 menuItems"  id = "thursdayItem4" onclick = "highlight('thursdayItem4', 15)"></div>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems"  id = "thursdayItem1" onclick = "highlight('thursdayItem1', 12)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems"  id = "thursdayItem2" onclick = "highlight('thursdayItem2', 13)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems"  id = "thursdayItem3" onclick = "highlight('thursdayItem3', 14)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems"  id = "thursdayItem4" onclick = "highlight('thursdayItem4', 15)"></div></a>
                         </div>
                         <div class = "row">
                           <div class = "col-sm-3" id = "friday">Friday</div>
-                          <div class = "col-sm-2 menuItems" id = "fridayItem1" onclick = "highlight('fridayItem1', 16)"></div>
-                          <div class = "col-sm-2 menuItems" id = "fridayItem2" onclick = "highlight('fridayItem2', 17)"></div>
-                          <div class = "col-sm-2 menuItems" id = "fridayItem3" onclick = "highlight('fridayItem3', 18)"></div>
-                          <div class = "col-sm-2 menuItems" id = "fridayItem4" onclick = "highlight('fridayItem4', 19)"></div>
-                          <div class = "col-sm-1" id = "bill">₹<span id = "billAmount"></span></div>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "fridayItem1" onclick = "highlight('fridayItem1', 16)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "fridayItem2" onclick = "highlight('fridayItem2', 17)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "fridayItem3" onclick = "highlight('fridayItem3', 18)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "fridayItem4" onclick = "highlight('fridayItem4', 19)"></div></a>
+                          <a data-toggle="tooltip" title="Bill Amount"><div class = "col-sm-1" id = "bill">₹<span id = "billAmount"></span></div></a>
                         </div>
                       </div>
                       <br><br>
                       <input class="submit" onclick="topUp('menu')" type="submit" value="Recharge Now">
                     </div>
                     <div class = "tab-grid" id = "tab2">
-                      <input id="customMon" name="amount" placeholder="Enter amount" type="number" required>
+                      <input id="customMon" min = "0" name="amount" placeholder="Enter amount" type="number" required>
                       <br><br>
+                      <input class="submit" onclick="topUp('custom')" type="submit" value="Recharge Now">
                     </div>
                   </div>
                   <br>
@@ -166,7 +168,7 @@
 
               <!-- Transaction History -->
               <div>
-                <i aria-hidden="true" class="icon fa fa-television inner-icon"></i><br><br>
+                <i aria-hidden="true" class="icon fa fa-list inner-icon"></i><br><br>
                 <select class="selectpicker show-tick" data-live-search="true" id="transPrec">
                   <option data-tokens="day" value="1">Last Usage</option>
                   <option data-tokens="ten" value="10">Last 10 Usages</option>

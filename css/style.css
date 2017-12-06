@@ -19,7 +19,7 @@ body a{
 html{
   height: 100%;
 }
-::-webkit-scrollbar {
+::-webkit-scrollbar,  {
   display: none;
 }
 #wrapper {
@@ -292,11 +292,7 @@ ul {
 .w3-dropdown-hover{
   width: 45px;
 }
-#currentWalletBal{
-  position: relative;
-  top: -30px;
-  left: 30%;
-}
+
 /*--top-city--*/
 /*---------------*/
 /***** Layla *****/
@@ -399,7 +395,9 @@ i.icon.inner-icon {
 :-ms-input-placeholder {
   color: #000;
 }
-
+.priceTool{
+  color: black;
+}
 .wallet-rchge input[type="text"], .wallet-rchge input[type="number"] {
   width: 85%;
   padding: 10px;
@@ -550,9 +548,9 @@ label.radio {
 }*/
 
 #mondayItem1:hover, #mondayItem2:hover, #mondayItem3:hover, #mondayItem4:hover,#tuesdayItem1:hover, #tuesdayItem2:hover, #tuesdayItem3:hover, #tuesdayItem4:hover,#wednesdayItem1:hover, #wednesdayItem2:hover, #wednesdayItem3:hover, #wednesdayItem4:hover,#thursdayItem1:hover, #thursdayItem2:hover, #thursdayItem3:hover, #thursdayItem4:hover,#fridayItem1:hover,#fridayItem2:hover, #fridayItem3:hover, #fridayItem4:hover{
-  background-color: #BCEBCB;
+  background-color: #BCEBCB !important;
 }
-#bill{
+#bill, #currentBal{
   background-color: #F7FFF6;
   padding-top: 23.5px;
   padding-bottom: 23.5px;
@@ -633,10 +631,6 @@ ul.callbacks_tabs.callbacks1_tabs {
 @media(max-width:1200px){
   .banner1, .banner2, .banner3, .banner4 {
     min-height: 560px;
-  }
-  #currentWalletBal{
-    font-size: 15px;
-    left: 50%;
   }
   . _agile_support_right h3 {
     font-size: 33px;
@@ -843,10 +837,6 @@ ul.callbacks_tabs.callbacks1_tabs {
   }
   .banner1, .banner2, .banner3, .banner4 {
     min-height: 360px;
-  }
-  #currentWalletBal{
-    position:inherit;
-    padding-top: 10px;
   }
 }
 @media(max-width:568px){

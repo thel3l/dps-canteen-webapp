@@ -102,8 +102,10 @@ h2.resp-tab-title:last-child {
 .agileits-tab_nav {
     float: left;
     width: 5%;
-	margin-top: 0!important;
-	min-height: 650px;
+    position: fixed;
+  	margin-top: 0!important;
+    top: 160px;
+	  min-height: 650px;
 }
 ul.resp-tabs-list.hor_1 {
     margin-top: 0!important;
@@ -133,7 +135,8 @@ a.w3ls-ads:hover {
     padding: 0px;
     background-color: rgba(243, 243, 243, 0.25);
     border: none;
-    float: left;
+    position: relative;
+    margin: auto;
     width: 80%;
     border: 1px solid transparent !important;
     border-radius: 0;
