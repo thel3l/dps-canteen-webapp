@@ -72,6 +72,7 @@ $(document).ready(function() {
 function signOut(){
   //Rithvik prepend not working...
   console.log("Hello");
+  $("#theBody").html("Sign Out Successful");
 }
 
 
