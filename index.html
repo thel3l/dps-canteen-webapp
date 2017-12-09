@@ -89,11 +89,11 @@
           <div id="parentVerticalTab">
             <div class="agileits-tab_nav">
               <ul class="resp-tabs-list hor_1">
-                <li><i aria-hidden="true" class="icon fa fa-id-card-o"></i></li>
-                <li><i aria-hidden="true" class="icon fa fa-list"></i></li>
-                <li><i aria-hidden="true" class="icon fa fa-home"></i></li>
-                <li ><i aria-hidden="true" class="icon fa fa-lightbulb-o " ></i></li>
-                <li><i aria-hidden="true" class="icon fa fa-user-circle-o"></i></li>
+                <li><i aria-hidden="true" class="icon fa fa-id-card-o"></i><span class = "heading">Wallet Topup</span></li>
+                <li><i aria-hidden="true" class="icon fa fa-list"></i><span class = "heading">Transaction History</span></li>
+                <li><i aria-hidden="true" class="icon fa fa-home"></i><span class = "heading">About</span></li>
+                <li ><i aria-hidden="true" class="icon fa fa-lightbulb-o " ></i><span class = "heading">Creators</span></li>
+                <li><i aria-hidden="true" class="icon fa fa-user-circle-o"></i><span class = "heading">Profile</span></li>
               </ul>
             </div>
 
@@ -110,30 +110,29 @@
                   <div class = "tab-grids">
                       <div class = "tab-grid" id = "tab1">
                       <div id = "foodMenu">
-                        <div class = "row">
+                        <div class = "row paddingResponsive">
                           <div class = "col-sm-3" id = "monday" >Monday</div>
                           <a data-toggle="tooltip" class = "priceTool" data-placement="top"><div class = "col-sm-2 menuItems" id = "mondayItem1" onclick = "highlight('mondayItem1', 0)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "mondayItem2" onclick = "highlight('mondayItem2', 1)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "mondayItem3" onclick = "highlight('mondayItem3', 2)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "mondayItem4" onclick = "highlight('mondayItem4', 3)"></div></a>
                           <a data-toggle="tooltip" title="Wallet Balance"><div class = "col-sm-1" id = "currentBal"><span>₹</span><span id = "currentWalletBal"></span></div></a>
-
                         </div>
-                        <div class = "row">
+                        <div class = "row paddingResponsive">
                           <div class = "col-sm-3" id = "tuesday">Tuesday</div>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "tuesdayItem1" onclick = "highlight('tuesdayItem1', 4)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "tuesdayItem2" onclick = "highlight('tuesdayItem2', 5)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "tuesdayItem3" onclick = "highlight('tuesdayItem3', 6)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "tuesdayItem4" onclick = "highlight('tuesdayItem4', 7)"></div></a>
                         </div>
-                        <div class = "row">
+                        <div class = "row paddingResponsive">
                           <div class = "col-sm-3" id = "wednesday">Wednesday</div>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "wednesdayItem1" onclick = "highlight('wednesdayItem1', 8)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "wednesdayItem2" onclick = "highlight('wednesdayItem2', 9)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "wednesdayItem3" onclick = "highlight('wednesdayItem3', 10)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "wednesdayItem4" onclick = "highlight('wednesdayItem4', 11)"></div></a>
                         </div>
-                        <div class = "row">
+                        <div class = "row paddingResponsive">
                           <div class = "col-sm-3" id = "thursday">Thursday</div>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems"  id = "thursdayItem1" onclick = "highlight('thursdayItem1', 12)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems"  id = "thursdayItem2" onclick = "highlight('thursdayItem2', 13)"></div></a>
@@ -150,7 +149,7 @@
                         </div>
                       </div>
                       <br><br>
-                      <input class="submit" onclick="topUp('menu')" type="submit" value="Recharge Now">
+                      <input id = "rchNW" class="submit" onclick="topUp('menu')" type="submit" value="Recharge Now">
                       <input class="submit" onclick="clearSelection()" type="submit" value="Clear Selelection">
                     </div>
                     <div class = "tab-grid" id = "tab2">
