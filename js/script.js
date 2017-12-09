@@ -19,7 +19,7 @@ var menIdt = 1;
 var trig = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 var prices = [50,50,50,50,50,50,50,50,100,50,50,50,50,50,50,50,50,50,50,50];
 var currentBal = 0;
-var menuItems = document.querySelectorAll('.menuItems');
+var menuItems = document.getElementsByClassName('menuItems');
 var priceTool = document.getElementsByClassName("priceTool");
 //offline
 setTimeout(function(){
@@ -231,5 +231,16 @@ function highlight(x, y){
     billAmount -= 50;
     $('#billAmount').text(billAmount);
     trig[y] = 0;
+  }
+}
+function clearSelection(){
+  for(var i = 0; i<20; i++){
+    if(trig[i] == 1){
+      menuItems[i].style.backgroundColor = "#8491A3";
+      //document.getElementById(x).style.backgroundColor = "#BCEBCB";
+      billAmount -= 50;
+      $('#billAmount').text(billAmount);
+      trig[i] = 0;
+    }
   }
 }
