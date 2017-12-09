@@ -149,7 +149,7 @@ header{
 .logo h1 a{
   text-decoration: none;
   color:#fff905;
-  left: 35%;
+  left: 3%;
   position: fixed;
 }
 
@@ -158,6 +158,7 @@ header{
   letter-spacing: 2px;
   font-size: 13px;
   color: #fff905;
+  font-family:'Raleway';
   text-decoration: none;
   margin: 0 0.3em;
 }
