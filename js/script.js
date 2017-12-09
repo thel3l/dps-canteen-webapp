@@ -11,14 +11,59 @@ firebase.initializeApp(config);
 
 var billAmount = 0;
 var loadingMenu = 0;
+var admNo = 'BE00012314';
 var menu = [];
+var menu_count ;
 var preRest = [];
 var menIdt = 1;
 var trig = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 var prices = [50,50,50,50,50,50,50,50,100,50,50,50,50,50,50,50,50,50,50,50];
 var currentBal = 0;
-var menuItems = document.getElementsByClassName("menuItems");
+var menuItems = document.querySelectorAll('.menuItems');
 var priceTool = document.getElementsByClassName("priceTool");
+//offline
+setTimeout(function(){
+  var connectedRef = firebase.database().ref(".info/connected");
+  connectedRef.on("value", function(snap) {
+    if (snap.val() === true) {
+      console.log("Firebase Connection established");
+    } else {
+      window.alert("Oh No! \n \
+      You are no longer connected to the internet :-( \n \
+      Plz refresh the page once you reconnect");
+    }
+  });
+},2000);
+
+//database verification
+firebase.database().ref('users/' + admNo).on('value', function(snapshot) {
+  var userInfo = snapshot.val();
+  if(userInfo) {
+      if(!(snapshot.hasChild('name'))) {
+        window.alert("Oops !  \n \
+        Your name has not been properly added into our database \n \
+        Please get in touch with school authorities");
+      }
+
+      if(!(snapshot.hasChild('balance'))) {
+      window.alert("Oops ! \n \
+       Your wallet money has not been properly configured into our database \n \
+       Please get in touch with school authorities");
+      }
+      if(!(snapshot.hasChild('photo'))) {
+      window.alert("Oops ! \n \
+      Your profile pic has not been properly configured into our database \n \
+      Please get in touch with school authorities");
+      }
+  } else {
+    window.alert("Oops ! \n \
+    You have not been registered with our database.\n \
+    Please contact school autorities");
+  }
+});
+firebase.database().ref('menu_count').once('value').then(function(snapshot){
+   menu_count = snapshot.val();
+});
 $(document).ready(function(){
   $("#billAmount").text(billAmount);
   $('#currentWalletBal').text(currentBal);
@@ -71,7 +116,6 @@ $(document).ready(function() {
 
 function signOut(){
   //Rithvik prepend not working...
-  console.log("Hello");
   $("#theBody").html("Sign Out Successful");
 }
 
@@ -79,9 +123,9 @@ function signOut(){
 function updateMenu(){
   firebase.database().ref().child("menu").once("value").then(function(snapshot) {
     var i = 0;
-    console.log("hello world");
-    while(i < 20){
+    while(i < menu_count){
       snapshot.forEach(function(childSnapshot) {
+        var menuItems = document.querySelectorAll('.menuItems');
         var childData = childSnapshot.val();
         menu[i] = childData;
         menuItems[i].innerHTML = childData;
@@ -161,7 +205,6 @@ function topUp(type) {
 }
 
 function transUpdate(){
-  var admNo = 'BE00012314';
   var limit = parseInt($('#transPrec').val());
 
   database.ref('transactions').child(admNo).orderByChild('timestamp').limitToLast(limit).once('value').then(function(snapshot) {
