@@ -21,6 +21,7 @@ var prices = [50,50,50,50,50,50,50,50,100,50,50,50,50,50,50,50,50,50,50,50];
 var currentBal = 0;
 var menuItems = document.querySelectorAll('.menuItems');
 var priceTool = document.getElementsByClassName("priceTool");
+var countback = 0;
 //offline
 setTimeout(function(){
   var connectedRef = firebase.database().ref(".info/connected");
@@ -34,7 +35,6 @@ setTimeout(function(){
     }
   });
 },2000);
-
 //database verification
 firebase.database().ref('users/' + admNo).on('value', function(snapshot) {
   var userInfo = snapshot.val();
@@ -61,6 +61,11 @@ firebase.database().ref('users/' + admNo).on('value', function(snapshot) {
     Please contact school autorities");
   }
 });
+function ehs() {
+  firebase.database().ref().once('value').then( function(snapshot) {
+          console.log(snapshot.val());
+  });
+}
 firebase.database().ref('menu_count').once('value').then(function(snapshot){
    menu_count = snapshot.val();
 });
@@ -99,7 +104,7 @@ $(document).ready(function() {
       $info.show();
     }
   });
-
+  
   // Switch horizontal tabs (under Whallet Topop)
   $(".tabs-menu a").click(function(){
     var $tab = $(this).attr("href");
@@ -217,6 +222,7 @@ function transUpdate(){
     $('#tranHist').html(html);
   });
 }
+document.querySelector('thise').addEventListener("click",ehs);
 function highlight(x, y){
   if(trig[y] == 0){
     $("#" + x).css("background-color", "#BCEBCB");
