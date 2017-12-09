@@ -83,7 +83,6 @@ $(document).ready(function(){
 });
 function setWalletBalanceDiv(){
   $("#walletBalResp").remove();
-  console.log("Sah!");
   $("#lastRow").append("<div id = 'walletBalResp'><a data-toggle='tooltip' title='Wallet Balance'><div class = 'col-sm-1' id = 'currentBal'><span>₹</span><span id = 'currentWalletBal'></span></div></a></div>");
   setCurrentBal();
 }
