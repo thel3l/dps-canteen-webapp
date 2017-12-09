@@ -483,8 +483,8 @@
   }
   .radio i {
     position: absolute;
-    top: 8px;
-    left: 0;
+    top: 9px;
+    left: 1px;
     display: block;
     width: 12px;
     height: 12px;
