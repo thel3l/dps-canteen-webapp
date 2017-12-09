@@ -30,7 +30,7 @@ $(document).ready(function(){
 function priceToolTip(){
   var i = 0;
     $(".priceTool").each(function(){
-      $(this).attr("title",prices[i]);
+      $(this).attr("title","₹"+prices[i]);
       i++;
   });
 }
@@ -92,9 +92,10 @@ function updateMenu(){
   });
 }
 // Firebase
+var id = 'BE00012314';
 var database = firebase.database();
 var userRef = database.ref().child("users").child("BE00012314");
-var restRef = database.ref().child("users").child("BE00012314").child("restrictions");
+var restRef = database.ref('users/BE00012314/items_bought');
 // Update student info
 restRef.once("value").then(function(snapshot){
   snapshot.forEach(function(childSnapshot) {
@@ -146,7 +147,7 @@ function topUp(type) {
     return
   }
   if(menIdt == 0){
-    userRef.child("restrictions").transaction(function(){
+    restRef.transaction(function(){
       var restriction = preRest.concat(restrictions);
       return restriction
     });
