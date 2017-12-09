@@ -77,11 +77,16 @@ $(document).ready(function(){
   }
   priceToolTip();
   if($(window).width() < 768){
-
-    window.alert("Double Tap to select the menu options");
-    //console.log("Double tap");
+    window.alert("Double Tap to select the menu options(If on iPhone)");
+    setWalletBalanceDiv();
   }
 });
+function setWalletBalanceDiv(){
+  $("#walletBalResp").remove();
+  console.log("Sah!");
+  $("#lastRow").append("<div id = 'walletBalResp'><a data-toggle='tooltip' title='Wallet Balance'><div class = 'col-sm-1' id = 'currentBal'><span>₹</span><span id = 'currentWalletBal'></span></div></a></div>");
+  setCurrentBal();
+}
 function priceToolTip(){
   var i = 0;
     $(".priceTool").each(function(){
