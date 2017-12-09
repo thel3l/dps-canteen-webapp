@@ -61,14 +61,14 @@ firebase.database().ref('users/' + admNo).on('value', function(snapshot) {
     Please contact school autorities");
   }
 });
+firebase.database().ref('menu_count').once('value').then(function(snapshot){
+   menu_count = snapshot.val();
+});
 function ehs() {
   firebase.database().ref().once('value').then( function(snapshot) {
           console.log(snapshot.val());
   });
 }
-firebase.database().ref('menu_count').once('value').then(function(snapshot){
-   menu_count = snapshot.val();
-});
 $(document).ready(function(){
   $("#billAmount").text(billAmount);
   $('#currentWalletBal').text(currentBal);
@@ -223,7 +223,8 @@ function transUpdate(){
     $('#tranHist').html(html);
   });
 }
-document.querySelector('thise').addEventListener("click",ehs);
+
+
 function highlight(x, y){
   if(trig[y] == 0){
     $("#" + x).css("background-color", "#BCEBCB");
