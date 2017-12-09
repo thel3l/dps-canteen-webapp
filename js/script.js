@@ -76,6 +76,11 @@ $(document).ready(function(){
     menuItems[i].innerHTML = "Loading..."
   }
   priceToolTip();
+  if($(window).width() < 768){
+
+    window.alert("Double Tap to select the menu options");
+    //console.log("Double tap");
+  }
 });
 function priceToolTip(){
   var i = 0;
@@ -104,7 +109,7 @@ $(document).ready(function() {
       $info.show();
     }
   });
-  
+
   // Switch horizontal tabs (under Whallet Topop)
   $(".tabs-menu a").click(function(){
     var $tab = $(this).attr("href");
