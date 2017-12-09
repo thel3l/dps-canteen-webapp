@@ -19,7 +19,7 @@ var menIdt = 1;
 var trig = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 var prices = [50,50,50,50,50,50,50,50,100,50,50,50,50,50,50,50,50,50,50,50];
 var currentBal = 0;
-var menuItems = document.querySelectorAll('.menuItems');
+var menuItems = document.getElementsByClassName('menuItems');
 var priceTool = document.getElementsByClassName("priceTool");
 var countback = 0;
 //offline
@@ -80,7 +80,7 @@ $(document).ready(function(){
 function priceToolTip(){
   var i = 0;
     $(".priceTool").each(function(){
-      $(this).attr("title",prices[i]);
+      $(this).attr("title","₹"+prices[i]);
       i++;
   });
 }
@@ -141,9 +141,10 @@ function updateMenu(){
   });
 }
 // Firebase
+var id = 'BE00012314';
 var database = firebase.database();
 var userRef = database.ref().child("users").child("BE00012314");
-var restRef = database.ref().child("users").child("BE00012314").child("restrictions");
+var restRef = database.ref('users/BE00012314/items_bought');
 // Update student info
 restRef.once("value").then(function(snapshot){
   snapshot.forEach(function(childSnapshot) {
@@ -195,7 +196,7 @@ function topUp(type) {
     return
   }
   if(menIdt == 0){
-    userRef.child("restrictions").transaction(function(){
+    restRef.transaction(function(){
       var restriction = preRest.concat(restrictions);
       return restriction
     });
@@ -236,5 +237,16 @@ function highlight(x, y){
     billAmount -= 50;
     $('#billAmount').text(billAmount);
     trig[y] = 0;
+  }
+}
+function clearSelection(){
+  for(var i = 0; i<20; i++){
+    if(trig[i] == 1){
+      menuItems[i].style.backgroundColor = "#8491A3";
+      //document.getElementById(x).style.backgroundColor = "#BCEBCB";
+      billAmount -= 50;
+      $('#billAmount').text(billAmount);
+      trig[i] = 0;
+    }
   }
 }
