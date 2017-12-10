@@ -126,8 +126,10 @@ function signOut(){
 
 
 function updateMenu(){
+ 
   firebase.database().ref().child("menu").once("value").then(function(snapshot) {
     var i = 0;
+    try {
     while(i < menu_count){
       snapshot.forEach(function(childSnapshot) {
         var menuItems = document.querySelectorAll('.menuItems');
@@ -135,11 +137,14 @@ function updateMenu(){
         menu[i] = childData;
         menuItems[i].innerHTML = childData;
         i++;
-});
+      });
+    } catch(err) {
+      
+    }
 }
 
-  });
-}
+  
+
 // Firebase
 var id = 'BE00012314';
 var database = firebase.database();
