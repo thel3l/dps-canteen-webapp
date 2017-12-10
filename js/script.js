@@ -76,7 +76,16 @@ $(document).ready(function(){
     menuItems[i].innerHTML = "Loading..."
   }
   priceToolTip();
+  if($(window).width() < 768){
+    window.alert("Double Tap to select the menu options(If on iPhone)");
+    setWalletBalanceDiv();
+  }
 });
+function setWalletBalanceDiv(){
+  $("#walletBalResp").remove();
+  $("#lastRow").append("<div id = 'walletBalResp'><a data-toggle='tooltip' title='Wallet Balance'><div class = 'col-sm-1' id = 'currentBal'><span>₹</span><span id = 'currentWalletBal'></span></div></a></div>");
+  setCurrentBal();
+}
 function priceToolTip(){
   var i = 0;
     $(".priceTool").each(function(){
@@ -104,7 +113,7 @@ $(document).ready(function() {
       $info.show();
     }
   });
-  
+
   // Switch horizontal tabs (under Whallet Topop)
   $(".tabs-menu a").click(function(){
     var $tab = $(this).attr("href");
@@ -223,7 +232,7 @@ function transUpdate(){
       var trans = transaction.val();
       var date = moment(trans.timestamp).format('dddd, MMMM Do YYYY, h:mm:ss a');
       var row = `<tr><td>${date}</td>'+'<td>${trans.amount}</td>'+'<td>${trans.gateway}</td></tr>`;
-      html += row;
+      html = row + html;
     });
     $('#tranHist').html(html);
   });
