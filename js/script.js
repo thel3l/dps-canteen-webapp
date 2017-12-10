@@ -227,7 +227,7 @@ function transUpdate(){
       var trans = transaction.val();
       var date = moment(trans.timestamp).format('dddd, MMMM Do YYYY, h:mm:ss a');
       var row = `<tr><td>${date}</td>'+'<td>${trans.amount}</td>'+'<td>${trans.gateway}</td></tr>`;
-      html += row;
+      html = row + html;
     });
     $('#tranHist').html(html);
   });
