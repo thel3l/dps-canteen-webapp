@@ -225,7 +225,6 @@ function setCurrentBal(){
       $('#currentWalletBal').text(currentBal);
 }
 function topUp(type) {
-  console.log("I work!");
   var admNo = $('#idNum').val();
   if (type == 'menu') {
     var amount = billAmount;
@@ -259,6 +258,7 @@ function topUp(type) {
     });
   }
   userRef.child('balance').transaction(function(balance) {
+    console.log("i happpen");
     return balance + amount
   }).then(function() {
     window.alert('Recharge successful');
