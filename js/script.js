@@ -10,11 +10,11 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 var userRef, userInfo;
-
+var admNo;
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     console.log(user);
-
+    admNo = user.uid;
     userRef = database.ref().child('users').child(user.uid);
     userRef.on('value', function(snap) {
       userInfo = snap.val();
@@ -38,7 +38,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 var billAmount = 0;
 var loadingMenu = 0;
-var admNo = 'BE00012314';
 var menu = [];
 var menu_count ;
 var preRest = [];
@@ -194,9 +193,9 @@ function updateMenu(){
 // Firebase
 var id = 'BE00012314';
 var database = firebase.database();
-var userRef = database.ref().child("users").child("BE00012314");
-console.log(users.uid);
-var restRef = database.ref('users/'+users.uid+'/items_bought');
+var userRef = database.ref().child("users").child(admNo);
+var restRef = database.ref('users/'+admNo+'/items_bought');
+var
 // Update student info
 restRef.once("value").then(function(snapshot){
   snapshot.forEach(function(childSnapshot) {
