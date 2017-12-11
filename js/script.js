@@ -256,7 +256,7 @@ function topUp(type) {
       var restriction = preRest.concat(restrictions);
       return restriction
     });
-    userRef.child('menuBalance').transaction(function(balance) {
+    userRef.child('menuBalance').transaction(function(menuBalance) {
       return menuBalance + amount
     }).then(function() {
       window.alert('Recharge successful');
