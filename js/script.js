@@ -27,6 +27,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         checkConnectivity();
       }else{
         alert("Unregistered User");
+        window.location.href = "api.dpscanteen.ml/entrar/login";
       }
     });
   } else {
