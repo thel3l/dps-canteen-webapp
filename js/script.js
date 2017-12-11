@@ -192,7 +192,7 @@ function updateMenu(){
 // Firebase
 
 
-var database = firebase.database();
+
 //var userRef = database.ref().child("users").child("BE00012314");
 
 });
@@ -209,6 +209,7 @@ function setUser(){
     $('#dropdownName').text(userInfo.name);
     $('#dropdownWallet span').text(userInfo.balance);
   });
+  var database = firebase.database();
   var restRef = database.ref('users/'+adNo+'/items_bought');
   // Update student info
   restRef.once("value").then(function(snapshot){
