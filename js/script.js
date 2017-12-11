@@ -171,7 +171,7 @@ function signOut(){
 
 
 function updateMenu(){
- 
+
   firebase.database().ref().child("menu").once("value").then(function(snapshot) {
     var i = 0;
     while(i < menu_count){
@@ -185,7 +185,7 @@ function updateMenu(){
 }
   });
 }
-  
+
 
 // Firebase
 var id = 'BE00012314';
@@ -294,6 +294,7 @@ function clearSelection(){
       trig[i] = 0;
     }
   }
+}
 
 $.urlParam = function (name) {
   var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -301,4 +302,3 @@ $.urlParam = function (name) {
   return results[1] || 0;
 
 }
-
