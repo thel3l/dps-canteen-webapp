@@ -195,7 +195,6 @@ function updateMenu(){
 
 //var userRef = database.ref().child("users").child("BE00012314");
 
-});
 function setUser(){
   userRef.on('value', function(snapshot){
     var userInfo = snapshot.val();
@@ -217,6 +216,7 @@ function setUser(){
       var childData = childSnapshot.val();
       preRest.push(childData);
   });
+});
 }
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
