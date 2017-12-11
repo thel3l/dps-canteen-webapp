@@ -168,7 +168,7 @@ $(document).ready(function() {
 
 function signOut(){
   //Rithvik prepend not working...
-  $("#theBody").html("Sign Out Successful");
+  window.location.href = "http://api.dpscanteen.ml/entrar/login";
 }
 
 
