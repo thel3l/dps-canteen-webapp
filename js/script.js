@@ -8,6 +8,27 @@ var config = {
   messagingSenderId: "696186948502"
 };
 firebase.initializeApp(config);
+var database = firebase.database();
+var userRef, userInfo;
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    console.log(user);
+    userRef = database.ref().child('users').child(user.uid);
+    userRef.on('value', function(snap) {
+      userInfo = snap.val();
+      userInfo['admid'] = snap.key;
+      setUser(userInfo);
+      $('#wrapper').fadeOut(function() { $(this).remove(); });
+      $('#slideshow').fadeOut( function() { $(this).remove(); });
+    });
+  } else {
+    console.log('logged out');
+    if (!$.urlParam('token')) {
+      alert('You are not logged in');
+    }
+  }
+});
 
 var billAmount = 0;
 var loadingMenu = 0;
@@ -98,6 +119,21 @@ $(document).ready(function() {
     $('#wrapper').fadeOut(function() { $(this).detach(); });
     $('#slideshow').fadeOut( function() { $(this).detach(); });
 }, 1500);
+  // Login user with token
+  var token = $.urlParam('token');
+  console.log('token:', token);
+  if (token) {
+    localStorage['customToken'] = token;
+    history.replaceState({}, "DPSE Canteen", "/");
+    firebase.auth().signInWithCustomToken(token).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  // setTimeout(function(){
+  //   $('#wrapper').fadeOut(function() { $(this).remove(); });
+  //   $('#slideshow').fadeOut( function() { $(this).remove(); });
+  // }, 1500);
   // Vertical tabs
   $('#parentVerticalTab').easyResponsiveTabs({
     type: 'vertical',
@@ -126,7 +162,7 @@ $(document).ready(function() {
   // Scroll to top button
 });
 
-//signOut
+
 
 function signOut(){
   //Rithvik prepend not working...
@@ -221,8 +257,7 @@ function topUp(type) {
 
 function transUpdate(){
   var limit = parseInt($('#transPrec').val());
-
-  database.ref('transactions').child(admNo).orderByChild('timestamp').limitToLast(limit).once('value').then(function(snapshot) {
+  database.ref('transactions').child(userInfo.admid).orderByChild('timestamp').limitToLast(limit).once('value').then(function(snapshot) {
     var html = '';
     snapshot.forEach(function(transaction) {
       var trans = transaction.val();
@@ -233,8 +268,6 @@ function transUpdate(){
     $('#tranHist').html(html);
   });
 }
-
-
 function highlight(x, y){
   if(trig[y] == 0){
     $("#" + x).css("background-color", "#BCEBCB");
@@ -260,4 +293,10 @@ function clearSelection(){
       trig[i] = 0;
     }
   }
+
+$.urlParam = function (name) {
+  var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+  if (!results) return ''
+  return results[1] || 0;
+
 }
