@@ -58,7 +58,6 @@
                         $respTabs.find('.resp-tabs-list').css('display', 'none');
                     }
                 }
-
                 //Assigning the h2 markup to accordion title
                 var $tabItemh2;
                 $respTabs.find('.resp-tab-content.' + options.tabidentify).before("<h2 class='resp-accordion " + options.tabidentify + "' role='tab'><span class='resp-arrow'></span></h2>");
@@ -135,13 +134,11 @@
                 else {
                    // $($respTabs.find('.resp-tab-content.' + options.tabidentify)[tabNum]).addClass('resp-accordion-closed'); //removed resp-tab-content-active
                 }
-
                 //Tab Click action function
                 $respTabs.find("[role=tab]").each(function () {
 
                     var $currentTab = $(this);
                     $currentTab.click(function () {
-
                         var $currentTab = $(this);
                         var $tabAria = $currentTab.attr('aria-controls');
 
@@ -153,7 +150,6 @@
                                 'background-color': options.inactive_bg,
                                 'border-color': 'none'
                             });
-                            return false;
                         }
                         if (!$currentTab.hasClass('resp-tab-active') && $currentTab.hasClass('resp-accordion')) {
                             $respTabs.find('.resp-tab-active.' + options.tabidentify).removeClass('resp-tab-active').css({
