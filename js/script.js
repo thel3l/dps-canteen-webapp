@@ -190,7 +190,7 @@ function updateMenu(){
 
 
 // Firebase
-var id = adNo;
+
 
 var database = firebase.database();
 //var userRef = database.ref().child("users").child("BE00012314");
@@ -203,7 +203,7 @@ restRef.once("value").then(function(snapshot){
 });
 });
 function setUser(){
-  console.log(typeof(id));
+  console.log(adNo);
   userRef.on('value', function(snapshot){
     var userInfo = snapshot.val();
     $('#studentName span').text(userInfo.name);
