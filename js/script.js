@@ -194,16 +194,9 @@ function updateMenu(){
 
 var database = firebase.database();
 //var userRef = database.ref().child("users").child("BE00012314");
-var restRef = database.ref('users/BE00012314/items_bought');
-// Update student info
-restRef.once("value").then(function(snapshot){
-  snapshot.forEach(function(childSnapshot) {
-    var childData = childSnapshot.val();
-    preRest.push(childData);
-});
+
 });
 function setUser(){
-  console.log(adNo);
   userRef.on('value', function(snapshot){
     var userInfo = snapshot.val();
     $('#studentName span').text(userInfo.name);
@@ -214,6 +207,13 @@ function setUser(){
     $('#headerProfilePic').attr('src', userInfo.photo);
     $('#dropdownName').text(userInfo.name);
     $('#dropdownWallet span').text(userInfo.balance);
+  });
+  var restRef = database.ref('users/'+adNo+'/items_bought');
+  // Update student info
+  restRef.once("value").then(function(snapshot){
+    snapshot.forEach(function(childSnapshot) {
+      var childData = childSnapshot.val();
+      preRest.push(childData);
   });
 }
 $(document).ready(function(){
