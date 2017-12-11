@@ -18,6 +18,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     userRef = database.ref().child('users').child(user.uid);
     userRef.on('value', function(snap) {
       userInfo = snap.val();
+      wait(2000);
       if(userInfo != null){
         userInfo['admid'] = snap.key;
         setUser(userInfo);
@@ -26,6 +27,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         checkConnectivity();
       }else{
         alert("Unregistered User");
+        //window.location.href = "api.dpscanteen.ml/entrar/login";
       }
     });
   } else {
@@ -306,4 +308,11 @@ $.urlParam = function (name) {
   if (!results) return ''
   return results[1] || 0;
 
+}
+function wait(ms){
+   var start = new Date().getTime();
+   var end = start;
+   while(end < start + ms) {
+     end = new Date().getTime();
+  }
 }
