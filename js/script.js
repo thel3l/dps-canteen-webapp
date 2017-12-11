@@ -23,6 +23,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         setUser(userInfo);
         $('#wrapper').fadeOut(function() { $(this).remove(); });
         $('#slideshow').fadeOut( function() { $(this).remove(); });
+        checkConnectivity();
     }else{
       alert("Unregistered User");
     }
@@ -49,18 +50,20 @@ var menuItems = document.getElementsByClassName('menuItems');
 var priceTool = document.getElementsByClassName("priceTool");
 var countback = 0;
 //offline
-setTimeout(function(){
-  var connectedRef = firebase.database().ref(".info/connected");
-  connectedRef.on("value", function(snap) {
-    if (snap.val() === true) {
-      console.log("Firebase Connection established");
-    } else {
-      window.alert("Oh No! \n \
-      You are no longer connected to the internet :-( \n \
-      Plz refresh the page once you reconnect");
-    }
-  });
-},2000);
+function checkConnectivity(){
+  setTimeout(function(){
+    var connectedRef = firebase.database().ref(".info/connected");
+    connectedRef.on("value", function(snap) {
+      if (snap.val() === true) {
+        console.log("Firebase Connection established");
+      } else {
+        window.alert("Oh No! \n \
+        You are no longer connected to the internet :-( \n \
+        Plz refresh the page once you reconnect");
+      }
+    });
+  },2000);
+}
 //database verification
 firebase.database().ref('users/' + admNo).on('value', function(snapshot) {
   var userInfo = snapshot.val();
