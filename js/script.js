@@ -38,7 +38,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 var billAmount = 0;
 var loadingMenu = 0;
-//var admNo = 'BE00012314';
+var admNo = 'BE00012314';
 var menu = [];
 var menu_count ;
 var preRest = [];
@@ -63,7 +63,7 @@ setTimeout(function(){
   });
 },2000);
 //database verification
-firebase.database().ref('users/' + adNo).on('value', function(snapshot) {
+firebase.database().ref('users/' + admNo).on('value', function(snapshot) {
   var userInfo = snapshot.val();
   if(userInfo) {
       if(!(snapshot.hasChild('name'))) {
@@ -190,10 +190,10 @@ function updateMenu(){
 
 
 // Firebase
-//var id = 'BE00012314';
+var id = 'BE00012314';
 var database = firebase.database();
 var userRef = database.ref().child("users").child(adNo);
-var restRef = database.ref('users/'+adno+'/items_bought');
+var restRef = database.ref('users').child(adNo).child('items_bought');
 // Update student info
 restRef.once("value").then(function(snapshot){
   snapshot.forEach(function(childSnapshot) {
@@ -221,7 +221,7 @@ function setCurrentBal(){
       $('#currentWalletBal').text(currentBal);
 }
 function topUp(type) {
-  var adNo = $('#idNum').val();
+  var admNo = $('#idNum').val();
   if (type == 'menu') {
     var amount = billAmount;
     console.log(amount);
