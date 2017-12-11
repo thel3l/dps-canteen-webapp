@@ -190,7 +190,8 @@ function updateMenu(){
 
 
 // Firebase
-var id = 'BE00012314';
+var id = adNo;
+
 var database = firebase.database();
 //var userRef = database.ref().child("users").child("BE00012314");
 var restRef = database.ref('users/BE00012314/items_bought');
@@ -202,6 +203,7 @@ restRef.once("value").then(function(snapshot){
 });
 });
 function setUser(){
+  console.log(typeof(id));
   userRef.on('value', function(snapshot){
     var userInfo = snapshot.val();
     $('#studentName span').text(userInfo.name);
