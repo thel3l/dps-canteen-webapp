@@ -202,6 +202,7 @@ function setUser(){
     $('#studentName span').text(userInfo.name);
     $('#walletBal span').text(userInfo.balance);
     $('#profileImage').attr('src', userInfo.photo);
+    $('#admNumber span').text(adNo);
     currentBal = userInfo.balance;
     setCurrentBal();
     $('#headerProfilePic').attr('src', userInfo.photo);
