@@ -115,10 +115,6 @@ function priceToolTip(){
   });
 }
 $(document).ready(function() {
-  setTimeout(function(){
-    $('#wrapper').fadeOut(function() { $(this).detach(); });
-    $('#slideshow').fadeOut( function() { $(this).detach(); });
-}, 1500);
   // Login user with token
   var token = $.urlParam('token');
   console.log('token:', token);
