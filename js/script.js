@@ -11,14 +11,64 @@ firebase.initializeApp(config);
 
 var billAmount = 0;
 var loadingMenu = 0;
+var admNo = 'BE00012314';
 var menu = [];
+var menu_count ;
 var preRest = [];
 var menIdt = 1;
 var trig = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 var prices = [50,50,50,50,50,50,50,50,100,50,50,50,50,50,50,50,50,50,50,50];
 var currentBal = 0;
-var menuItems = document.getElementsByClassName("menuItems");
+var menuItems = document.getElementsByClassName('menuItems');
 var priceTool = document.getElementsByClassName("priceTool");
+var countback = 0;
+//offline
+setTimeout(function(){
+  var connectedRef = firebase.database().ref(".info/connected");
+  connectedRef.on("value", function(snap) {
+    if (snap.val() === true) {
+      console.log("Firebase Connection established");
+    } else {
+      window.alert("Oh No! \n \
+      You are no longer connected to the internet :-( \n \
+      Plz refresh the page once you reconnect");
+    }
+  });
+},2000);
+//database verification
+firebase.database().ref('users/' + admNo).on('value', function(snapshot) {
+  var userInfo = snapshot.val();
+  if(userInfo) {
+      if(!(snapshot.hasChild('name'))) {
+        window.alert("Oops !  \n \
+        Your name has not been properly added into our database \n \
+        Please get in touch with school authorities");
+      }
+
+      if(!(snapshot.hasChild('balance'))) {
+      window.alert("Oops ! \n \
+       Your wallet money has not been properly configured into our database \n \
+       Please get in touch with school authorities");
+      }
+      if(!(snapshot.hasChild('photo'))) {
+      window.alert("Oops ! \n \
+      Your profile pic has not been properly configured into our database \n \
+      Please get in touch with school authorities");
+      }
+  } else {
+    window.alert("Oops ! \n \
+    You have not been registered with our database.\n \
+    Please contact school autorities");
+  }
+});
+firebase.database().ref('menu_count').once('value').then(function(snapshot){
+   menu_count = snapshot.val();
+});
+function ehs() {
+  firebase.database().ref().once('value').then( function(snapshot) {
+          console.log(snapshot.val());
+  });
+}
 $(document).ready(function(){
   $("#billAmount").text(billAmount);
   $('#currentWalletBal').text(currentBal);
@@ -26,11 +76,20 @@ $(document).ready(function(){
     menuItems[i].innerHTML = "Loading..."
   }
   priceToolTip();
+  if($(window).width() < 768){
+    window.alert("Double Tap to select the menu options(If on iPhone)");
+    setWalletBalanceDiv();
+  }
 });
+function setWalletBalanceDiv(){
+  $("#walletBalResp").remove();
+  $("#lastRow").append("<div id = 'walletBalResp'><a data-toggle='tooltip' title='Wallet Balance'><div class = 'col-sm-1' id = 'currentBal'><span>₹</span><span id = 'currentWalletBal'></span></div></a></div>");
+  setCurrentBal();
+}
 function priceToolTip(){
   var i = 0;
     $(".priceTool").each(function(){
-      $(this).attr("title",prices[i]);
+      $(this).attr("title","₹"+prices[i]);
       i++;
   });
 }
@@ -71,29 +130,32 @@ $(document).ready(function() {
 
 function signOut(){
   //Rithvik prepend not working...
-  console.log("Hello");
+  $("#theBody").html("Sign Out Successful");
 }
 
 
 function updateMenu(){
+ 
   firebase.database().ref().child("menu").once("value").then(function(snapshot) {
     var i = 0;
-    console.log("hello world");
-    while(i < 20){
+    while(i < menu_count){
       snapshot.forEach(function(childSnapshot) {
+        var menuItems = document.querySelectorAll('.menuItems');
         var childData = childSnapshot.val();
         menu[i] = childData;
         menuItems[i].innerHTML = childData;
         i++;
-});
+      });
 }
-
   });
 }
+  
+
 // Firebase
+var id = 'BE00012314';
 var database = firebase.database();
 var userRef = database.ref().child("users").child("BE00012314");
-var restRef = database.ref().child("users").child("BE00012314").child("restrictions");
+var restRef = database.ref('users/BE00012314/items_bought');
 // Update student info
 restRef.once("value").then(function(snapshot){
   snapshot.forEach(function(childSnapshot) {
@@ -131,14 +193,21 @@ function topUp(type) {
       }
     }
   } else  if (type == 'custom') {
-    var amount = parseInt($('#customMon').val());
+    var wantedAmount = parseInt($('#customMon').val());
+    if(wantedAmount < 10){
+      window.alert("Too low of a denomination");
+    }else if(wantedAmount >2000){
+      window.alert("Too high of a denomination");
+    }else{
+    var amount = wantedAmount;
+    }
   }
   if (!amount) {
     console.error('Food plan not selected or amount not entered');
     return
   }
   if(menIdt == 0){
-    userRef.child("restrictions").transaction(function(){
+    restRef.transaction(function(){
       var restriction = preRest.concat(restrictions);
       return restriction
     });
@@ -152,7 +221,6 @@ function topUp(type) {
 }
 
 function transUpdate(){
-  var admNo = 'BE00012314';
   var limit = parseInt($('#transPrec').val());
 
   database.ref('transactions').child(admNo).orderByChild('timestamp').limitToLast(limit).once('value').then(function(snapshot) {
@@ -161,11 +229,13 @@ function transUpdate(){
       var trans = transaction.val();
       var date = moment(trans.timestamp).format('dddd, MMMM Do YYYY, h:mm:ss a');
       var row = `<tr><td>${date}</td>'+'<td>${trans.amount}</td>'+'<td>${trans.gateway}</td></tr>`;
-      html += row;
+      html = row + html;
     });
     $('#tranHist').html(html);
   });
 }
+
+
 function highlight(x, y){
   if(trig[y] == 0){
     $("#" + x).css("background-color", "#BCEBCB");
@@ -181,3 +251,15 @@ function highlight(x, y){
     trig[y] = 0;
   }
 }
+function clearSelection(){
+  for(var i = 0; i<20; i++){
+    if(trig[i] == 1){
+      menuItems[i].style.backgroundColor = "#8491A3";
+      //document.getElementById(x).style.backgroundColor = "#BCEBCB";
+      billAmount -= 50;
+      $('#billAmount').text(billAmount);
+      trig[i] = 0;
+    }
+  }
+}
+
