@@ -202,7 +202,7 @@ function setUser(){
     $('#walletBal span').text(userInfo.balance+userInfo.menuBalance);
     $('#profileImage').attr('src', userInfo.photo);
     $('#admNumber span').text(adNo);
-    currentBal = userInfo.balance;
+    currentBal = userInfo.balance+userInfo.menuBalance;
     setCurrentBal();
     $('#headerProfilePic').attr('src', userInfo.photo);
     $('#dropdownName').text(userInfo.name);
