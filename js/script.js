@@ -199,7 +199,7 @@ function setUser(){
   userRef.on('value', function(snapshot){
     var userInfo = snapshot.val();
     $('#studentName span').text(userInfo.name);
-    $('#walletBal span').text(userInfo.balance);
+    $('#walletBal span').text(userInfo.balance+userInfo.menuBalance);
     $('#profileImage').attr('src', userInfo.photo);
     $('#admNumber span').text(adNo);
     currentBal = userInfo.balance;
@@ -256,7 +256,13 @@ function topUp(type) {
       var restriction = preRest.concat(restrictions);
       return restriction
     });
-  }
+    userRef.child('menuBalance').transaction(function(balance) {
+      return menuBalance + amount
+    }).then(function() {
+      window.alert('Recharge successful');
+
+    });
+  }else{
   userRef.child('balance').transaction(function(balance) {
     console.log("i happpen");
     return balance + amount
@@ -264,6 +270,7 @@ function topUp(type) {
     window.alert('Recharge successful');
 
   });
+}
 }
 
 function transUpdate(){
