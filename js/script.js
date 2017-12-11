@@ -19,6 +19,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     userRef.on('value', function(snap) {
       userInfo = snap.val();
       if(userInfo != null){
+        console.log(adNo);
         userInfo['admid'] = snap.key;
         setUser(userInfo);
         $('#wrapper').fadeOut(function() { $(this).remove(); });
