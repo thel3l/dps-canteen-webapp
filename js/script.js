@@ -193,7 +193,7 @@ function updateMenu(){
 var id = 'BE00012314';
 var database = firebase.database();
 var userRef = database.ref().child("users").child(adNo);
-var restRef = database.ref('users/'+adNo+'/items_bought');
+var restRef = database.ref('users/BE00012314/items_bought');
 // Update student info
 restRef.once("value").then(function(snapshot){
   snapshot.forEach(function(childSnapshot) {
