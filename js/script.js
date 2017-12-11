@@ -14,13 +14,18 @@ var userRef, userInfo;
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     console.log(user);
+
     userRef = database.ref().child('users').child(user.uid);
     userRef.on('value', function(snap) {
       userInfo = snap.val();
-      userInfo['admid'] = snap.key;
-      setUser(userInfo);
-      $('#wrapper').fadeOut(function() { $(this).remove(); });
-      $('#slideshow').fadeOut( function() { $(this).remove(); });
+      if(userInfo != null){
+        userInfo['admid'] = snap.key;
+        setUser(userInfo);
+        $('#wrapper').fadeOut(function() { $(this).remove(); });
+        $('#slideshow').fadeOut( function() { $(this).remove(); });
+    }else{
+      alert("Unregistered User");
+    }
     });
   } else {
     console.log('logged out');
