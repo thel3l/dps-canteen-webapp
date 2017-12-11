@@ -200,17 +200,19 @@ restRef.once("value").then(function(snapshot){
     preRest.push(childData);
 });
 });
-userRef.on('value', function(snapshot){
-  var userInfo = snapshot.val();
-  $('#studentName span').text(userInfo.name);
-  $('#walletBal span').text(userInfo.balance);
-  $('#profileImage').attr('src', userInfo.photo);
-  currentBal = userInfo.balance;
-  setCurrentBal();
-  $('#headerProfilePic').attr('src', userInfo.photo);
-  $('#dropdownName').text(userInfo.name);
-  $('#dropdownWallet span').text(userInfo.balance);
-});
+function setUser(){
+  userRef.on('value', function(snapshot){
+    var userInfo = snapshot.val();
+    $('#studentName span').text(userInfo.name);
+    $('#walletBal span').text(userInfo.balance);
+    $('#profileImage').attr('src', userInfo.photo);
+    currentBal = userInfo.balance;
+    setCurrentBal();
+    $('#headerProfilePic').attr('src', userInfo.photo);
+    $('#dropdownName').text(userInfo.name);
+    $('#dropdownWallet span').text(userInfo.balance);
+  });
+}
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 });
