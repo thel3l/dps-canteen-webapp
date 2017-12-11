@@ -10,25 +10,22 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 var userRef, userInfo;
-var admNo;
+
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     console.log(user);
-    admNo = user.uid;
+
     userRef = database.ref().child('users').child(user.uid);
     userRef.on('value', function(snap) {
       userInfo = snap.val();
-      wait(2000);
       if(userInfo != null){
         userInfo['admid'] = snap.key;
         setUser(userInfo);
         $('#wrapper').fadeOut(function() { $(this).remove(); });
         $('#slideshow').fadeOut( function() { $(this).remove(); });
-        checkConnectivity();
-      }else{
-        alert("Unregistered User");
-        //window.location.href = "api.dpscanteen.ml/entrar/login";
-      }
+    }else{
+      alert("Unregistered User");
+    }
     });
   } else {
     console.log('logged out');
@@ -40,6 +37,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 var billAmount = 0;
 var loadingMenu = 0;
+var admNo = 'BE00012314';
 var menu = [];
 var menu_count ;
 var preRest = [];
@@ -51,20 +49,18 @@ var menuItems = document.getElementsByClassName('menuItems');
 var priceTool = document.getElementsByClassName("priceTool");
 var countback = 0;
 //offline
-function checkConnectivity(){
-  setTimeout(function(){
-    var connectedRef = firebase.database().ref(".info/connected");
-    connectedRef.on("value", function(snap) {
-      if (snap.val() === true) {
-        console.log("Firebase Connection established");
-      } else {
-        window.alert("Oh No! \n \
-        You are no longer connected to the internet :-( \n \
-        Plz refresh the page once you reconnect");
-      }
-    });
-  },2000);
-}
+setTimeout(function(){
+  var connectedRef = firebase.database().ref(".info/connected");
+  connectedRef.on("value", function(snap) {
+    if (snap.val() === true) {
+      console.log("Firebase Connection established");
+    } else {
+      window.alert("Oh No! \n \
+      You are no longer connected to the internet :-( \n \
+      Plz refresh the page once you reconnect");
+    }
+  });
+},2000);
 //database verification
 firebase.database().ref('users/' + admNo).on('value', function(snapshot) {
   var userInfo = snapshot.val();
@@ -195,8 +191,8 @@ function updateMenu(){
 // Firebase
 var id = 'BE00012314';
 var database = firebase.database();
-var userRef = database.ref().child("users").child(admNo);
-var restRef = database.ref('users/'+admNo+'/items_bought');
+var userRef = database.ref().child("users").child("BE00012314");
+var restRef = database.ref('users/BE00012314/items_bought');
 // Update student info
 restRef.once("value").then(function(snapshot){
   snapshot.forEach(function(childSnapshot) {
@@ -308,11 +304,4 @@ $.urlParam = function (name) {
   if (!results) return ''
   return results[1] || 0;
 
-}
-function wait(ms){
-   var start = new Date().getTime();
-   var end = start;
-   while(end < start + ms) {
-     end = new Date().getTime();
-  }
 }
