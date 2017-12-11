@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DPSE Canteen Portal</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <link rel="shortcut icon" href="images/dpsIcon.jpg">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Oxygen">
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ResponsiveSlides.js/1.55/responsiveslides.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-database.js"></script>
+  <script src="js/script.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body onload="updateMenu()">
+  <div id="wrapper">
+    <div id="slideshow">
+      <blockquote class = "blockquote">
+        The Official Canteen Portal to digitize the ordering process as part of the Cisco Talent Outreach
+        <cite>Styrchinne</cite>
+      </blockquote><br><br>
+      <i id = "dpsnote">Delhi Public School</i>
+    </div>
+
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div>
+      <div class="logo">
+        <h1><a href="index.html">DPSE Canteen Portal</a></h1>
+      </div>
+      <div class="w3-dropdown-hover w3-right">
+        <img class = "img-responsive img-circle" id = "headerProfilePic" src = "">
+        <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
+          <p class="w3-bar-item w3-button" id = "dropdownName"></p>
+          <p class="w3-bar-item w3-button" id = "dropdownWallet">Balance: ₹<span></span></p>
+          <p id = "signOut" onclick = "signOut()" class="w3-bar-item w3-button">Sign Out</p>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Transactions Modal -->
+    <div class="modal fade custMod" id="transModal" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" data-dismiss="modal" type="button">&times;</button>
+            <h4 class="modal-title">Transaction History</h4>
+          </div>
+          <div class="modal-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Time Stamp</th>
+                    <th>Amount</th>
+                    <th>Payment Medium</th>
+                  </tr>
+                </thead>
+                <tbody id="tranHist"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Vertical tabs -->
+    <br>
+    <br>
+    <div class="categories-section main-grid-border" id="vertTab">
+      <div id = "cont" >
+        <div class="category-list">
+          <div id="parentVerticalTab">
+            <div class="agileits-tab_nav">
+              <ul class="resp-tabs-list hor_1">
+                <li><i aria-hidden="true" class="icon fa fa-id-card-o"></i></li>
+                <li><i aria-hidden="true" class="icon fa fa-list"></i></li>
+                <li><i aria-hidden="true" class="icon fa fa-home"></i></li>
+                <li><i aria-hidden="true" class="icon fa fa-lightbulb-o"></i></li>
+                <li><i aria-hidden="true" class="icon fa fa-user-circle-o"></i></li>
+              </ul>
+            </div>
+
+            <div class="resp-tabs-container hor_1">
+
+              <!-- Wallet Topup -->
+              <div>
+                <div class="tabs-box container-fluid">
+                  <ul class="tabs-menu">
+                    <li><a href="#tab1"><label class="radio"><input checked name="radio" type="radio"><i></i>Menu</label></a></li>
+                    <li><a href="#tab2"><label class="radio"><input name="radio" type="radio"><i></i>Custom</label></a></li>
+                  </ul>
+                  <br><br>
+                  <div class = "tab-grids">
+                      <div class = "tab-grid" id = "tab1">
+                      <div id = "foodMenu">
+                        <div class = "row">
+                          <div class = "col-sm-3" id = "monday" >Monday</div>
+                          <a data-toggle="tooltip" class = "priceTool" data-placement="top"><div class = "col-sm-2 menuItems" id = "mondayItem1" onclick = "highlight('mondayItem1', 0)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "mondayItem2" onclick = "highlight('mondayItem2', 1)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "mondayItem3" onclick = "highlight('mondayItem3', 2)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "mondayItem4" onclick = "highlight('mondayItem4', 3)"></div></a>
+                          <a data-toggle="tooltip" title="Wallet Balance"><div class = "col-sm-1" id = "currentBal"><span>₹</span><span id = "currentWalletBal"></span></div></a>
+
+                        </div>
+                        <div class = "row">
+                          <div class = "col-sm-3" id = "tuesday">Tuesday</div>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "tuesdayItem1" onclick = "highlight('tuesdayItem1', 4)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "tuesdayItem2" onclick = "highlight('tuesdayItem2', 5)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "tuesdayItem3" onclick = "highlight('tuesdayItem3', 6)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "tuesdayItem4" onclick = "highlight('tuesdayItem4', 7)"></div></a>
+                        </div>
+                        <div class = "row">
+                          <div class = "col-sm-3" id = "wednesday">Wednesday</div>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "wednesdayItem1" onclick = "highlight('wednesdayItem1', 8)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "wednesdayItem2" onclick = "highlight('wednesdayItem2', 9)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "wednesdayItem3" onclick = "highlight('wednesdayItem3', 10)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "wednesdayItem4" onclick = "highlight('wednesdayItem4', 11)"></div></a>
+                        </div>
+                        <div class = "row">
+                          <div class = "col-sm-3" id = "thursday">Thursday</div>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems"  id = "thursdayItem1" onclick = "highlight('thursdayItem1', 12)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems"  id = "thursdayItem2" onclick = "highlight('thursdayItem2', 13)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems"  id = "thursdayItem3" onclick = "highlight('thursdayItem3', 14)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems"  id = "thursdayItem4" onclick = "highlight('thursdayItem4', 15)"></div></a>
+                        </div>
+                        <div class = "row">
+                          <div class = "col-sm-3" id = "friday">Friday</div>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "fridayItem1" onclick = "highlight('fridayItem1', 16)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "fridayItem2" onclick = "highlight('fridayItem2', 17)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "fridayItem3" onclick = "highlight('fridayItem3', 18)"></div></a>
+                          <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "fridayItem4" onclick = "highlight('fridayItem4', 19)"></div></a>
+                          <a data-toggle="tooltip" title="Bill Amount"><div class = "col-sm-1" id = "bill">₹<span id = "billAmount"></span></div></a>
+                        </div>
+                      </div>
+                      <br><br>
+                      <input class="submit" onclick="topUp('menu')" type="submit" value="Recharge Now">
+                    </div>
+                    <div class = "tab-grid" id = "tab2">
+                      <input id="customMon" min = "0" name="amount" placeholder="Enter amount" type="number" required>
+                      <br><br>
+                      <input class="submit" onclick="topUp('custom')" type="submit" value="Recharge Now">
+                    </div>
+                  </div>
+                  <br>
+                  <br>
+
+
+                </div>
+              </div>
+
+              <!-- END Wallet Topup -->
+
+              <!-- Transaction History -->
+              <div>
+                <i aria-hidden="true" class="icon fa fa-list inner-icon"></i><br><br>
+                <select class="selectpicker show-tick" data-live-search="true" id="transPrec">
+                  <option data-tokens="day" value="1">Last Usage</option>
+                  <option data-tokens="ten" value="10">Last 10 Usages</option>
+                  <option data-tokens="thirty" value="30">Last 30 Usages</option>
+                  <option data-tokens="fifty" value="50">Last 50 Usages</option>
+                </select>
+                <br><br>
+                <input class="submit" data-target="#transModal" data-toggle="modal" onclick="transUpdate()" type="submit" value="View Now">
+              </div>
+              <!-- END Transaction history -->
+
+
+
+              <!-- About -->
+              <div>
+                <img class = "img-responsive ciscoImage" src="data:image/png;base64,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">
+                <div id = "aboutExp" class="panel panel-default">
+                  <div class="panel-body">This project was started when students of Delhi Public School East, engaged in the Cisco Talent Outreach Program. This initiative's concept was very straightforward. It promoted the use of technology for the betterment of the world. The students had to unearth a predicament for the society or school and try to mend it with technology. Hence, the modernization of the canteen.</div>
+                </div>
+              </div>
+              <!-- END About -->
+
+              <!-- Creators -->
+              <div>
+                <div class = "creatorsCont">
+                  <div class="w3-container">
+                    <div class="w3-card-4" style="width:100%">
+                      <div class="w3-container">
+                        <br>
+                        <img src="https://pbs.twimg.com/profile_images/830478999377760256/uaWc--wH.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
+                        <p class = "creatorsInfo">Infant Derrick Gnanasusairaj</p><p class = "creatorsInfo">11th Grade</p><br>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="w3-container">
+                    <div class="w3-card-4" style="width:100%">
+                      <div class="w3-container">
+                        <br>
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw8PDQ8PDQ0SEA8ODRAQDRAOEBAPDw8QGBEWFhgSFhUYHiggGBolGxMVIT0hJSkrMC4uFx8zODMtNygtLisBCgoKDg0NGhAQGC0gHSUrLS8tKy0tLS0tKy0tLS0rLS0tLS0tLS0tLS0rKysrLSsrKy0rLS0tKy0rLSstKzcrK//AABEIAOEA4QMBIgACEQEDEQH/xAAbAAEAAwEBAQEAAAAAAAAAAAAABAUGAQIDB//EADYQAQACAAMDCAoCAQUAAAAAAAABAgMFEQQhMRIiQVFhcZGhEyMyUmJygbHB0TPhQkOCstLw/8QAGAEBAQEBAQAAAAAAAAAAAAAAAAIDAQT/xAAdEQEBAAMBAQEBAQAAAAAAAAAAAQIRMQMhQVES/9oADAMBAAIRAxEAPwD9EAelmAAAAAAAAAAA9YdJtOlYmZ7I1B5EzCyzFt0RX5p3+EJdMmj/ACxJ+ldE3KR3VVAnZhgYWHpWszN+MxPCI7UF2XbgA6AAAAAAAAAAAAAAAAAAAAD7bNs18SdKRujjM7qx9UnL8vnE0tfdTojpt+oXlKRERERpEcIjgzyz1x2RA2fKaV9vnz27qx9E+tIjdERHdGj0M7bV6AHBRZnsVq3tiRvradZ6Zr169ivayYVO35XxthR30/6/ppjn+VNipAapAAAAAAAAAAAAAAAAAAErLtm9JiRE+zXnW6p6oRVxkVebefiiPL+05XUdnVpEOgwWAAAAAApM52bk2jErG606W+bTj4QrWhzakTgX16NJjv1Z5thfiL0AW4AAAAAAAAAAAAAAAALzJI9VPzz9oUa7yOfV2jqv+IRnx2dWQDFYAAAAACLmn8GJ8rOtFmn8GJ8v5Z1r58Rk4A0cAAAAAAAAAAAAAAAAFxkU828fFH2U6+yrZrYdZm0xz9JiI6I0Rnfjs6ngMVgAAAAAImaz6i/dH/KGdaTb8CcTDmtZ0mZjTXhunXSWdvWYmYnjEzEtfPicnkBokAAAAAAAAAAAAAAAAafY7a4VJ66V+zMNBlE+orv4TaPNn6cdx6mgMlgAAAAAEspa0zMzPGZmZ8Wl2u/Jw726qz9mYhp5pyAGqQAAAAAAAAAAAAAAABOynaJrixXXm33THxdEoL1S81tFo41mLR9J1cs3Bqx5w7axExwmImHp52gAAAAACnzvHnWMOJ3TGtu3fujuVSRt+Ny8W8xOsa6V7o3ffVHb4zURQBTgAAAAAAAAAAAAAAAAAC7ybaNaejn2qcO2v/tyyZvLpmMemnXpPdMNIwzmquACXQABFzHafR4czHtTup3pSkzz+SnyTp4qxm65VaA3QAAAAAAAAAAAAAAAAAAAAmZTXXHr2RafL+2hVmVbFNdMSbb7V3VjoidJ4rNhnd1cAEugAClz2OfSfhtHnC6RMw2P0tYiLaTWdY13x3Kxuq5WdAboAAAAAAAAAAAAAAAAAAHa11mKxxtMRHfM6JOz7BiYmkxXk1mfatu8uMrTZMtpSYtPOtHTO6InshFykdkTcOukRHVER5PQMVgAAAAAMzt2Hyca8aaRytY7p3/t8Gj2vYaYu+260RpFo46flU7RlmJTfXnx113T4Nsc4ixCHZ6nFuAAAAAAAAAAAPrs+z3xJ5ldY6Z4Vj6g+T1Sk2nSsTM9URqttmyisb8S3K+GNYjx4yssLCrWNK1iI7IZ3Ofiv8qbAym877zyI6o51v6WWzbDh4e+tdZ963Onz4JQi5Wu6c0dBLoAAAAAAAAAD4bRstMT26xPbwt4q3aMnnjh213+zbdu71yOzKxzTLY2Dak6XrNd/Tw+k9L5tXakTGkxrHVO9A2nKcO3scyezfXwaT0/rlxUYkbTsWJh77V1r71d8R39SOuXaQB0AAAWeTbLypnEtwrOlO/ply3UHvYcq/yxfpT9/pbVrERpEaR2OjC21cgA46AAAAAAAAAAAAAAAAAA5Kv23K621tTm24/DM9vUsR2XQydqzEzFo0mJ0mJ6HF3nOzcqvpIjnU49ter8qRtjdxFmgBTg0mX4XJwqRp0az3zvZ7Bw+VetfetEebUxDL0qsXQGagAAAAAAAAAAAAAAAAAAAAAHLRExMT0xvZbFpybWr7tpjzapQZxh6YuvvVifrwX536nJBAbJTcpprjRPuxM+Wn5aBTZFXnXnqrWPGZ/S5Y59XOACHQAAAAAAAAAAAAAAAAAAAAABVZ7Tm0t1WmPGNfwtVdnc+qj5408JVj1y8UjgNkLbIf8AU/2/ey3Bjn1c4AJdAAAAAAAAAAAAAAAAAAAAAAclU57wp9fsCseuXipAbof/2Q==" alt="Avatar" class="img-responsive w3-left w3-circle w3-margin-right" style="width:60px">
+                        <p class = "creatorsInfo">Rithvik Vibhu</p><p class = "creatorsInfo">12th Grade</p><br>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="w3-container">
+                    <div class="w3-card-4" style="width:100%">
+                      <div class="w3-container">
+                        <br>
+                        <img src="data:image/jpeg;base64,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" alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
+                        <p class = "creatorsInfo">Gokul. J. Kurup</p><p class = "creatorsInfo">11th Grade</p><br>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="w3-container">
+                    <div class="w3-card-4" style="width:100%">
+                      <div class="w3-container">
+                        <br>
+                        <img src="data:image/jpeg;base64,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" alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
+                        <p class = "creatorsInfo">Rithwik Jayasimha</p><p class = "creatorsInfo">12th Grade</p><br>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="w3-container">
+                    <div class="w3-card-4" style="width:100%">
+                      <div class="w3-container">
+                        <br>
+                        <img src="data:image/jpeg;base64,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" alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
+                        <p class = "creatorsInfo">Ranga Madabushi</p><p class = "creatorsInfo">12th Grade</p><br>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="w3-container">
+                    <div class="w3-card-4" style="width:100%">
+                      <div class="w3-container">
+                        <br>
+                        <img src="data:image/jpeg;base64,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" alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
+                        <p class = "creatorsInfo">Kartik Soni</p><p class = "creatorsInfo">11th Grade</p><br>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="w3-container">
+                    <div class="w3-card-4" style="width:100%">
+                      <div class="w3-container">
+                        <br>
+                        <img src="data:image/jpeg;base64,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" alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
+                        <p class = "creatorsInfo">Shreya J</p><p class = "creatorsInfo">11th Grade</p><br>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- END Creators -->
+
+              <!-- Profile -->
+              <div>
+                <!-- <i aria-hidden="true" class="icon fa fa-user inner-icon"></i> -->
+
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-xs-12 col-md-3">
+                      <img id="profileImage" alt="Profile picture" class="img-responsive img-circle" src="">
+                    </div>
+                    <div class="col-xs-12 col-md-9">
+                      <br><h4 id="studentName"><span></span></h4>
+                      <br><h5 id="admNumber">Admission number: <span>BE00012314</span></h5>
+                      <h4 id="walletBal">Wallet balance: ₹ <span></span></h4>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <!-- END Profile -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <link href="css/easy-responsive-tabs.css" rel="stylesheet">
+      <script src="js/easyResponsiveTabs.js"></script>
+    </div>
+
+  </body>
+  </html>
