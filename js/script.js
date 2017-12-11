@@ -10,11 +10,11 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 var userRef, userInfo;
-
+var adNo;
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     console.log(user);
-
+    adNo = user.uid;
     userRef = database.ref().child('users').child(user.uid);
     userRef.on('value', function(snap) {
       userInfo = snap.val();
