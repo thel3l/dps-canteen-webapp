@@ -195,7 +195,6 @@ var id = 'BE00012314';
 var database = firebase.database();
 var userRef = database.ref().child("users").child(admNo);
 var restRef = database.ref('users/'+admNo+'/items_bought');
-var
 // Update student info
 restRef.once("value").then(function(snapshot){
   snapshot.forEach(function(childSnapshot) {
