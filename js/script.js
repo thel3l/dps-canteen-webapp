@@ -14,13 +14,18 @@ var userRef, userInfo;
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     console.log(user);
+
     userRef = database.ref().child('users').child(user.uid);
     userRef.on('value', function(snap) {
       userInfo = snap.val();
-      userInfo['admid'] = snap.key;
-      setUser(userInfo);
-      $('#wrapper').fadeOut(function() { $(this).remove(); });
-      $('#slideshow').fadeOut( function() { $(this).remove(); });
+      if(userInfo != null){
+        userInfo['admid'] = snap.key;
+        setUser(userInfo);
+        $('#wrapper').fadeOut(function() { $(this).remove(); });
+        $('#slideshow').fadeOut( function() { $(this).remove(); });
+    }else{
+      alert("Unregistered User");
+    }
     });
   } else {
     console.log('logged out');
@@ -195,17 +200,19 @@ restRef.once("value").then(function(snapshot){
     preRest.push(childData);
 });
 });
-userRef.on('value', function(snapshot){
-  var userInfo = snapshot.val();
-  $('#studentName span').text(userInfo.name);
-  $('#walletBal span').text(userInfo.balance);
-  $('#profileImage').attr('src', userInfo.photo);
-  currentBal = userInfo.balance;
-  setCurrentBal();
-  $('#headerProfilePic').attr('src', userInfo.photo);
-  $('#dropdownName').text(userInfo.name);
-  $('#dropdownWallet span').text(userInfo.balance);
-});
+function setUser(){
+  userRef.on('value', function(snapshot){
+    var userInfo = snapshot.val();
+    $('#studentName span').text(userInfo.name);
+    $('#walletBal span').text(userInfo.balance);
+    $('#profileImage').attr('src', userInfo.photo);
+    currentBal = userInfo.balance;
+    setCurrentBal();
+    $('#headerProfilePic').attr('src', userInfo.photo);
+    $('#dropdownName').text(userInfo.name);
+    $('#dropdownWallet span').text(userInfo.balance);
+  });
+}
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 });
