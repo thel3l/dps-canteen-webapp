@@ -252,6 +252,7 @@ function topUp(type) {
     return
   }
   if(menIdt == 0){
+    var restRef = database.ref('users/'+adNo+'/items_bought');
     restRef.transaction(function(){
       var restriction = preRest.concat(restrictions);
       return restriction
