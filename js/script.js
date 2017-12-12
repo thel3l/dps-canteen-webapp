@@ -61,7 +61,7 @@ setTimeout(function(){
       Plz refresh the page once you reconnect");
     }
   });
-},2000);
+},5000);
 //database verification
 firebase.database().ref('users/' + admNo).on('value', function(snapshot) {
   var userInfo = snapshot.val();
