@@ -208,11 +208,10 @@ function setUser(){
     $('#dropdownWallet span').text(userInfo.balance+userInfo.menuBalance);
   });
   var database = firebase.database();
-  var restRef = database.ref('users/'+adNo+'/items_bought');
   getPreRest();
 }
-// Update student info
 function getPreRest(){
+  var restRef = database.ref('users/'+adNo+'/items_bought');
 restRef.once("value").then(function(snapshot){
   snapshot.forEach(function(childSnapshot) {
     var childData = childSnapshot.val();
