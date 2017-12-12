@@ -259,7 +259,7 @@ function topUp(type) {
     userRef.child('menuBalance').transaction(function(menuBalance) {
       return menuBalance + amount
     }).then(function() {
-      window.alert('Recharge successful');
+      toast('Recharge successful');
       clearSelection();
     });
   }else{
