@@ -57,7 +57,7 @@ setTimeout(function(){
   var connectedRef = firebase.database().ref(".info/connected");
   connectedRef.on("value", function(snap) {
     if (snap.val() === true) {
-      showToast("Connection Established",2000);
+      toast("Connection Established");
     } else {
       showToast("Oh No! \n \
       You are no longer connected to the internet :-( \n \
@@ -321,4 +321,15 @@ $.urlParam = function (name) {
   if (!results) return ''
   return results[1] || 0;
 
+}
+function toast(toast) {
+    // Get the snackbar DIV
+    $("#snackbar").html(toast);
+    var x = document.getElementById("snackbar")
+
+    // Add the "show" class to DIV
+    x.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
