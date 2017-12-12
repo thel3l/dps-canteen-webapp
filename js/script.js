@@ -275,7 +275,7 @@ function topUp(type) {
 
 function transUpdate(){
   var limit = parseInt($('#transPrec').val());
-  database.ref('transactions').child(userInfo.admid).orderByChild('timestamp').limitToLast(limit).once('value').then(function(snapshot) {
+  database.ref('transactions').child(adNo).orderByChild('timestamp').limitToLast(limit).once('value').then(function(snapshot) {
     var html = '';
     snapshot.forEach(function(transaction) {
       var trans = transaction.val();
