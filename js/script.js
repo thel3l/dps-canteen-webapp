@@ -7,18 +7,6 @@ var config = {
   storageBucket: "dpsemca-1f00a.appspot.com",
   messagingSenderId: "696186948502"
 }
-//service worker
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('js/sw.js',{scope: '/'})
-  .then(function(reg) {
-    // registration worked
-    console.log('Registration succeeded. Scope is ' + reg.scope);
-  }).catch(function(error) {
-    // registration failed
-    console.log('Registration failed with ' + error);
-  });
-}
-//end sw
 firebase.initializeApp(config);
 var database = firebase.database();
 var userRef, userInfo;
