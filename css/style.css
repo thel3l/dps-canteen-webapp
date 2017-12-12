@@ -467,7 +467,7 @@
     letter-spacing: 1px;
     font-family: 'Oxygen';
   }
-  label.radio {
+  label.radio-inline {
     font-size: 14px;
     font-weight: 500;
     color: #999;
@@ -481,7 +481,7 @@
     font-family: 'Oxygen';
     cursor: pointer;
   }
-  .radio i {
+  .radio-inline i {
     position: absolute;
     top: 9px;
     left: 1px;
@@ -496,7 +496,7 @@
     -o-border-radius: 50%;
     -ms-border-radius: 50%;
   }
-  .radio input + i:after {
+  .radio-inline input + i:after {
     position: absolute;
     opacity: 0;
     transition: opacity 0.1s;
@@ -505,7 +505,7 @@
     -moz-transition: opacity 0.1s;
     -webkit-transition: opacity 0.1s;
   }
-  .radio input + i:after {
+  .radio-inline input + i:after {
     content: '';
     top: 2px;
     left: 2px;
@@ -514,7 +514,7 @@
     border-radius: 50%;
     background-color: #fff !important;
   }
-  .radio input {
+  .radio-inline input {
     position: absolute;
     left: 20px;
     top:5px;
@@ -752,7 +752,7 @@
       font-size: 28px;
       margin: 0 0 25px 0;
     }
-    label.radio {
+    label.radio-inline {
       font-size: 18px;
     }
   }
@@ -937,13 +937,13 @@
     .banner1, .banner2, .banner3, .banner4 {
       min-height: 280px;
     }
-    label.radio {
+    label.radio-inline {
       font-size: 16px;
     }
-    .radio i {
+    .radio-inline i {
       top: 5px;
     }
-    .radio input {
+    .radio-inline input {
       top: 1px;
     }
     i.icon.inner-icon {
@@ -1014,7 +1014,7 @@
     .modal-body {
       padding: 5px 15px 30px 16px;
     }
-    label.radio {
+    label.radio-inline {
       font-size: 15px;
       padding-left: 20px;
     }
@@ -1033,7 +1033,7 @@
     h3.-head {
       font-size: 23px;
     }
-    .radio input {
+    .radio-inline input {
       top: 0px;
     }
     .caption h3 {
