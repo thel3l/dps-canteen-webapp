@@ -209,12 +209,15 @@ function setUser(){
   });
   var database = firebase.database();
   var restRef = database.ref('users/'+adNo+'/items_bought');
-  // Update student info
-  restRef.once("value").then(function(snapshot){
-    snapshot.forEach(function(childSnapshot) {
-      var childData = childSnapshot.val();
-      preRest.push(childData);
-  });
+  getPreRest();
+}
+// Update student info
+function getPreRest(){
+restRef.once("value").then(function(snapshot){
+  snapshot.forEach(function(childSnapshot) {
+    var childData = childSnapshot.val();
+    preRest.push(childData);
+});
 });
 }
 $(document).ready(function(){
@@ -261,6 +264,7 @@ function topUp(type) {
       preRest.length = 0;
       toast('Recharge successful');
       clearSelection();
+      getPreRest();
     });
   }else{
   userRef.child('balance').transaction(function(balance) {
