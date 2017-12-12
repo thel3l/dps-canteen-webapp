@@ -6,10 +6,7 @@ var config = {
   projectId: "dpsemca-1f00a",
   storageBucket: "dpsemca-1f00a.appspot.com",
   messagingSenderId: "696186948502"
-};
- function showToast(message, duration) {
-      Materialize.toast(message, duration);
-   }
+}
 firebase.initializeApp(config);
 var database = firebase.database();
 var userRef, userInfo;
@@ -59,9 +56,8 @@ setTimeout(function(){
     if (snap.val() === true) {
       toast("Connection Established");
     } else {
-      showToast("Oh No! \n \
-      You are no longer connected to the internet :-( \n \
-      Plz refresh the page once you reconnect",6000);
+      toast("Oh No! \n \
+      You are no longer connected to the internet.");
     }
   });
 },5000);
@@ -107,7 +103,7 @@ $(document).ready(function(){
   }
   priceToolTip();
   if($(window).width() < 768){
-    showToast("Double Tap to select the menu options(If on iPhone)",3000);
+    toast("Double Tap to select the menu options(If on iPhone)");
     setWalletBalanceDiv();
   }
 });
@@ -271,7 +267,7 @@ function topUp(type) {
     console.log("i happpen");
     return balance + amount
   }).then(function() {
-    window.alert('Recharge successful');
+    toast('Recharge successful');
 
   });
 }
