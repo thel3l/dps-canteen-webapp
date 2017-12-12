@@ -206,7 +206,7 @@ function setUser(){
     setCurrentBal();
     $('#headerProfilePic').attr('src', userInfo.photo);
     $('#dropdownName').text(userInfo.name);
-    $('#dropdownWallet span').text(userInfo.balance);
+    $('#dropdownWallet span').text(userInfo.balance+userInfo.menuBalance);
   });
   var database = firebase.database();
   var restRef = database.ref('users/'+adNo+'/items_bought');
