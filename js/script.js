@@ -257,6 +257,7 @@ function topUp(type) {
     var restRef = database.ref('users/'+adNo+'/items_bought');
     restRef.transaction(function(){
       var restriction = preRest.concat(restrictions);
+      preRest.length = 0;
       return restriction
     });
     userRef.child('menuBalance').transaction(function(menuBalance) {
