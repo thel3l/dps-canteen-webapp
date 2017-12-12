@@ -57,8 +57,7 @@ setTimeout(function(){
       toast("Connection Established");
     } else {
       toast("Oh No! \n \
-      You are no longer connected to the internet :-( \n \
-      Plz refresh the page once you reconnect");
+      You are no longer connected to the internet.");
     }
   });
 },5000);
