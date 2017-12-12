@@ -266,7 +266,7 @@ function topUp(type) {
     console.log("i happpen");
     return balance + amount
   }).then(function() {
-    window.alert('Recharge successful');
+    toast('Recharge successful');
 
   });
 }
