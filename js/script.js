@@ -7,6 +7,9 @@ var config = {
   storageBucket: "dpsemca-1f00a.appspot.com",
   messagingSenderId: "696186948502"
 };
+ function showToast(message, duration) {
+      Materialize.toast(message, duration);
+   }
 firebase.initializeApp(config);
 var database = firebase.database();
 var userRef, userInfo;
@@ -54,11 +57,11 @@ setTimeout(function(){
   var connectedRef = firebase.database().ref(".info/connected");
   connectedRef.on("value", function(snap) {
     if (snap.val() === true) {
-      console.log("Firebase Connection established");
+      showToast("Connection Established",2000);
     } else {
-      window.alert("Oh No! \n \
+      showToast("Oh No! \n \
       You are no longer connected to the internet :-( \n \
-      Plz refresh the page once you reconnect");
+      Plz refresh the page once you reconnect",6000);
     }
   });
 },5000);
@@ -104,7 +107,7 @@ $(document).ready(function(){
   }
   priceToolTip();
   if($(window).width() < 768){
-    window.alert("Double Tap to select the menu options(If on iPhone)");
+    showToast("Double Tap to select the menu options(If on iPhone)",3000);
     setWalletBalanceDiv();
   }
 });
