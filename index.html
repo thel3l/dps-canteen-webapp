@@ -18,11 +18,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ResponsiveSlides.js/1.55/responsiveslides.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-database.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
   <script src="js/script.js"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body onload="updateMenu()">
+<body id = "theBody" onload="updateMenu()">
   <div id="wrapper">
     <div id="slideshow">
       <blockquote class = "blockquote">
@@ -36,9 +39,10 @@
 
   <!-- Header -->
   <header>
-    <div>
+    <div class = "container">
+      <div id = "snackbar"></div>
       <div class="logo">
-        <h1><a href="index.html">DPSE Canteen Portal</a></h1>
+        <h1><a href="index.html">Canteen Portal</a></h1>
       </div>
       <div class="w3-dropdown-hover w3-right">
         <img class = "img-responsive img-circle" id = "headerProfilePic" src = "">
@@ -47,8 +51,8 @@
           <p class="w3-bar-item w3-button" id = "dropdownWallet">Balance: ₹<span></span></p>
           <p id = "signOut" onclick = "signOut()" class="w3-bar-item w3-button">Sign Out</p>
         </div>
-
       </div>
+    </div>
     </header>
 
     <!-- Transactions Modal -->
@@ -88,11 +92,11 @@
           <div id="parentVerticalTab">
             <div class="agileits-tab_nav">
               <ul class="resp-tabs-list hor_1">
-                <li><i aria-hidden="true" class="icon fa fa-id-card-o"></i></li>
-                <li><i aria-hidden="true" class="icon fa fa-list"></i></li>
-                <li><i aria-hidden="true" class="icon fa fa-home"></i></li>
-                <li><i aria-hidden="true" class="icon fa fa-lightbulb-o"></i></li>
-                <li><i aria-hidden="true" class="icon fa fa-user-circle-o"></i></li>
+                <li><i aria-hidden="true" class="icon fa fa-id-card-o"></i><span class = "heading">Wallet Topup</span></li>
+                <li><i aria-hidden="true" class="icon fa fa-list"></i><span class = "heading">Transaction History</span></li>
+                <li><i aria-hidden="true" class="icon fa fa-home"></i><span class = "heading">About</span></li>
+                <li><i aria-hidden="true" class="icon fa fa-lightbulb-o " ></i><span class = "heading">Creators</span></li>
+                <li><i aria-hidden="true" class="icon fa fa-user-circle-o"></i><span class = "heading">Profile</span></li>
               </ul>
             </div>
 
@@ -102,44 +106,43 @@
               <div>
                 <div class="tabs-box container-fluid">
                   <ul class="tabs-menu">
-                    <li><a href="#tab1"><label class="radio"><input checked name="radio" type="radio"><i></i>Menu</label></a></li>
-                    <li><a href="#tab2"><label class="radio"><input name="radio" type="radio"><i></i>Custom</label></a></li>
+                    <li><a href="#tab1"><label class="radio-inline" style="outline: none !important;box-shadow: none !important;"><input checked name="radio" type="radio"><i></i>Menu</label></a></li>
+                    <li><a href="#tab2"><label class="radio-inline" style="outline: none !important;box-shadow: none; !important"><input name="radio" type="radio"><i></i>Custom</label></a></li>
                   </ul>
                   <br><br>
                   <div class = "tab-grids">
                       <div class = "tab-grid" id = "tab1">
                       <div id = "foodMenu">
-                        <div class = "row">
+                        <div class = "row paddingResponsive">
                           <div class = "col-sm-3" id = "monday" >Monday</div>
                           <a data-toggle="tooltip" class = "priceTool" data-placement="top"><div class = "col-sm-2 menuItems" id = "mondayItem1" onclick = "highlight('mondayItem1', 0)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "mondayItem2" onclick = "highlight('mondayItem2', 1)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "mondayItem3" onclick = "highlight('mondayItem3', 2)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "mondayItem4" onclick = "highlight('mondayItem4', 3)"></div></a>
-                          <a data-toggle="tooltip" title="Wallet Balance"><div class = "col-sm-1" id = "currentBal"><span>₹</span><span id = "currentWalletBal"></span></div></a>
-
+                          <div id = "walletBalResp"><a data-toggle="tooltip" title="Wallet Balance"><div class = "col-sm-1" id = "currentBal"><span>₹</span><span id = "currentWalletBal"></span></div></a></div>
                         </div>
-                        <div class = "row">
+                        <div class = "row paddingResponsive">
                           <div class = "col-sm-3" id = "tuesday">Tuesday</div>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "tuesdayItem1" onclick = "highlight('tuesdayItem1', 4)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "tuesdayItem2" onclick = "highlight('tuesdayItem2', 5)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "tuesdayItem3" onclick = "highlight('tuesdayItem3', 6)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "tuesdayItem4" onclick = "highlight('tuesdayItem4', 7)"></div></a>
                         </div>
-                        <div class = "row">
+                        <div class = "row paddingResponsive">
                           <div class = "col-sm-3" id = "wednesday">Wednesday</div>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "wednesdayItem1" onclick = "highlight('wednesdayItem1', 8)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "wednesdayItem2" onclick = "highlight('wednesdayItem2', 9)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "wednesdayItem3" onclick = "highlight('wednesdayItem3', 10)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "wednesdayItem4" onclick = "highlight('wednesdayItem4', 11)"></div></a>
                         </div>
-                        <div class = "row">
+                        <div class = "row paddingResponsive">
                           <div class = "col-sm-3" id = "thursday">Thursday</div>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems"  id = "thursdayItem1" onclick = "highlight('thursdayItem1', 12)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems"  id = "thursdayItem2" onclick = "highlight('thursdayItem2', 13)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems"  id = "thursdayItem3" onclick = "highlight('thursdayItem3', 14)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems"  id = "thursdayItem4" onclick = "highlight('thursdayItem4', 15)"></div></a>
                         </div>
-                        <div class = "row">
+                        <div id = "lastRow" class = "row">
                           <div class = "col-sm-3" id = "friday">Friday</div>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "fridayItem1" onclick = "highlight('fridayItem1', 16)"></div></a>
                           <a data-toggle="tooltip" class = "priceTool"><div class = "col-sm-2 menuItems" id = "fridayItem2" onclick = "highlight('fridayItem2', 17)"></div></a>
@@ -149,7 +152,8 @@
                         </div>
                       </div>
                       <br><br>
-                      <input class="submit" onclick="topUp('menu')" type="submit" value="Recharge Now">
+                      <input id = "rchNW" class="submit" onclick="topUp('menu')" type="submit" value="Recharge Now">
+                      <input class="submit" onclick="clearSelection()" type="submit" value="Clear Selelection">
                     </div>
                     <div class = "tab-grid" id = "tab2">
                       <input id="customMon" min = "0" name="amount" placeholder="Enter amount" type="number" required>
@@ -198,7 +202,7 @@
                     <div class="w3-card-4" style="width:100%">
                       <div class="w3-container">
                         <br>
-                        <img src="https://pbs.twimg.com/profile_images/830478999377760256/uaWc--wH.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
+                        <img src="https://pbs.twimg.com/profile_images/830478999377760256/uaWc--wH.jpg" alt="Derrick Picture" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
                         <p class = "creatorsInfo">Infant Derrick Gnanasusairaj</p><p class = "creatorsInfo">11th Grade</p><br>
                       </div>
                     </div>
@@ -208,7 +212,7 @@
                     <div class="w3-card-4" style="width:100%">
                       <div class="w3-container">
                         <br>
-                        <img src="data:image/jpeg;base64,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" alt="Avatar" class="img-responsive w3-left w3-circle w3-margin-right" style="width:60px">
+                        <img src="https://dyn.web.whatsapp.com/pp?e=https%3A%2F%2Fpps.whatsapp.net%2Fv%2Ft61.11540-24%2F16489273_785576664925944_6863185867301715968_n.jpg%3Foe%3D5A2D6C67%26oh%3Def2fdc75988c9603344309c3810e4a09&t=l&u=919483957034%40c.us&i=1438017160" alt="Rithvik Picture" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
                         <p class = "creatorsInfo">Rithvik Vibhu</p><p class = "creatorsInfo">12th Grade</p><br>
                       </div>
                     </div>
@@ -216,9 +220,9 @@
                   <br>
                   <div class="w3-container">
                     <div class="w3-card-4" style="width:100%">
-                      <div class="w3-container">
+                      <div id="this" class="w3-container" onclick="ehs()" >
                         <br>
-                        <img src="data:image/jpeg;base64,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" alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
+                        <img src="https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-1/p160x160/16387172_393568954329151_1331662018321619455_n.jpg?oh=236b9335b8f60ed6eb30924da3d9ad01&oe=5A9534E1" alt="Gokul Picture" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
                         <p class = "creatorsInfo">Gokul. J. Kurup</p><p class = "creatorsInfo">11th Grade</p><br>
                       </div>
                     </div>
@@ -228,7 +232,7 @@
                     <div class="w3-card-4" style="width:100%">
                       <div class="w3-container">
                         <br>
-                        <img src="data:image/jpeg;base64,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" alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
+                        <img src="https://dyn.web.whatsapp.com/pp?e=https%3A%2F%2Fpps.whatsapp.net%2Fv%2Ft61.11540-24%2F17635630_725441380949136_8137667388905619456_n.jpg%3Foe%3D5A2D6C67%26oh%3D5a79cc17819f5c794e5135b723b90a59&t=l&u=919663804498%40c.us&i=1491136193" alt="Rithwik Picture" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
                         <p class = "creatorsInfo">Rithwik Jayasimha</p><p class = "creatorsInfo">12th Grade</p><br>
                       </div>
                     </div>
@@ -238,7 +242,7 @@
                     <div class="w3-card-4" style="width:100%">
                       <div class="w3-container">
                         <br>
-                        <img src="data:image/jpeg;base64,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" alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
+                        <img src="https://dyn.web.whatsapp.com/pp?e=https%3A%2F%2Fpps.whatsapp.net%2Fv%2Ft61.11540-24%2F16489286_411056719246615_8485591509754707968_n.jpg%3Foe%3D5A2D7A90%26oh%3D7c7d329de24b4bba158ef6af459b9973&t=l&u=918008474019%40c.us&i=1480512050" alt="Ranga Picture" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
                         <p class = "creatorsInfo">Ranga Madabushi</p><p class = "creatorsInfo">12th Grade</p><br>
                       </div>
                     </div>
@@ -283,17 +287,15 @@
                     </div>
                   </div>
                 </div>
-
               </div>
               <!-- END Profile -->
-
-            </div>
           </div>
         </div>
       </div>
 
       <link href="css/easy-responsive-tabs.css" rel="stylesheet">
       <script src="js/easyResponsiveTabs.js"></script>
+        <script src="./app.js"></script>
     </div>
 
   </body>
