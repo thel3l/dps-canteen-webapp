@@ -240,9 +240,9 @@ function topUp(type) {
   } else  if (type == 'custom') {
     var wantedAmount = parseInt($('#customMon').val());
     if(wantedAmount < 10){
-      window.alert("Too low of a denomination");
+      toast("Too low of a denomination");
     }else if(wantedAmount >2000){
-      window.alert("Too high of a denomination");
+      toast("Too high of a denomination");
     }else{
     var amount = wantedAmount;
     }
