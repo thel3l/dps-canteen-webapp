@@ -1,0 +1,50 @@
+body {
+    box-sizing: border-box;
+}
+/*scrollbar*/
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 0px;     
+    background: transparent;  
+}
+
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+/*scrollbar end*/
+
+#heading {
+position: absolute;
+width: 479px;
+height: 190px;
+left: 75%;
+top: 80%;
+color:black;
+}
+
+#title {
+font-family:"Montserrat";
+font-size:6vh;
+}
+#sub_title {
+    font-family:"Roboto";
+    font-size:3vh;
+}
+
+#top_right {
+    background-image: url("../pics/burger .png");
+    background-size:cover;
+    background-repeat: no-repeat; 
+    position: absolute;
+    border: 3px solid black;
+    /* size */
+    width: 20%;
+    height: 30%;
+    /* position */
+    left: 90%;
+    top: 0;
+    transform: rotate(9.58deg);
+}
