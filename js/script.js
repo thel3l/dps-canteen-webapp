@@ -6,8 +6,35 @@ var config = {
   projectId: "dpsemca-1f00a",
   storageBucket: "dpsemca-1f00a.appspot.com",
   messagingSenderId: "696186948502"
-};
+}
 firebase.initializeApp(config);
+var database = firebase.database();
+var userRef, userInfo;
+var adNo;
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    console.log(user);
+    adNo = user.uid;
+    userRef = database.ref().child('users').child(user.uid);
+    userRef.on('value', function(snap) {
+      userInfo = snap.val();
+      if(userInfo != null){
+        console.log(adNo);
+        userInfo['admid'] = snap.key;
+        setUser(userInfo);
+        $('#wrapper').fadeOut(function() { $(this).remove(); });
+        $('#slideshow').fadeOut( function() { $(this).remove(); });
+    }else{
+      alert("Unregistered User");
+    }
+    });
+  } else {
+    console.log('logged out');
+    if (!$.urlParam('token')) {
+      alert('You are not logged in');
+    }
+  }
+});
 
 var billAmount = 0;
 var loadingMenu = 0;
@@ -27,14 +54,13 @@ setTimeout(function(){
   var connectedRef = firebase.database().ref(".info/connected");
   connectedRef.on("value", function(snap) {
     if (snap.val() === true) {
-      console.log("Firebase Connection established");
+      toast("Connection Established");
     } else {
-      window.alert("Oh No! \n \
-      You are no longer connected to the internet :-( \n \
-      Plz refresh the page once you reconnect");
+      toast("Oh No! \n \
+      You are no longer connected to the internet.");
     }
   });
-},2000);
+},5000);
 //database verification
 firebase.database().ref('users/' + admNo).on('value', function(snapshot) {
   var userInfo = snapshot.val();
@@ -77,7 +103,7 @@ $(document).ready(function(){
   }
   priceToolTip();
   if($(window).width() < 768){
-    window.alert("Double Tap to select the menu options(If on iPhone)");
+    toast("Double Tap to select the menu options(If on iPhone)");
     setWalletBalanceDiv();
   }
 });
@@ -94,10 +120,21 @@ function priceToolTip(){
   });
 }
 $(document).ready(function() {
-  setTimeout(function(){
-    $('#wrapper').fadeOut(function() { $(this).detach(); });
-    $('#slideshow').fadeOut( function() { $(this).detach(); });
-}, 1500);
+  // Login user with token
+  var token = $.urlParam('token');
+  console.log('token:', token);
+  if (token) {
+    localStorage['customToken'] = token;
+    history.replaceState({}, "DPSE Canteen", "/");
+    firebase.auth().signInWithCustomToken(token).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  // setTimeout(function(){
+  //   $('#wrapper').fadeOut(function() { $(this).remove(); });
+  //   $('#slideshow').fadeOut( function() { $(this).remove(); });
+  // }, 1500);
   // Vertical tabs
   $('#parentVerticalTab').easyResponsiveTabs({
     type: 'vertical',
@@ -126,16 +163,16 @@ $(document).ready(function() {
   // Scroll to top button
 });
 
-//signOut
+
 
 function signOut(){
   //Rithvik prepend not working...
-  $("#theBody").html("Sign Out Successful");
+  window.location.href = "http://api.dpscanteen.ml/entrar/login";
 }
 
 
 function updateMenu(){
- 
+
   firebase.database().ref().child("menu").once("value").then(function(snapshot) {
     var i = 0;
     while(i < menu_count){
@@ -149,31 +186,39 @@ function updateMenu(){
 }
   });
 }
-  
+
 
 // Firebase
-var id = 'BE00012314';
-var database = firebase.database();
-var userRef = database.ref().child("users").child("BE00012314");
-var restRef = database.ref('users/BE00012314/items_bought');
-// Update student info
+
+
+
+//var userRef = database.ref().child("users").child("BE00012314");
+
+function setUser(){
+  userRef.on('value', function(snapshot){
+    var userInfo = snapshot.val();
+    $('#studentName span').text(userInfo.name);
+    $('#walletBal span').text(userInfo.balance+userInfo.menuBalance);
+    $('#profileImage').attr('src', userInfo.photo);
+    $('#admNumber span').text(adNo);
+    currentBal = userInfo.balance+userInfo.menuBalance;
+    setCurrentBal();
+    $('#headerProfilePic').attr('src', userInfo.photo);
+    $('#dropdownName').text(userInfo.name);
+    $('#dropdownWallet span').text(userInfo.balance+userInfo.menuBalance);
+  });
+  var database = firebase.database();
+  getPreRest();
+}
+function getPreRest(){
+  var restRef = database.ref('users/'+adNo+'/items_bought');
 restRef.once("value").then(function(snapshot){
   snapshot.forEach(function(childSnapshot) {
     var childData = childSnapshot.val();
     preRest.push(childData);
 });
 });
-userRef.on('value', function(snapshot){
-  var userInfo = snapshot.val();
-  $('#studentName span').text(userInfo.name);
-  $('#walletBal span').text(userInfo.balance);
-  $('#profileImage').attr('src', userInfo.photo);
-  currentBal = userInfo.balance;
-  setCurrentBal();
-  $('#headerProfilePic').attr('src', userInfo.photo);
-  $('#dropdownName').text(userInfo.name);
-  $('#dropdownWallet span').text(userInfo.balance);
-});
+}
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 });
@@ -195,9 +240,9 @@ function topUp(type) {
   } else  if (type == 'custom') {
     var wantedAmount = parseInt($('#customMon').val());
     if(wantedAmount < 10){
-      window.alert("Too low of a denomination");
+      toast("Too low of a denomination");
     }else if(wantedAmount >2000){
-      window.alert("Too high of a denomination");
+      toast("Too high of a denomination");
     }else{
     var amount = wantedAmount;
     }
@@ -207,23 +252,33 @@ function topUp(type) {
     return
   }
   if(menIdt == 0){
+    var restRef = database.ref('users/'+adNo+'/items_bought');
     restRef.transaction(function(){
       var restriction = preRest.concat(restrictions);
       return restriction
     });
-  }
+    userRef.child('menuBalance').transaction(function(menuBalance) {
+      return menuBalance + amount
+    }).then(function() {
+      preRest.length = 0;
+      toast('Recharge successful');
+      clearSelection();
+      getPreRest();
+    });
+  }else{
   userRef.child('balance').transaction(function(balance) {
+    console.log("i happpen");
     return balance + amount
   }).then(function() {
-    window.alert('Recharge successful');
+    toast('Recharge successful');
 
   });
+}
 }
 
 function transUpdate(){
   var limit = parseInt($('#transPrec').val());
-
-  database.ref('transactions').child(admNo).orderByChild('timestamp').limitToLast(limit).once('value').then(function(snapshot) {
+  database.ref('transactions').child(adNo).orderByChild('timestamp').limitToLast(limit).once('value').then(function(snapshot) {
     var html = '';
     snapshot.forEach(function(transaction) {
       var trans = transaction.val();
@@ -234,8 +289,6 @@ function transUpdate(){
     $('#tranHist').html(html);
   });
 }
-
-
 function highlight(x, y){
   if(trig[y] == 0){
     $("#" + x).css("background-color", "#BCEBCB");
@@ -263,3 +316,20 @@ function clearSelection(){
   }
 }
 
+$.urlParam = function (name) {
+  var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+  if (!results) return ''
+  return results[1] || 0;
+
+}
+function toast(toast) {
+    // Get the snackbar DIV
+    $("#snackbar").html(toast);
+    var x = document.getElementById("snackbar")
+
+    // Add the "show" class to DIV
+    x.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}

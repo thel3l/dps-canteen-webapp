@@ -18,8 +18,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ResponsiveSlides.js/1.55/responsiveslides.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-database.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
   <script src="js/script.js"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -38,6 +40,7 @@
   <!-- Header -->
   <header>
     <div class = "container">
+      <div id = "snackbar"></div>
       <div class="logo">
         <h1><a href="index.html">Canteen Portal</a></h1>
       </div>
@@ -92,7 +95,7 @@
                 <li><i aria-hidden="true" class="icon fa fa-id-card-o"></i><span class = "heading">Wallet Topup</span></li>
                 <li><i aria-hidden="true" class="icon fa fa-list"></i><span class = "heading">Transaction History</span></li>
                 <li><i aria-hidden="true" class="icon fa fa-home"></i><span class = "heading">About</span></li>
-                <li ><i aria-hidden="true" class="icon fa fa-lightbulb-o " ></i><span class = "heading">Creators</span></li>
+                <li><i aria-hidden="true" class="icon fa fa-lightbulb-o " ></i><span class = "heading">Creators</span></li>
                 <li><i aria-hidden="true" class="icon fa fa-user-circle-o"></i><span class = "heading">Profile</span></li>
               </ul>
             </div>
@@ -103,8 +106,8 @@
               <div>
                 <div class="tabs-box container-fluid">
                   <ul class="tabs-menu">
-                    <li><a href="#tab1"><label class="radio"><input checked name="radio" type="radio"><i></i>Menu</label></a></li>
-                    <li><a href="#tab2"><label class="radio"><input name="radio" type="radio"><i></i>Custom</label></a></li>
+                    <li><a href="#tab1"><label class="radio-inline" style="outline: none !important;box-shadow: none !important;"><input checked name="radio" type="radio"><i></i>Menu</label></a></li>
+                    <li><a href="#tab2"><label class="radio-inline" style="outline: none !important;box-shadow: none; !important"><input name="radio" type="radio"><i></i>Custom</label></a></li>
                   </ul>
                   <br><br>
                   <div class = "tab-grids">
@@ -284,17 +287,15 @@
                     </div>
                   </div>
                 </div>
-
               </div>
               <!-- END Profile -->
-
-            </div>
           </div>
         </div>
       </div>
 
       <link href="css/easy-responsive-tabs.css" rel="stylesheet">
       <script src="js/easyResponsiveTabs.js"></script>
+        <script src="./app.js"></script>
     </div>
 
   </body>
