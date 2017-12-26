@@ -1,0 +1,102 @@
+
+/*scrollbar*/
+html {
+    overflow: scroll;
+    overflow: hidden;
+    height:100%;
+    width:100%;
+}
+::-webkit-scrollbar {
+    width: 0px;      
+}
+
+/*::-webkit-scrollbar-thumb {
+    background: #FF000;
+    width:40%;
+    height: 50%;
+}*/
+/*scrollbar end*/
+
+#heading {
+position: absolute;
+width: 479px;
+height: 190px;
+/* left: 75%;
+top: 80%; */
+left: 65%;
+top: 83%;
+font-weight:2;
+color:black;
+}
+
+#title {
+font-family:"Montserrat";
+font-size:6vh;
+}
+#sub_title {
+    font-family:"Roboto";
+    font-size:3vh;
+}
+
+/* image start */
+
+
+
+
+
+
+/* burger */
+#right {
+    position: absolute;
+    top:0%;
+    left:40%;
+    height:80%;
+    width:60%;
+    /* clip */
+    -webkit-clip-path: polygon(46% 0, 100% 0, 100% 100%, 39% 86%);
+clip-path: polygon(46% 0, 100% 0, 100% 100%, 39% 86%);
+    /* end clip */
+box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+/* burger end */
+
+/* burrito start */
+#middle-bottom {
+    height:50%;
+    width:40%;
+    /* postion */
+    position: absolute;
+    top: 50%;
+    left:23%;
+    /* clip */
+    -webkit-clip-path: polygon(10% 14%, 92% 30%, 84% 100%, 0 100%);
+    clip-path: polygon(10% 14%, 92% 30%, 84% 100%, 0 100%);
+ /* clip end  */
+}
+
+#left {
+    width:40%;
+    height:120%;
+    /* position  */
+    position:absolute;
+    top:-35%;
+    left:-8%;
+    /* clip */
+    -webkit-clip-path: polygon(0 0, 100% 0, 69% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 69% 100%, 0 100%);
+ /* clip end  */
+}
+#middle-top {
+     height:70%;
+     width:40%;
+     /* position */
+     position:absolute;
+     top:-9%;
+     left:27.4%;
+     /* clip start */
+     -webkit-clip-path: polygon(11% 0, 95% 0, 81% 99%, 0 88%);
+clip-path: polygon(11% 0, 95% 0, 81% 99%, 0 88%);
+
+
+ /* clip end */
+}
