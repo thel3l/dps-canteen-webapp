@@ -92,3 +92,27 @@ clip-path: polygon(11% 0, 95% 0, 81% 99%, 0 88%);
 
  /* clip end */
 }
+
+@media (max-width:764px) {
+    #title {
+        font-size: 5vh;
+    }
+    #sub_title {
+        font-size:2vh
+    }
+    #heading {
+        left:60%;
+    }
+}
+
+@media (max-width:550px) {
+    #title {
+      font-size:4vh;
+    }
+    
+}
+@media (max-width:450px) {
+    #title {
+        font-size:3.5vh;
+    }
+}
