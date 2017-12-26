@@ -373,6 +373,6 @@ addEvent(window,"load",function(event) {
    if(width <= 350) {
      sub_title.style="display:none";
      title.innerHTML = "DPSE <br> Canteen";
-     title.style="left:"
+     heading.style="left:65%";
    } 
 });
