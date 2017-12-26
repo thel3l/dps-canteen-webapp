@@ -10,11 +10,11 @@ html {
     width: 0px;      
 }
 
-::-webkit-scrollbar-thumb {
-    background: #FF0000;
+/*::-webkit-scrollbar-thumb {
+    background: #FF000;
     width:40%;
     height: 50%;
-}
+}*/
 /*scrollbar end*/
 
 #heading {
