@@ -1,21 +1,6 @@
 
-/*scrollbar*/
-html {
-    overflow-x: scroll;
-    /*overflow: hidden;*/
-    height:100%;
-    width:100%;
-}
-::-webkit-scrollbar {
-    width: 0px;      
-}
 
-/*::-webkit-scrollbar-thumb {
-    background: #FF000;
-    width:40%;
-    height: 50%;
-}*/
-/*scrollbar end*/
+
 
 #heading {
 position: absolute;
