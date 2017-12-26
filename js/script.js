@@ -359,7 +359,7 @@ addEvent(window, "resize", function(event) {
   var title = document.getElementById("title");
   var sub_title = document.getElementById("sub_title");
   var heading = document.getElementById("heading");
-   if(width <= 400) {
+   if(width <= 600) {
      sub_title.style="display:none";
      title.innerHTML = "DPSE <br> Canteen";
      heading.style="left:63%;"
@@ -375,7 +375,7 @@ addEvent(window,"load",function(event) {
   var width = window.screen.availWidth
   var title = document.getElementById("title");
   var sub_title = document.getElementById("sub_title");
-   if(width <= 400) {
+   if(width <= 600) {
      sub_title.style="display:none";
      title.innerHTML = "DPSE <br> Canteen";
      heading.style="left:63%";
