@@ -175,20 +175,20 @@ function updateMenu(){
 
   firebase.database().ref().child("menu").once("value").then(function(snapshot) {
     var i = 0;
+    try {
     while(i < menu_count){
       snapshot.forEach(function(childSnapshot) {
         var menuItems = document.querySelectorAll('.menuItems');
         var childData = childSnapshot.val();
         menu[i] = childData;
-        try{
           menuItems[i].innerHTML = childData;
-        } catch(e) {
-          console.log("There no bug here.");
-        }
       
         i++;
       });
 }
+    } catch(e) {
+      console.log("There is no bug.");
+    }
   });
 }
 
