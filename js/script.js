@@ -180,7 +180,12 @@ function updateMenu(){
         var menuItems = document.querySelectorAll('.menuItems');
         var childData = childSnapshot.val();
         menu[i] = childData;
-        menuItems[i].innerHTML = childData;
+        try{
+          menuItems[i].innerHTML = childData;
+        } catch(e) {
+          console.log("There no bug here.");
+        }
+      
         i++;
       });
 }
