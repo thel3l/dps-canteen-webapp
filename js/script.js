@@ -337,3 +337,42 @@ function toast(toast) {
     // After 3 seconds, remove the show class from DIV
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
+
+//for screen width below 350 
+var addEvent = function(object, type, callback) {
+  if (object == null || typeof(object) == 'undefined') return;
+  if (object.addEventListener) {
+      object.addEventListener(type, callback, false);
+  } else if (object.attachEvent) {
+      object.attachEvent("on" + type, callback);
+  } else {
+      object["on"+type] = callback;
+  }
+};
+
+addEvent(window, "resize", function(event) {
+  var width = window.screen.availWidth
+  var title = document.getElementById("title");
+  var sub_title = document.getElementById("sub_title");
+  var heading = document.getElementById("heading");
+   if(width <= 350) {
+     sub_title.style="display:none";
+     title.innerHTML = "DPSE <br> Canteen";
+     heading.style="left:70%;"
+   } else {
+    sub_title.style="display:inline;"
+    title.innerHTML="DPSE Canteen"
+    heading.style="left:65%";
+  }
+});
+
+addEvent(window,"load",function(event) {
+  var width = window.screen.availWidth
+  var title = document.getElementById("title");
+  var sub_title = document.getElementById("sub_title");
+   if(width <= 350) {
+     sub_title.style="display:none";
+     title.innerHTML = "DPSE <br> Canteen";
+     title.style="left:"
+   } 
+});
