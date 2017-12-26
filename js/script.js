@@ -11,14 +11,6 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var userRef, userInfo;
 var adNo;
-function reveal() {
-  $('#wrapper').fadeOut(function() { $(this).remove(); });
-        $('#slideshow').fadeOut( function() { $(this).remove(); });
-}
-var dev = window.prompt("TEMP: backdoor \n Input true to proceed");
-if(dev) {
-  reveal();
-}
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     console.log(user);
@@ -30,7 +22,8 @@ firebase.auth().onAuthStateChanged(function(user) {
         console.log(adNo);
         userInfo['admid'] = snap.key;
         setUser(userInfo);
-      reveal();
+        $('#wrapper').fadeOut(function() { $(this).remove(); });
+        $('#slideshow').fadeOut( function() { $(this).remove(); });
     }else{
       alert("Unregistered User");
     }
