@@ -358,11 +358,12 @@ addEvent(window, "resize", function(event) {
    if(width <= 350) {
      sub_title.style="display:none";
      title.innerHTML = "DPSE <br> Canteen";
-     heading.style="left:70%;"
+     heading.style="left:63%;"
+     title.style="font-size:3.5vh;font-family: 'Rock Salt', cursive;"
    } else {
     sub_title.style="display:inline;"
     title.innerHTML="DPSE Canteen"
-    heading.style="left:65%";
+    title.style="font-size:6vh;font-family:'Montserrat',sans-serif;"
   }
 });
 
@@ -373,6 +374,7 @@ addEvent(window,"load",function(event) {
    if(width <= 350) {
      sub_title.style="display:none";
      title.innerHTML = "DPSE <br> Canteen";
-     heading.style="left:65%";
+     heading.style="left:63%";
+     title.style="font-size:3.5vh;font-family: 'Rock Salt', cursive;"
    } 
 });
