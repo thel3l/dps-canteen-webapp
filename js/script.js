@@ -13,7 +13,6 @@ var userRef, userInfo;
 var adNo;
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    console.log(user);
     adNo = user.uid;
     userRef = database.ref().child('users').child(user.uid);
     userRef.on('value', function(snap) {
@@ -175,15 +174,20 @@ function updateMenu(){
 
   firebase.database().ref().child("menu").once("value").then(function(snapshot) {
     var i = 0;
+    try {
     while(i < menu_count){
       snapshot.forEach(function(childSnapshot) {
         var menuItems = document.querySelectorAll('.menuItems');
         var childData = childSnapshot.val();
         menu[i] = childData;
-        menuItems[i].innerHTML = childData;
+          menuItems[i].innerHTML = childData;
+      
         i++;
       });
 }
+    } catch(e) {
+      console.log("There is no bug.");
+    }
   });
 }
 
@@ -333,3 +337,48 @@ function toast(toast) {
     // After 3 seconds, remove the show class from DIV
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
+
+
+
+
+
+//for screen width below 350 
+var addEvent = function(object, type, callback) {
+  if (object == null || typeof(object) == 'undefined') return;
+  if (object.addEventListener) {
+      object.addEventListener(type, callback, false);
+  } else if (object.attachEvent) {
+      object.attachEvent("on" + type, callback);
+  } else {
+      object["on"+type] = callback;
+  }
+};
+
+addEvent(window, "resize", function(event) {
+  var width = window.screen.availWidth
+  var title = document.getElementById("title");
+  var sub_title = document.getElementById("sub_title");
+  var heading = document.getElementById("heading");
+   if(width <= 600) {
+     sub_title.style="display:none";
+     title.innerHTML = "DPSE <br> Canteen";
+     heading.style="left:63%;"
+     title.style="font-size:3.5vh;font-family: 'Rock Salt', cursive;"
+   } else {
+    sub_title.style="display:inline;"
+    title.innerHTML="DPSE Canteen"
+    title.style="font-size:6vh;font-family:'Montserrat',sans-serif;"
+  }
+});
+
+addEvent(window,"load",function(event) {
+  var width = window.screen.availWidth
+  var title = document.getElementById("title");
+  var sub_title = document.getElementById("sub_title");
+   if(width <= 600) {
+     sub_title.style="display:none";
+     title.innerHTML = "DPSE <br> Canteen";
+     heading.style="left:63%";
+     title.style="font-size:3.5vh;font-family: 'Rock Salt', cursive;"
+   } 
+});
