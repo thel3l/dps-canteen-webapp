@@ -6,7 +6,7 @@ var urlsToCache = [
   '/js/easyResponsiveTabs.js',
   '/css/style.css',
   '/css/easy-responsive-tabs.css',
-  '/css/loading_style.css
+  '/css/loading_style.css'
 ];
 
 self.addEventListener('install', function(event) {
