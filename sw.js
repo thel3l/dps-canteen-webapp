@@ -2,7 +2,11 @@ var CACHE_NAME = 'v1-dpse';
 var urlsToCache = [
   '/',
   '/styles/main.css',
-  '/script/main.js'
+  '/js/script.js',
+  '/js/easyResponsiveTabs.js',
+  '/css/style.css',
+  '/css/easy-responsive-tabs.css',
+  '/css/loading_style.css
 ];
 
 self.addEventListener('install', function(event) {
