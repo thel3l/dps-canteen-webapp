@@ -57,3 +57,10 @@ self.addEventListener('fetch', function(event) {
       })
     );
 });
+
+//instantly does a fast refresh to give control to the sw
+
+self.onactivate = function(event) {
+  if (self.clients && clients.claim) {
+    clients.claim();
+  }
