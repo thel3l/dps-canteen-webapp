@@ -326,22 +326,6 @@ $.urlParam = function (name) {
   return results[1] || 0;
 
 }
-function toast(toast) {
-    // Get the snackbar DIV
-    $("#snackbar").html(toast);
-    var x = document.getElementById("snackbar")
-
-    // Add the "show" class to DIV
-    x.className = "show";
-
-    // After 3 seconds, remove the show class from DIV
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-}
-
-
-
-
-
 //for screen width below 350 
 var addEvent = function(object, type, callback) {
   if (object == null || typeof(object) == 'undefined') return;
@@ -384,3 +368,30 @@ addEvent(window,"load",function(event) {
      title.style="font-size:3.5vh;font-family: 'Rock Salt', cursive;"
    } 
 });
+
+//firebase offline handling 
+setTimeout(() => {
+  var connectedRef = firebase.database().ref(".info/connected");
+connectedRef.on("value", function(snap) {
+  if (snap.val() === true) {
+    console.log("Connection with firebase live")
+  } else {
+    toast("Connection lost");
+  }
+});
+
+},5000)
+
+
+function toast(toast) {
+  // Get the snackbar DIV
+  $("#snackbar").html(toast);
+  var x = document.getElementById("snackbar")
+
+  // Add the "show" class to DIV
+  x.className = "show";
+
+  // After 3 seconds, remove the show class from DIV
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
