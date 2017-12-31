@@ -359,7 +359,8 @@ addEvent(window, "resize", function(event) {
   var title = document.getElementById("title");
   var sub_title = document.getElementById("sub_title");
   var heading = document.getElementById("heading");
-   if(width <= 600) {
+  if(document.body.contains(title)) {
+     if(width <= 600) {
      sub_title.style="display:none";
      title.innerHTML = "DPSE <br> Canteen";
      heading.style="left:63%;"
@@ -369,6 +370,7 @@ addEvent(window, "resize", function(event) {
     title.innerHTML="DPSE Canteen"
     title.style="font-size:6vh;font-family:'Montserrat',sans-serif;"
   }
+ } 
 });
 
 addEvent(window,"load",function(event) {
