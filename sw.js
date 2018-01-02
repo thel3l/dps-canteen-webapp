@@ -6,7 +6,12 @@ var urlsToCache = [
   '/js/easyResponsiveTabs.js',
   '/css/style.css',
   '/css/easy-responsive-tabs.css',
-  '/css/loading_style.css'
+  '/css/loading_style.css',
+  '/pics/burger.jpeg',
+  '/pics/burrito.jpeg',
+  '/pics/coffee.jpeg',
+  '/pics/pancake.jpeg'
+ 
 ];
 
 self.addEventListener('install', function(event) {
