@@ -8,6 +8,57 @@ var config = {
   messagingSenderId: "696186948502"
 }
 firebase.initializeApp(config);
+//start of loading screen script 
+//for screen width below 350 
+var addEvent = function(object, type, callback) {
+  if (object == null || typeof(object) == 'undefined') return;
+  if (object.addEventListener) {
+      object.addEventListener(type, callback, false);
+  } else if (object.attachEvent) {
+      object.attachEvent("on" + type, callback);
+  } else {
+      object["on"+type] = callback;
+  }
+};
+try {
+  //start of resize function 
+ addEvent(window, "resize", function(event) {
+    var width = window.screen.availWidth
+    var title = document.getElementById("title");
+    var sub_title = document.getElementById("sub_title");
+    var heading = document.getElementById("heading");
+   if(document.body.contains(title)) {
+      if(width <= 600) {
+       sub_title.style="display:none";
+       title.innerHTML = "DPSE <br> Canteen";
+       heading.style="left:63%;"
+       title.style="font-size:3.5vh;font-family: 'Rock Salt', cursive;"
+     } else {
+      sub_title.style="display:inline;"
+      title.innerHTML="DPSE Canteen"
+      title.style="font-size:6vh;font-family:'Montserrat',sans-serif;"
+     }
+    } 
+   });
+   //end of resize function
+  //start of load function 
+  addEvent(window,"load",function(event) {
+    var width = window.screen.availWidth
+    var title = document.getElementById("title");
+    var sub_title = document.getElementById("sub_title");
+      if(width <= 600) {
+        sub_title.style="display:none";
+        title.innerHTML = "DPSE <br> Canteen";
+        heading.style="left:63%";
+        title.style="font-size:3.5vh;font-family: 'Rock Salt', cursive;"
+      } 
+   });
+} catch(e) {
+  console.log("This is not a bug");
+}
+
+// end of load
+//end of loading screen script
 var database = firebase.database();
 var userRef, userInfo;
 var adNo;
@@ -326,48 +377,6 @@ $.urlParam = function (name) {
   return results[1] || 0;
 
 }
-//for screen width below 350 
-var addEvent = function(object, type, callback) {
-  if (object == null || typeof(object) == 'undefined') return;
-  if (object.addEventListener) {
-      object.addEventListener(type, callback, false);
-  } else if (object.attachEvent) {
-      object.attachEvent("on" + type, callback);
-  } else {
-      object["on"+type] = callback;
-  }
-};
-
-addEvent(window, "resize", function(event) {
-  var width = window.screen.availWidth
-  var title = document.getElementById("title");
-  var sub_title = document.getElementById("sub_title");
-  var heading = document.getElementById("heading");
-  if(document.body.contains(title)) {
-     if(width <= 600) {
-     sub_title.style="display:none";
-     title.innerHTML = "DPSE <br> Canteen";
-     heading.style="left:63%;"
-     title.style="font-size:3.5vh;font-family: 'Rock Salt', cursive;"
-   } else {
-    sub_title.style="display:inline;"
-    title.innerHTML="DPSE Canteen"
-    title.style="font-size:6vh;font-family:'Montserrat',sans-serif;"
-  }
- } 
-});
-
-addEvent(window,"load",function(event) {
-  var width = window.screen.availWidth
-  var title = document.getElementById("title");
-  var sub_title = document.getElementById("sub_title");
-   if(width <= 600) {
-     sub_title.style="display:none";
-     title.innerHTML = "DPSE <br> Canteen";
-     heading.style="left:63%";
-     title.style="font-size:3.5vh;font-family: 'Rock Salt', cursive;"
-   } 
-});
 
 //firebase offline handling 
 setTimeout(() => {
