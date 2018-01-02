@@ -69,3 +69,4 @@ self.onactivate = function(event) {
   if (self.clients && clients.claim) {
     clients.claim();
   }
+}
