@@ -326,22 +326,6 @@ $.urlParam = function (name) {
   return results[1] || 0;
 
 }
-function toast(toast) {
-    // Get the snackbar DIV
-    $("#snackbar").html(toast);
-    var x = document.getElementById("snackbar")
-
-    // Add the "show" class to DIV
-    x.className = "show";
-
-    // After 3 seconds, remove the show class from DIV
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-}
-
-
-
-
-
 //for screen width below 350 
 var addEvent = function(object, type, callback) {
   if (object == null || typeof(object) == 'undefined') return;
@@ -359,7 +343,8 @@ addEvent(window, "resize", function(event) {
   var title = document.getElementById("title");
   var sub_title = document.getElementById("sub_title");
   var heading = document.getElementById("heading");
-   if(width <= 600) {
+  if(document.body.contains(title)) {
+     if(width <= 600) {
      sub_title.style="display:none";
      title.innerHTML = "DPSE <br> Canteen";
      heading.style="left:63%;"
@@ -369,6 +354,7 @@ addEvent(window, "resize", function(event) {
     title.innerHTML="DPSE Canteen"
     title.style="font-size:6vh;font-family:'Montserrat',sans-serif;"
   }
+ } 
 });
 
 addEvent(window,"load",function(event) {
@@ -382,3 +368,30 @@ addEvent(window,"load",function(event) {
      title.style="font-size:3.5vh;font-family: 'Rock Salt', cursive;"
    } 
 });
+
+//firebase offline handling 
+setTimeout(() => {
+  var connectedRef = firebase.database().ref(".info/connected");
+connectedRef.on("value", function(snap) {
+  if (snap.val() === true) {
+    console.log("Connection with firebase live")
+  } else {
+    toast("Connection lost");
+  }
+});
+
+},5000)
+
+
+function toast(toast) {
+  // Get the snackbar DIV
+  $("#snackbar").html(toast);
+  var x = document.getElementById("snackbar")
+
+  // Add the "show" class to DIV
+  x.className = "show";
+
+  // After 3 seconds, remove the show class from DIV
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
