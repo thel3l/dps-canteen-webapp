@@ -1,4 +1,4 @@
-var CACHE_NAME = 'v1-dpse';
+var CACHE_NAME = 'v1';
 var urlsToCache = [
   '/',
   '/styles/main.css',
