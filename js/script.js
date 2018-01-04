@@ -20,6 +20,13 @@ var addEvent = function(object, type, callback) {
       object["on"+type] = callback;
   }
 };
+$.preload = function() {
+  for (var i = 0; i < arguments.length; i++) {
+    $("<img />").attr("src", arguments[i]);
+  }
+}
+
+$.preload("../pics/burger.jpeg","../pics/coffee.jpeg","../pics/pancake.jpeg","../pics/burrito.jpeg");
 try {
   //start of resize function 
  addEvent(window, "resize", function(event) {
