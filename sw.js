@@ -1,5 +1,6 @@
 
 this.addEventListener('install', function(event) {
+   self.skipWaiting();
   event.waitUntil(
     caches.open('v1').then(function(cache) {
       return cache.addAll([
@@ -21,9 +22,6 @@ this.addEventListener('install', function(event) {
 });
 
 
-//checks for user requests that are present in the cache
-//caches requests that the user does dynamically 
-//so no need to add all the routes above
 self.addEventListener('fetch', function(event) {
   event.respondWith(
     caches.match(event.request)
@@ -41,10 +39,7 @@ self.addEventListener('fetch', function(event) {
               return response;
             }
 
-            // IMPORTANT: Clone the response. A response is a stream
-            // and because we want the browser to consume the response
-            // as well as the cache consuming the response, we need
-            // to clone it so we have two streams.
+
             var responseToCache = response.clone();
 
             caches.open(CACHE_NAME)
