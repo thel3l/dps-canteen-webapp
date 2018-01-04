@@ -1,6 +1,9 @@
-var CACHE_NAME = 'v1-dpse';
-var urlsToCache = [
-  '/',
+
+this.addEventListener('install', function(event) {
+  event.waitUntil(
+    caches.open('v1').then(function(cache) {
+      return cache.addAll([
+       '/',
   '/styles/main.css',
   '/js/script.js',
   '/js/easyResponsiveTabs.js',
@@ -12,18 +15,11 @@ var urlsToCache = [
   '/pics/coffee.jpeg',
   '/pics/pancake.jpeg'
  
-];
-
-self.addEventListener('install', function(event) {
-  // Perform install steps
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(function(cache) {
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache);
-      })
+      ]);
+    })
   );
 });
+
 
 //checks for user requests that are present in the cache
 //caches requests that the user does dynamically 
