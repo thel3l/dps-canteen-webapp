@@ -10,10 +10,7 @@ this.addEventListener('install', function(event) {
   '/css/style.css',
   '/css/easy-responsive-tabs.css',
   '/css/loading_style.css',
-  '/pics/burger.jpeg',
-  '/pics/burrito.jpeg',
-  '/pics/coffee.jpeg',
-  '/pics/pancake.jpeg'
+  '/js/loading_script.js'
  
       ]);
     })
@@ -41,7 +38,7 @@ self.addEventListener('fetch', function(event) {
 
             var responseToCache = response.clone();
 
-            caches.open(CACHE_NAME)
+            caches.open('v1')
               .then(function(cache) {
                 cache.put(event.request, responseToCache);
               });

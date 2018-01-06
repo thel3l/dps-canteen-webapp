@@ -73,7 +73,7 @@ function easeInOut(t) {
 }
 //change the phrases here .
 document.addEventListener("DOMContentLoaded", function(event) {
-  var phrases = shuffleArray(["Setting up the database", "General Stuff", "Calling the cavalry", "Loading site forever", "Pondering emptiness", "Student Made Site", "Smacking Good Food", "Gobi manchurian :-)", "Generating phrases", "Acting busy", "Loading Profile", "loading the boring stuff", "Doing the hokey pokey", "Taking a bow", "Cracking jokes", "Slacking off"]);
+  var phrases = shuffleArray(["Setting up the database", "General Stuff", "Calling the cavalry", "Loading Layout", "Pondering emptiness", "Student Made Site", "Smacking Good Food", "Gobi manchurian :-)", "Generating phrases", "Acting busy", "Loading Profile", "loading the boring stuff", "Doing the hokey pokey", "Taking a bow", "Cracking jokes", "Slacking off"]);
   addPhrasesToDocument(phrases);
   var start_time = new Date().getTime();
   var upward_moving_group = document.getElementById("phrases");
