@@ -5,7 +5,6 @@ this.addEventListener('install', function(event) {
     caches.open('v1').then(function(cache) {
       return cache.addAll([
        '/',
-  '/styles/main.css',
   '/js/script.js',
   '/js/easyResponsiveTabs.js',
   '/css/style.css',
