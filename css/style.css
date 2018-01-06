@@ -35,7 +35,7 @@
   }
   #slideshow {
 
-    background-color: #223542;
+    background-color: #223542 !important ;
     overflow:hidden;
     width:100%;
     height:100%;
