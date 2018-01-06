@@ -48,7 +48,6 @@ html {
 }
 #footer {
   font-size: 4.2em;
-  bottom: 30px;
   font-family: 'Oswald', sans-serif;
   color: white;
   display: -webkit-box;
@@ -632,5 +631,10 @@ html {
    }
    #footer span {
      top:18vh;
+   }
+}
+@media (max-width:230px) {
+   #footer {
+           font-size:1.5em;
    }
 }
