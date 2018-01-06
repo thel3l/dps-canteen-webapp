@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css?family=Oswald');
 html {
     overflow: scroll;
     overflow-x: hidden;
@@ -46,19 +46,28 @@ html {
   -webkit-animation: slide-phrases-upward 20s;
           animation: slide-phrases-upward 20s;
 }
-
 #footer {
+  font-size: 4.2em;
   bottom: 30px;
+  font-family: 'Oswald', sans-serif;
   color: white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  left: 0;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  left: 3vw;
+  top:2vh;
   position: fixed;
   right: 0;
+}
+#footer span {
+   color:#808080;
+   font-size:0.5em;
+   position:absolute;
+   top:29.5vh;
+   left:0.1vw;
 }
 
 @-webkit-keyframes slide-phrases-upward {
