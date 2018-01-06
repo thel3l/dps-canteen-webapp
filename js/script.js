@@ -70,6 +70,7 @@ try {
 var database = firebase.database();
 var userRef, userInfo;
 var adNo;
+/*
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     adNo = user.uid;
@@ -93,7 +94,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
   }
 });
-
+*/
 var billAmount = 0;
 var loadingMenu = 0;
 var admNo = 'BE00012314';
