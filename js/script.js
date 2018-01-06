@@ -10,7 +10,7 @@ var config = {
 firebase.initializeApp(config);
 //start of loading screen script 
 //for screen width below 350 
-var addEvent = function(object, type, callback) {
+/*var addEvent = function(object, type, callback) {
   if (object == null || typeof(object) == 'undefined') return;
   if (object.addEventListener) {
       object.addEventListener(type, callback, false);
@@ -65,6 +65,7 @@ try {
 }
 
 // end of load
+*/
 //end of loading screen script
 var database = firebase.database();
 var userRef, userInfo;
