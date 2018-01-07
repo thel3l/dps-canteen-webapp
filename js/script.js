@@ -25,13 +25,13 @@ firebase.auth().onAuthStateChanged(function(user) {
         $('#wrapper').fadeOut(function() { $(this).remove(); });
         $('#slideshow').fadeOut( function() { $(this).remove(); });
     }else{
-      toast("Unregistered User");
+      expToast("Unregistered User");
     }
     });
   } else {
     console.log('logged out');
     if (!$.urlParam('token')) {
-      toast('You are not logged in');
+      expToast('You are not logged in');
     }
   }
 });
@@ -354,7 +354,21 @@ function toast(toast) {
 
   // Add the "show" class to DIV
   x.className = "show";
+  x.style.backgroundColor = "#333";
+  x.style.color = "#fff";
+  // After 3 seconds, remove the show class from DIV
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
 
+function expToast(message) {
+   // Get the snackbar DIV
+  $("#snackbar").html(message);
+  var x = document.getElementById("snackbar")
+
+  // Add the "show" class to DIV
+  x.className = "show";
+  x.style.backgroundColor = "#6E0F0F";
+  x.style.color = "#FFFFFF";
   // After 3 seconds, remove the show class from DIV
   setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
