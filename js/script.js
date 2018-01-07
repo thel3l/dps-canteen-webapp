@@ -26,7 +26,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         $('#wrapper').fadeOut(function() { $(this).remove(); });
         $('#slideshow').fadeOut( function() { $(this).remove(); });
     }else{
-      alert("Unregistered User");
+      sptoast("Unregistered User");
     }
     });
   } else {
@@ -352,5 +352,16 @@ function toast(toast) {
 
   // After 3 seconds, remove the show class from DIV
   setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+//special toast
+
+function sptoast(toast) {
+  // Get the snackbar DIV
+  $("#snackbar").html(toast);
+  var x = document.getElementById("snackbar")
+
+  // Add the "show" class to DIV
+  x.className = "show"
 }
 
