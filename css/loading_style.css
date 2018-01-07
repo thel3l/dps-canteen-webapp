@@ -1,7 +1,10 @@
-
+@import url('https://fonts.googleapis.com/css?family=Oswald');
 html {
     overflow: scroll;
     overflow-x: hidden;
+    font-size:100%;
+    height:100%;
+    width:100%;
 }
 ::-webkit-scrollbar {
     width: 0px;  /* remove scrollbar space */
@@ -9,116 +12,665 @@ html {
 }
 
 
-#heading {
-position: absolute;
-width: 479px;
-height: 190px;
-left: 65%;
-top: 83%;
-font-weight:2;
-color:black;
+.loader { 
+        font-size:2em;
+        position: absolute;
+        top:90%;
+        left:80%;
+        font-family: 'Oswald', sans-serif;
+        color:white;
 }
 
-#title {
-font-family:"Montserrat";
-font-size:6vh;
-}
-#sub_title {
-    font-family:"Roboto";
-    font-size:3vh;
+@media(max-width:425px) {
+        .loader {
+                font-size:1.8em;
+                left:70%;
+        }
 }
 
-/* image start */
-
-
-
-
-
-
-/* burger */
-#right {
-    position: absolute;
-    top:0%;
-    left:40%;
-    height:80%;
-    width:60%;
-    /* clip */
-    -webkit-clip-path: polygon(46% 0, 100% 0, 100% 100%, 39% 86%);
-clip-path: polygon(46% 0, 100% 0, 100% 100%, 39% 86%);
-    /* end clip */
-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-}
-/* burger end */
-
-/* burrito start */
-#middle-bottom {
-    height:50%;
-    width:40%;
-    /* postion */
-    position: absolute;
-    top: 50%;
-    left:23%;
-    /* clip */
-    -webkit-clip-path: polygon(10% 14%, 92% 30%, 84% 100%, 0 100%);
-    clip-path: polygon(10% 14%, 92% 30%, 84% 100%, 0 100%);
- /* clip end  */
+@media(max-width:425px) {
+        .loader {
+                font-size:1.3em;
+                left:65%;
+        }
 }
 
-#left {
-    width:40%;
-    height:120%;
-    /* position  */
-    position:absolute;
-    top:-35%;
-    left:-8%;
-    /* clip */
-    -webkit-clip-path: polygon(0 0, 100% 0, 69% 100%, 0 100%);
-    clip-path: polygon(0 0, 100% 0, 69% 100%, 0 100%);
- /* clip end  */
-}
-#middle-top {
-     height:70%;
-     width:40%;
-     /* position */
-     position:absolute;
-     top:-9%;
-     left:27.4%;
-     /* clip start */
-     -webkit-clip-path: polygon(11% 0, 95% 0, 81% 99%, 0 88%);
-clip-path: polygon(11% 0, 95% 0, 81% 99%, 0 88%);
 
 
- /* clip end */
+
+@keyframes blink {50% { color: transparent }}
+.loader__dot { animation: 1s blink infinite }
+.loader__dot:nth-child(2) { animation-delay: 250ms }
+.loader__dot:nth-child(3) { animation-delay: 500ms }
+
+
+#page {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(10%, #1a1a1a), color-stop(65%, #1a1a1a), color-stop(125%, #1a1a1a));
+  background: linear-gradient(to top right, #1a1a1a 10%, #1a1a1a 65%, #1a1a1a 125%);
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
 }
 
-@media (max-width:764px) {
-    #title {
-        font-size: 5vh;
-    }
-    #sub_title {
-        font-size:2vh
-    }
-    #heading {
-        left:60%;
-    }
+#phrase_box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  height: 150px;
+  overflow: hidden;
+  width: 260px;
 }
 
-@media (max-width:550px) {
-    #title {
-      font-size:4vh;
-    }
-    
+#phrases {
+  -webkit-animation: slide-phrases-upward 20s;
+          animation: slide-phrases-upward 20s;
 }
-@media (max-width:450px) {
-    #title {
-        font-size:3vh;
-    }
+#footer {
+  font-size: 4.2em;
+  font-family: 'Oswald', sans-serif;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  left: 3vw;
+  top:2vh;
+  position: fixed;
+  right: 0;
 }
-@media (max-width:350) {
-    #title {
-        font-size:1.3vh;
-    }
-    #subtitle {
-        font-size:0.3vh;
-    }
+#footer span {
+   color:#808080;
+   font-size:0.5em;
+   position:absolute;
+   top:35vh;
+   left:0.1vw;
+}
+
+@-webkit-keyframes slide-phrases-upward {
+  0% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  5% {
+    -webkit-transform: translateY(-50px);
+            transform: translateY(-50px);
+  }
+  10% {
+    -webkit-transform: translateY(-100px);
+            transform: translateY(-100px);
+  }
+  15% {
+    -webkit-transform: translateY(-150px);
+            transform: translateY(-150px);
+  }
+  20% {
+    -webkit-transform: translateY(-200px);
+            transform: translateY(-200px);
+  }
+  25% {
+    -webkit-transform: translateY(-250px);
+            transform: translateY(-250px);
+  }
+  30% {
+    -webkit-transform: translateY(-300px);
+            transform: translateY(-300px);
+  }
+  35% {
+    -webkit-transform: translateY(-350px);
+            transform: translateY(-350px);
+  }
+  40% {
+    -webkit-transform: translateY(-400px);
+            transform: translateY(-400px);
+  }
+  45% {
+    -webkit-transform: translateY(-450px);
+            transform: translateY(-450px);
+  }
+  50% {
+    -webkit-transform: translateY(-500px);
+            transform: translateY(-500px);
+  }
+  55% {
+    -webkit-transform: translateY(-550px);
+            transform: translateY(-550px);
+  }
+  60% {
+    -webkit-transform: translateY(-600px);
+            transform: translateY(-600px);
+  }
+  65% {
+    -webkit-transform: translateY(-650px);
+            transform: translateY(-650px);
+  }
+  70% {
+    -webkit-transform: translateY(-700px);
+            transform: translateY(-700px);
+  }
+  75% {
+    -webkit-transform: translateY(-750px);
+            transform: translateY(-750px);
+  }
+  80% {
+    -webkit-transform: translateY(-800px);
+            transform: translateY(-800px);
+  }
+  85% {
+    -webkit-transform: translateY(-850px);
+            transform: translateY(-850px);
+  }
+  90% {
+    -webkit-transform: translateY(-900px);
+            transform: translateY(-900px);
+  }
+  95% {
+    -webkit-transform: translateY(-950px);
+            transform: translateY(-950px);
+  }
+  100% {
+    -webkit-transform: translateY(-1000px);
+            transform: translateY(-1000px);
+  }
+}
+
+@keyframes slide-phrases-upward {
+  0% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  5% {
+    -webkit-transform: translateY(-50px);
+            transform: translateY(-50px);
+  }
+  10% {
+    -webkit-transform: translateY(-100px);
+            transform: translateY(-100px);
+  }
+  15% {
+    -webkit-transform: translateY(-150px);
+            transform: translateY(-150px);
+  }
+  20% {
+    -webkit-transform: translateY(-200px);
+            transform: translateY(-200px);
+  }
+  25% {
+    -webkit-transform: translateY(-250px);
+            transform: translateY(-250px);
+  }
+  30% {
+    -webkit-transform: translateY(-300px);
+            transform: translateY(-300px);
+  }
+  35% {
+    -webkit-transform: translateY(-350px);
+            transform: translateY(-350px);
+  }
+  40% {
+    -webkit-transform: translateY(-400px);
+            transform: translateY(-400px);
+  }
+  45% {
+    -webkit-transform: translateY(-450px);
+            transform: translateY(-450px);
+  }
+  50% {
+    -webkit-transform: translateY(-500px);
+            transform: translateY(-500px);
+  }
+  55% {
+    -webkit-transform: translateY(-550px);
+            transform: translateY(-550px);
+  }
+  60% {
+    -webkit-transform: translateY(-600px);
+            transform: translateY(-600px);
+  }
+  65% {
+    -webkit-transform: translateY(-650px);
+            transform: translateY(-650px);
+  }
+  70% {
+    -webkit-transform: translateY(-700px);
+            transform: translateY(-700px);
+  }
+  75% {
+    -webkit-transform: translateY(-750px);
+            transform: translateY(-750px);
+  }
+  80% {
+    -webkit-transform: translateY(-800px);
+            transform: translateY(-800px);
+  }
+  85% {
+    -webkit-transform: translateY(-850px);
+            transform: translateY(-850px);
+  }
+  90% {
+    -webkit-transform: translateY(-900px);
+            transform: translateY(-900px);
+  }
+  95% {
+    -webkit-transform: translateY(-950px);
+            transform: translateY(-950px);
+  }
+  100% {
+    -webkit-transform: translateY(-1000px);
+            transform: translateY(-1000px);
+  }
+}
+#loadingCheckCircleSVG-0 {
+  -webkit-animation: fill-to-white 5000ms;
+          animation: fill-to-white 5000ms;
+  -webkit-animation-delay: -1.5s;
+          animation-delay: -1.5s;
+  fill: white;
+  opacity: 0;
+}
+
+#loadingCheckCircleSVG-1 {
+  -webkit-animation: fill-to-white 5000ms;
+          animation: fill-to-white 5000ms;
+  -webkit-animation-delay: -0.5s;
+          animation-delay: -0.5s;
+  fill: white;
+  opacity: 0;
+}
+
+#loadingCheckCircleSVG-2 {
+  -webkit-animation: fill-to-white 5000ms;
+          animation: fill-to-white 5000ms;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+  fill: white;
+  opacity: 0;
+}
+
+#loadingCheckCircleSVG-3 {
+  -webkit-animation: fill-to-white 5000ms;
+          animation: fill-to-white 5000ms;
+  -webkit-animation-delay: 1.5s;
+          animation-delay: 1.5s;
+  fill: white;
+  opacity: 0;
+}
+
+#loadingCheckCircleSVG-4 {
+  -webkit-animation: fill-to-white 5000ms;
+          animation: fill-to-white 5000ms;
+  -webkit-animation-delay: 2.5s;
+          animation-delay: 2.5s;
+  fill: white;
+  opacity: 0;
+}
+
+#loadingCheckCircleSVG-5 {
+  -webkit-animation: fill-to-white 5000ms;
+          animation: fill-to-white 5000ms;
+  -webkit-animation-delay: 3.5s;
+          animation-delay: 3.5s;
+  fill: white;
+  opacity: 0;
+}
+
+#loadingCheckCircleSVG-6 {
+  -webkit-animation: fill-to-white 5000ms;
+          animation: fill-to-white 5000ms;
+  -webkit-animation-delay: 4.5s;
+          animation-delay: 4.5s;
+  fill: white;
+  opacity: 0;
+}
+
+#loadingCheckCircleSVG-7 {
+  -webkit-animation: fill-to-white 5000ms;
+          animation: fill-to-white 5000ms;
+  -webkit-animation-delay: 5.5s;
+          animation-delay: 5.5s;
+  fill: white;
+  opacity: 0;
+}
+
+#loadingCheckCircleSVG-8 {
+  -webkit-animation: fill-to-white 5000ms;
+          animation: fill-to-white 5000ms;
+  -webkit-animation-delay: 6.5s;
+          animation-delay: 6.5s;
+  fill: white;
+  opacity: 0;
+}
+
+#loadingCheckCircleSVG-9 {
+  -webkit-animation: fill-to-white 5000ms;
+          animation: fill-to-white 5000ms;
+  -webkit-animation-delay: 7.5s;
+          animation-delay: 7.5s;
+  fill: white;
+  opacity: 0;
+}
+
+#loadingCheckCircleSVG-10 {
+  -webkit-animation: fill-to-white 5000ms;
+          animation: fill-to-white 5000ms;
+  -webkit-animation-delay: 8.5s;
+          animation-delay: 8.5s;
+  fill: white;
+  opacity: 0;
+}
+
+#loadingCheckCircleSVG-11 {
+  -webkit-animation: fill-to-white 5000ms;
+          animation: fill-to-white 5000ms;
+  -webkit-animation-delay: 9.5s;
+          animation-delay: 9.5s;
+  fill: white;
+  opacity: 0;
+}
+
+#loadingCheckCircleSVG-12 {
+  -webkit-animation: fill-to-white 5000ms;
+          animation: fill-to-white 5000ms;
+  -webkit-animation-delay: 10.5s;
+          animation-delay: 10.5s;
+  fill: white;
+  opacity: 0;
+}
+
+#loadingCheckCircleSVG-13 {
+  -webkit-animation: fill-to-white 5000ms;
+          animation: fill-to-white 5000ms;
+  -webkit-animation-delay: 11.5s;
+          animation-delay: 11.5s;
+  fill: white;
+  opacity: 0;
+}
+
+#loadingCheckCircleSVG-14 {
+  -webkit-animation: fill-to-white 5000ms;
+          animation: fill-to-white 5000ms;
+  -webkit-animation-delay: 12.5s;
+          animation-delay: 12.5s;
+  fill: white;
+  opacity: 0;
+}
+
+#loadingCheckCircleSVG-15 {
+  -webkit-animation: fill-to-white 5000ms;
+          animation: fill-to-white 5000ms;
+  -webkit-animation-delay: 13.5s;
+          animation-delay: 13.5s;
+  fill: white;
+  opacity: 0;
+}
+
+#loadingCheckCircleSVG-16 {
+  -webkit-animation: fill-to-white 5000ms;
+          animation: fill-to-white 5000ms;
+  -webkit-animation-delay: 14.5s;
+          animation-delay: 14.5s;
+  fill: white;
+  opacity: 0;
+}
+
+#loadingCheckCircleSVG-17 {
+  -webkit-animation: fill-to-white 5000ms;
+          animation: fill-to-white 5000ms;
+  -webkit-animation-delay: 15.5s;
+          animation-delay: 15.5s;
+  fill: white;
+  opacity: 0;
+}
+
+#loadingCheckCircleSVG-18 {
+  -webkit-animation: fill-to-white 5000ms;
+          animation: fill-to-white 5000ms;
+  -webkit-animation-delay: 16.5s;
+          animation-delay: 16.5s;
+  fill: white;
+  opacity: 0;
+}
+
+#loadingCheckCircleSVG-19 {
+  -webkit-animation: fill-to-white 5000ms;
+          animation: fill-to-white 5000ms;
+  -webkit-animation-delay: 17.5s;
+          animation-delay: 17.5s;
+  fill: white;
+  opacity: 0;
+}
+
+#loadingCheckCircleSVG-20 {
+  -webkit-animation: fill-to-white 5000ms;
+          animation: fill-to-white 5000ms;
+  -webkit-animation-delay: 18.5s;
+          animation-delay: 18.5s;
+  fill: white;
+  opacity: 0;
+}
+
+@-webkit-keyframes fill-to-white {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fill-to-white {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+#loadingCheckSVG-0 {
+  -webkit-animation: fill-to-coral 5000ms;
+          animation: fill-to-coral 5000ms;
+  -webkit-animation-delay: -1.5s;
+          animation-delay: -1.5s;
+}
+
+#loadingCheckSVG-1 {
+  -webkit-animation: fill-to-coral 5000ms;
+          animation: fill-to-coral 5000ms;
+  -webkit-animation-delay: -0.5s;
+          animation-delay: -0.5s;
+}
+
+#loadingCheckSVG-2 {
+  -webkit-animation: fill-to-coral 5000ms;
+          animation: fill-to-coral 5000ms;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+
+#loadingCheckSVG-3 {
+  -webkit-animation: fill-to-coral 5000ms;
+          animation: fill-to-coral 5000ms;
+  -webkit-animation-delay: 1.5s;
+          animation-delay: 1.5s;
+}
+
+#loadingCheckSVG-4 {
+  -webkit-animation: fill-to-coral 5000ms;
+          animation: fill-to-coral 5000ms;
+  -webkit-animation-delay: 2.5s;
+          animation-delay: 2.5s;
+}
+
+#loadingCheckSVG-5 {
+  -webkit-animation: fill-to-coral 5000ms;
+          animation: fill-to-coral 5000ms;
+  -webkit-animation-delay: 3.5s;
+          animation-delay: 3.5s;
+}
+
+#loadingCheckSVG-6 {
+  -webkit-animation: fill-to-coral 5000ms;
+          animation: fill-to-coral 5000ms;
+  -webkit-animation-delay: 4.5s;
+          animation-delay: 4.5s;
+}
+
+#loadingCheckSVG-7 {
+  -webkit-animation: fill-to-coral 5000ms;
+          animation: fill-to-coral 5000ms;
+  -webkit-animation-delay: 5.5s;
+          animation-delay: 5.5s;
+}
+
+#loadingCheckSVG-8 {
+  -webkit-animation: fill-to-coral 5000ms;
+          animation: fill-to-coral 5000ms;
+  -webkit-animation-delay: 6.5s;
+          animation-delay: 6.5s;
+}
+
+#loadingCheckSVG-9 {
+  -webkit-animation: fill-to-coral 5000ms;
+          animation: fill-to-coral 5000ms;
+  -webkit-animation-delay: 7.5s;
+          animation-delay: 7.5s;
+}
+
+#loadingCheckSVG-10 {
+  -webkit-animation: fill-to-coral 5000ms;
+          animation: fill-to-coral 5000ms;
+  -webkit-animation-delay: 8.5s;
+          animation-delay: 8.5s;
+}
+
+#loadingCheckSVG-11 {
+  -webkit-animation: fill-to-coral 5000ms;
+          animation: fill-to-coral 5000ms;
+  -webkit-animation-delay: 9.5s;
+          animation-delay: 9.5s;
+}
+
+#loadingCheckSVG-12 {
+  -webkit-animation: fill-to-coral 5000ms;
+          animation: fill-to-coral 5000ms;
+  -webkit-animation-delay: 10.5s;
+          animation-delay: 10.5s;
+}
+
+#loadingCheckSVG-13 {
+  -webkit-animation: fill-to-coral 5000ms;
+          animation: fill-to-coral 5000ms;
+  -webkit-animation-delay: 11.5s;
+          animation-delay: 11.5s;
+}
+
+#loadingCheckSVG-14 {
+  -webkit-animation: fill-to-coral 5000ms;
+          animation: fill-to-coral 5000ms;
+  -webkit-animation-delay: 12.5s;
+          animation-delay: 12.5s;
+}
+
+#loadingCheckSVG-15 {
+  -webkit-animation: fill-to-coral 5000ms;
+          animation: fill-to-coral 5000ms;
+  -webkit-animation-delay: 13.5s;
+          animation-delay: 13.5s;
+}
+
+#loadingCheckSVG-16 {
+  -webkit-animation: fill-to-coral 5000ms;
+          animation: fill-to-coral 5000ms;
+  -webkit-animation-delay: 14.5s;
+          animation-delay: 14.5s;
+}
+
+#loadingCheckSVG-17 {
+  -webkit-animation: fill-to-coral 5000ms;
+          animation: fill-to-coral 5000ms;
+  -webkit-animation-delay: 15.5s;
+          animation-delay: 15.5s;
+}
+
+#loadingCheckSVG-18 {
+  -webkit-animation: fill-to-coral 5000ms;
+          animation: fill-to-coral 5000ms;
+  -webkit-animation-delay: 16.5s;
+          animation-delay: 16.5s;
+}
+
+#loadingCheckSVG-19 {
+  -webkit-animation: fill-to-coral 5000ms;
+          animation: fill-to-coral 5000ms;
+  -webkit-animation-delay: 17.5s;
+          animation-delay: 17.5s;
+}
+
+#loadingCheckSVG-20 {
+  -webkit-animation: fill-to-coral 5000ms;
+          animation: fill-to-coral 5000ms;
+  -webkit-animation-delay: 18.5s;
+          animation-delay: 18.5s;
+}
+
+@-webkit-keyframes fill-to-coral {
+  0% {
+    fill: white;
+  }
+  10% {
+    fill: #000000;
+  }
+  100% {
+    fill: #000000;
+  }
+}
+
+@keyframes fill-to-coral {
+  0% {
+    fill: white;
+  }
+  10% {
+    fill: #000000;
+  }
+  100% {
+    fill: #000000;
+  }
+}
+
+@media (max-width:750px) {
+   #footer {
+     font-size:2em;
+   }
+   #footer span {
+     top:18vh;
+   }
+}
+@media (max-width:230px) {
+   #footer {
+           font-size:1.5em;
+   }
 }
