@@ -18,7 +18,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     userRef = database.ref().child('users').child(user.uid);
     userRef.on('value', function(snap) {
       userInfo = snap.val();
-      if(userInfo != null){
+      if(userInfo){
         console.log(adNo);
         userInfo['admid'] = snap.key;
         setUser(userInfo);
