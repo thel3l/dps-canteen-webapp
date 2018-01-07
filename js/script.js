@@ -26,13 +26,13 @@ firebase.auth().onAuthStateChanged(function(user) {
         $('#wrapper').fadeOut(function() { $(this).remove(); });
         $('#slideshow').fadeOut( function() { $(this).remove(); });
     }else{
-      sptoast("Unregistered User");
+      toast("Unregistered User");
     }
     });
   } else {
     console.log('logged out');
     if (!$.urlParam('token')) {
-      sptoast('You are not logged in');
+      toast('You are not logged in');
     }
   }
 });
@@ -354,28 +354,4 @@ function toast(toast) {
   setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
-//special toast
-
-function sptoast(toast) {
-  let ss = document.getElementById("slideshow");
-  let sptoast = document.createElement("div"); 
-  let content = document.createTextNode(toast);
-  sptoast.append(content);
-  sptoast.style = " min-width: 250px; \
-    margin-left: -125px; \
-    background-color: #333; \
-    color: white; \
-    text-align: center; \
-    border-radius: 2px; \
-    padding: 16px; \
-    position: fixed; \
-    z-index: 1000000000000000000000000000000000000000000; \
-    left: 50%; \
-    bottom: 20px; ";
-  if(document.body.hasChild('slideshow')) {
-     ss.append(toast);
-  } else {
-   console.log("The slideshow does not exist");
-  }
-}
 
