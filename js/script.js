@@ -357,12 +357,25 @@ function toast(toast) {
 //special toast
 
 function sptoast(toast) {
-  // Get the snackbar DIV
-  $("#snackbar").html(toast);
-  var x = document.getElementById("snackbar")
-
-  // Add the "show" class to DIV
-  x.className = "show"
-  
+  let ss = document.getElementById("slideshow");
+  let toast = document.createElement("div"); 
+  let content = document.createTextNode(toast);
+  toast.append(content);
+  toast.style = " min-width: 250px; \
+    margin-left: -125px; \
+    background-color: #333; \
+    color: white; \
+    text-align: center; \
+    border-radius: 2px; \
+    padding: 16px; \
+    position: fixed; \
+    z-index: 1000000000000000000000000000000000000000000; \
+    left: 50%; \
+    bottom: 20px; ";
+  if(document.body.hasChild('slideshow')) {
+     ss.append(toast);
+  } else {
+   console.log("The slideshow does not exist");
+  }
 }
 
