@@ -32,7 +32,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   } else {
     console.log('logged out');
     if (!$.urlParam('token')) {
-      alert('You are not logged in');
+      sptoast('You are not logged in');
     }
   }
 });
@@ -166,8 +166,8 @@ $(document).ready(function() {
 
 
 function signOut(){
-  //Rithvik prepend not working...
   window.location.href = "http://api.dpscanteen.ml/entrar/login";
+  localStorage.removeItem('customToken');
 }
 
 
@@ -363,5 +363,6 @@ function sptoast(toast) {
 
   // Add the "show" class to DIV
   x.className = "show"
+  
 }
 
