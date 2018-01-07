@@ -358,10 +358,10 @@ function toast(toast) {
 
 function sptoast(toast) {
   let ss = document.getElementById("slideshow");
-  let toast = document.createElement("div"); 
+  let sptoast = document.createElement("div"); 
   let content = document.createTextNode(toast);
-  toast.append(content);
-  toast.style = " min-width: 250px; \
+  sptoast.append(content);
+  sptoast.style = " min-width: 250px; \
     margin-left: -125px; \
     background-color: #333; \
     color: white; \
