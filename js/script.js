@@ -14,35 +14,35 @@ var database = firebase.database();
 var userRef, userInfo;
 var adNo;
 //start dev code
-setTimeout(function(){
-    $('#wrapper').fadeOut(function() { $(this).remove(); });
-    $('#slideshow').fadeOut( function() { $(this).remove(); });
-  }, 1500);
+// setTimeout(function(){
+//     $('#wrapper').fadeOut(function() { $(this).remove(); });
+//     $('#slideshow').fadeOut( function() { $(this).remove(); });
+//   }, 1500);
 
 //end dev code
-// firebase.auth().onAuthStateChanged(function(user) {
-//   if (user) {
-//     adNo = user.uid;
-//     userRef = database.ref().child('users').child(user.uid);
-//     userRef.on('value', function(snap) {
-//       userInfo = snap.val();
-//       if(userInfo != null){
-//         console.log(adNo);
-//         userInfo['admid'] = snap.key;
-//         setUser(userInfo);
-//         $('#wrapper').fadeOut(function() { $(this).remove(); });
-//         $('#slideshow').fadeOut( function() { $(this).remove(); });
-//     }else{
-//       alert("Unregistered User");
-//     }
-//     });
-//   } else {
-//     console.log('logged out');
-//     if (!$.urlParam('token')) {
-//       alert('You are not logged in');
-//     }
-//   }
-// });
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    adNo = user.uid;
+    userRef = database.ref().child('users').child(user.uid);
+    userRef.on('value', function(snap) {
+      userInfo = snap.val();
+      if(userInfo != null){
+        console.log(adNo);
+        userInfo['admid'] = snap.key;
+        setUser(userInfo);
+        $('#wrapper').fadeOut(function() { $(this).remove(); });
+        $('#slideshow').fadeOut( function() { $(this).remove(); });
+    }else{
+      alert("Unregistered User");
+    }
+    });
+  } else {
+    console.log('logged out');
+    if (!$.urlParam('token')) {
+      alert('You are not logged in');
+    }
+  }
+});
 var billAmount = 0;
 var loadingMenu = 0;
 var admNo = 'BE00012314';
@@ -50,6 +50,7 @@ var menu = [];
 var menu_count ;
 var preRest = [];
 var menIdt = 1;
+var c_user_menu = [];
 var trig = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 var prices = [50,50,50,50,50,50,50,50,100,50,50,50,50,50,50,50,50,50,50,50];
 var currentBal = 0;
@@ -238,11 +239,11 @@ function topUp(type) {
   var admNo = $('#idNum').val();
   if (type == 'menu') {
     var amount = billAmount;
-    console.log(amount);
     menIdt = 0;
     var restrictions = [];
     for(var i = 0; i < 20; i++){
       if(trig[i] == 1){
+        c_user_menu[i] = menu[i];
         restrictions.push(menu[i]);
       }
     }
@@ -269,6 +270,25 @@ function topUp(type) {
     userRef.child('menuBalance').transaction(function(menuBalance) {
       return menuBalance + amount
     }).then(function() {
+      //sending to the billiing page 
+   var user_profile = {
+    name: document.getElementById("studentName").value,
+    id: adNo,
+    bill: billAmount,
+    type: type, 
+    menu_items: c_user_menu,
+ }
+ console.log(user_profile);
+//serializing obj and creting the parameters
+ var str = "";
+ for (var key in user_profile) {
+     if (str != "") {
+         str += "&";
+     }
+     str += key + "=" + encodeURIComponent(obj[key]);
+ }
+ //sending the link with the parameters
+ window.location = "https://api.dpscanteen.ml/paytm?" + str;
       preRest.length = 0;
       toast('Recharge successful');
       clearSelection();
@@ -283,6 +303,8 @@ function topUp(type) {
 
   });
 }
+
+
 }
 
 function transUpdate(){
