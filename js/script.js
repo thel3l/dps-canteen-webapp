@@ -284,6 +284,11 @@ function topUp(type) {
 
   });
 }
+  var obj = {
+   name: "sampleboi",
+   id: 1234,
+   array: ["this works","hopefully"]
+  }
   //redirects to billing
   var str = "";
 for (var key in obj) {
