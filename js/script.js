@@ -13,29 +13,36 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var userRef, userInfo;
 var adNo;
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    adNo = user.uid;
-    userRef = database.ref().child('users').child(user.uid);
-    userRef.on('value', function(snap) {
-      userInfo = snap.val();
-      if(userInfo != null){
-        console.log(adNo);
-        userInfo['admid'] = snap.key;
-        setUser(userInfo);
-        $('#wrapper').fadeOut(function() { $(this).remove(); });
-        $('#slideshow').fadeOut( function() { $(this).remove(); });
-    }else{
-      alert("Unregistered User");
-    }
-    });
-  } else {
-    console.log('logged out');
-    if (!$.urlParam('token')) {
-      alert('You are not logged in');
-    }
-  }
-});
+//start dev code
+setTimeout(function(){
+    $('#wrapper').fadeOut(function() { $(this).remove(); });
+    $('#slideshow').fadeOut( function() { $(this).remove(); });
+  }, 1500);
+
+//end dev code
+// firebase.auth().onAuthStateChanged(function(user) {
+//   if (user) {
+//     adNo = user.uid;
+//     userRef = database.ref().child('users').child(user.uid);
+//     userRef.on('value', function(snap) {
+//       userInfo = snap.val();
+//       if(userInfo != null){
+//         console.log(adNo);
+//         userInfo['admid'] = snap.key;
+//         setUser(userInfo);
+//         $('#wrapper').fadeOut(function() { $(this).remove(); });
+//         $('#slideshow').fadeOut( function() { $(this).remove(); });
+//     }else{
+//       alert("Unregistered User");
+//     }
+//     });
+//   } else {
+//     console.log('logged out');
+//     if (!$.urlParam('token')) {
+//       alert('You are not logged in');
+//     }
+//   }
+// });
 var billAmount = 0;
 var loadingMenu = 0;
 var admNo = 'BE00012314';
@@ -131,10 +138,7 @@ $(document).ready(function() {
     });
   }
 
-  // setTimeout(function(){
-  //   $('#wrapper').fadeOut(function() { $(this).remove(); });
-  //   $('#slideshow').fadeOut( function() { $(this).remove(); });
-  // }, 1500);
+  
   // Vertical tabs
   $('#parentVerticalTab').easyResponsiveTabs({
     type: 'vertical',
@@ -197,7 +201,7 @@ function updateMenu(){
 
 
 
-//var userRef = database.ref().child("users").child("BE00012314");
+var userRef = database.ref().child("users").child("BE00012314");
 
 function setUser(){
   userRef.on('value', function(snapshot){
