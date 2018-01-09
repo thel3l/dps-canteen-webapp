@@ -289,15 +289,16 @@ function topUp(type) {
    id: 1234,
    array: ["this works","hopefully"]
   }
+  console.log(obj);
   //redirects to billing
-  var str = "";
-for (var key in obj) {
+ // var str = "";
+/*for (var key in obj) {
     if (str != "") {
         str += "&";
     }
     str += key + "=" + encodeURIComponent(obj[key]);
-}
-  window.location = "https://api.dpscanteen.ml/paytm?" +str;
+}*/
+  //window.location = "https://api.dpscanteen.ml/paytm?" +str;
 }
 
 function transUpdate(){
