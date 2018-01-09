@@ -12,7 +12,7 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var userRef, userInfo;
 var adNo;
-firebase.auth().onAuthStateChanged(function(user) {
+/*firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     adNo = user.uid;
     userRef = database.ref().child('users').child(user.uid);
@@ -34,7 +34,12 @@ firebase.auth().onAuthStateChanged(function(user) {
       expToast('You are not logged in');
     }
   }
-});
+});*/
+  setTimeout(function(){
+     $('#wrapper').fadeOut(function() { $(this).remove(); });
+     $('#slideshow').fadeOut( function() { $(this).remove(); });
+  }, 1500);
+  // Vertical tabs
 var billAmount = 0;
 var loadingMenu = 0;
 var admNo = 'BE00012314';
@@ -130,11 +135,7 @@ $(document).ready(function() {
     });
   }
 
-  // setTimeout(function(){
-  //   $('#wrapper').fadeOut(function() { $(this).remove(); });
-  //   $('#slideshow').fadeOut( function() { $(this).remove(); });
-  // }, 1500);
-  // Vertical tabs
+ 
   $('#parentVerticalTab').easyResponsiveTabs({
     type: 'vertical',
     width: 'auto',
@@ -267,23 +268,24 @@ function topUp(type) {
       var restriction = preRest.concat(restrictions);
       return restriction
     });
-    userRef.child('menuBalance').transaction(function(menuBalance) {
-      return menuBalance + amount
-    }).then(function() {
-      preRest.length = 0;
-      toast('Recharge successful');
-      clearSelection();
-      getPreRest();
-    });
-  }else{
-  userRef.child('balance').transaction(function(balance) {
-    console.log("i happpen");
-    return balance + amount
-  }).then(function() {
-    toast('Recharge successful');
-
-  });
-}
+           userRef.child('menuBalance').transaction(function(menuBalance) {
+          return menuBalance + amount
+        }).then(function() {
+          preRest.length = 0;
+          toast('Recharge successful');
+          clearSelection();
+          getPreRest();
+        });
+       }else{
+       userRef.child('balance').transaction(function(balance) {
+        console.log("i happpen");
+        return balance + amount
+      }).then(function() {
+        toast('Recharge successful');
+        });
+      }
+    
+   
   var obj = {
    name: "sampleboi",
    id: 1234,
