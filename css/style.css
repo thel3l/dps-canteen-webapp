@@ -35,7 +35,7 @@
   }
   #slideshow {
 
-    background-color: #30333E !important ;
+    background-color: rgb(255, 255, 255);
     overflow:hidden;
     width:100%;
     height:100%;
