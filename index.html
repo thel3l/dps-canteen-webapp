@@ -6,7 +6,10 @@
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
   <link rel="manifest" href="manifest.json">
   <meta name="mobile-web-app-capable" content="yes">
-  <link rel="icon" sizes="192x192" href="images/dpsIcon.jpg">
+<!--  <link rel="icon" sizes="192x192" href="images/dpsIcon.jpg"> -->
+<link rel="stylesheet" href="./css/loading_style.css" type="text/css">
+<script src="./js/loading_script.js"></script>
+  <link rel="prefetch" href="./js/script.js">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
@@ -21,7 +24,6 @@
   <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-database.js"></script>
-  <link rel="stylesheet" href="./css/loading_style.css" type="text/css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
  <!--Googe fonts-->
  <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=Montserrat">
@@ -33,14 +35,38 @@
 <body id = "theBody" onload="updateMenu()">
   <div id="wrapper">
    <div id="slideshow">
-        <div id="heading">
-            <span id="title">Dpse Canteen</span><br>
-            <span id="sub_title">The official online portal</span>
-        </div>
-    <img src="pics/burger.jpeg" alt="Img Not found" id="right" >
-     <img src="pics/burrito.jpeg" alt="Img Not found" id="middle-bottom" > 
-    <img src="pics/pancake.jpeg" alt="Img Not found" id="middle-top"> 
-    <img src="pics/coffee.jpeg" alt="Img Not found" id="left"> 
+    <div id="page">
+      <div id="phrase_box">
+      <svg width="100%" height="100%">
+        <defs>
+          <!--<style type="text/css">
+            @font-face {
+              font-family: "Proxima";
+              src: url('');
+            }
+          </style>-->
+          <mask id="mask" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse">
+            <linearGradient id="linearGradient" gradientUnits="objectBoundingBox" x2="0" y2="1">
+              <stop stop-color="white" stop-opacity="0" offset="0%"/>
+              <stop stop-color="white" stop-opacity="1" offset="30%"/>
+              <stop stop-color="white" stop-opacity="1" offset="70%"/>
+              <stop stop-color="white" stop-opacity="0" offset="100%"/>
+            </linearGradient>
+            <rect width="100%" height="100%" fill="url(#linearGradient)"/>
+          </mask>
+        </defs>
+        <g width="100%" height="100%" style="mask: url(#mask);">
+          <g id="phrases"></g>
+        </g>
+      </svg>
+      </div>
+      <div id="footer">
+        Delhi Public School <br>
+        East <br>
+        <span id="faint">Official Canteen</span>
+      </div>
+      <div class="loader">Loading<span class="loader__dot">.</span><span class="loader__dot">.</span><span class="loader__dot">.</span></div>
+    </div>
     </div>
   </div>
   <!--check-->
@@ -219,7 +245,7 @@
                     <div class="w3-card-4" style="width:100%">
                       <div class="w3-container">
                         <br>
-                        <img src="https://image.ibb.co/mvUgx6/Capture.jpg" alt="Rithvik Picture" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
+                        <img src="https://lh6.googleusercontent.com/-9KsoKuy-E2I/AAAAAAAAAAI/AAAAAAAAOfI/Tgwz5sXU2FE/photo.jpg" alt="Rithvik Picture" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
                         <p class = "creatorsInfo">Rithvik Vibhu</p><p class = "creatorsInfo">12th Grade</p><br>
                       </div>
                     </div>
@@ -302,7 +328,7 @@
 
       <link href="css/easy-responsive-tabs.css" rel="stylesheet">
       <script src="js/easyResponsiveTabs.js"></script>
-        <script src="./app.js"></script>
+      <script src="./app.js"></script>
     </div>
 
   </body>

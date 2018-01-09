@@ -1,33 +1,23 @@
-var CACHE_NAME = 'v1-dpse';
-var urlsToCache = [
-  '/',
-  '/styles/main.css',
+
+this.addEventListener('install', function(event) {
+   self.skipWaiting();
+  event.waitUntil(
+    caches.open('v1').then(function(cache) {
+      return cache.addAll([
+       '/',
   '/js/script.js',
   '/js/easyResponsiveTabs.js',
   '/css/style.css',
   '/css/easy-responsive-tabs.css',
   '/css/loading_style.css',
-  '/pics/burger.jpeg',
-  '/pics/burrito.jpeg',
-  '/pics/coffee.jpeg',
-  '/pics/pancake.jpeg'
+  '/js/loading_script.js'
  
-];
-
-self.addEventListener('install', function(event) {
-  // Perform install steps
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(function(cache) {
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache);
-      })
+      ]);
+    })
   );
 });
 
-//checks for user requests that are present in the cache
-//caches requests that the user does dynamically 
-//so no need to add all the routes above
+
 self.addEventListener('fetch', function(event) {
   event.respondWith(
     caches.match(event.request)
@@ -45,13 +35,10 @@ self.addEventListener('fetch', function(event) {
               return response;
             }
 
-            // IMPORTANT: Clone the response. A response is a stream
-            // and because we want the browser to consume the response
-            // as well as the cache consuming the response, we need
-            // to clone it so we have two streams.
+
             var responseToCache = response.clone();
 
-            caches.open(CACHE_NAME)
+            caches.open('v1')
               .then(function(cache) {
                 cache.put(event.request, responseToCache);
               });
