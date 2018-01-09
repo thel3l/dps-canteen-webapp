@@ -8,33 +8,34 @@ var config = {
   messagingSenderId: "696186948502"
 }
 firebase.initializeApp(config);
-
 var database = firebase.database();
 var userRef, userInfo;
 var adNo;
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
+    console.log(user);
     adNo = user.uid;
     userRef = database.ref().child('users').child(user.uid);
     userRef.on('value', function(snap) {
       userInfo = snap.val();
-      if(userInfo){
+      if(userInfo != null){
         console.log(adNo);
         userInfo['admid'] = snap.key;
         setUser(userInfo);
         $('#wrapper').fadeOut(function() { $(this).remove(); });
         $('#slideshow').fadeOut( function() { $(this).remove(); });
     }else{
-      expToast("Unregistered User");
+      alert("Unregistered User");
     }
     });
   } else {
     console.log('logged out');
     if (!$.urlParam('token')) {
-      expToast('You are not logged in');
+      alert('You are not logged in');
     }
   }
 });
+
 var billAmount = 0;
 var loadingMenu = 0;
 var admNo = 'BE00012314';
@@ -165,14 +166,8 @@ $(document).ready(function() {
 
 
 function signOut(){
-  firebase.auth().signOut().then(function() {
-  console.log('Signed Out');
-}, function(error) {
-  console.error('Sign Out Error', error);
-});
-    localStorage.removeItem('customToken');
+  //Rithvik prepend not working...
   window.location.href = "http://api.dpscanteen.ml/entrar/login";
-
 }
 
 
@@ -180,20 +175,15 @@ function updateMenu(){
 
   firebase.database().ref().child("menu").once("value").then(function(snapshot) {
     var i = 0;
-    try {
     while(i < menu_count){
       snapshot.forEach(function(childSnapshot) {
         var menuItems = document.querySelectorAll('.menuItems');
         var childData = childSnapshot.val();
         menu[i] = childData;
-          menuItems[i].innerHTML = childData;
-      
+        menuItems[i].innerHTML = childData;
         i++;
       });
 }
-    } catch(e) {
-      console.log("There is no bug.");
-    }
   });
 }
 
@@ -332,45 +322,14 @@ $.urlParam = function (name) {
   return results[1] || 0;
 
 }
-
-//firebase offline handling 
-setTimeout(() => {
-  var connectedRef = firebase.database().ref(".info/connected");
-connectedRef.on("value", function(snap) {
-  if (snap.val() === true) {
-    console.log("Connection with firebase live")
-  } else {
-    toast("Connection lost");
-  }
-});
-
-},5000)
-
-
 function toast(toast) {
-  // Get the snackbar DIV
-  $("#snackbar").html(toast);
-  var x = document.getElementById("snackbar")
+    // Get the snackbar DIV
+    $("#snackbar").html(toast);
+    var x = document.getElementById("snackbar")
 
-  // Add the "show" class to DIV
-  x.className = "show";
-  x.style.backgroundColor = "#333";
-  x.style.color = "#fff";
-  // After 3 seconds, remove the show class from DIV
-  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    // Add the "show" class to DIV
+    x.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
-
-function expToast(message) {
-   // Get the snackbar DIV
-  $("#snackbar").html(message);
-  var x = document.getElementById("snackbar")
-
-  // Add the "show" class to DIV
-  x.className = "show";
-  x.style.backgroundColor = "#6E0F0F";
-  x.style.color = "#FFFFFF";
-  // After 3 seconds, remove the show class from DIV
-  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-}
-
-
