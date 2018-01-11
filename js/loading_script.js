@@ -72,7 +72,7 @@ function easeInOut(t) {
   var period = 200;
   return (Math.sin(t / period + 100) + 1) /2;
 }
-//change the phrases here .
+
 document.addEventListener("DOMContentLoaded", function(event) {
   var phrases = shuffleArray(["Setting up the database", "General Stuff", "Calling the cavalry", "Loading Layout", "Pondering emptiness", "Student Made Site", "Smacking Good Food", "Gobi manchurian :-)", "Generating phrases", "Acting busy", "Loading Profile", "loading the boring stuff", "Doing the hokey pokey", "Taking a bow", "Cracking jokes", "Slacking off"]);
   addPhrasesToDocument(phrases);

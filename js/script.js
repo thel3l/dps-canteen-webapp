@@ -8,8 +8,7 @@ var config = {
   messagingSenderId: "696186948502"
 }
 firebase.initializeApp(config);
-//start of loading screen script 
-//for screen width below 350 
+
 var database = firebase.database();
 var userRef, userInfo;
 var adNo;
@@ -26,23 +25,28 @@ firebase.auth().onAuthStateChanged(function(user) {
     userRef = database.ref().child('users').child(user.uid);
     userRef.on('value', function(snap) {
       userInfo = snap.val();
-      if(userInfo != null){
+      if(userInfo){
         console.log(adNo);
         userInfo['admid'] = snap.key;
         setUser(userInfo);
         $('#wrapper').fadeOut(function() { $(this).remove(); });
         $('#slideshow').fadeOut( function() { $(this).remove(); });
     }else{
-      alert("Unregistered User");
+      expToast("Unregistered User");
     }
     });
   } else {
     console.log('logged out');
     if (!$.urlParam('token')) {
-      alert('You are not logged in');
+      expToast('You are not logged in');
     }
   }
 });
+  setTimeout(function(){
+     $('#wrapper').fadeOut(function() { $(this).remove(); });
+     $('#slideshow').fadeOut( function() { $(this).remove(); });
+  }, 1500);
+  // Vertical tabs
 var billAmount = 0;
 var loadingMenu = 0;
 var admNo = 'BE00012314';
@@ -139,8 +143,6 @@ $(document).ready(function() {
     });
   }
 
-  
-  // Vertical tabs
   $('#parentVerticalTab').easyResponsiveTabs({
     type: 'vertical',
     width: 'auto',
@@ -171,8 +173,14 @@ $(document).ready(function() {
 
 
 function signOut(){
-  //Rithvik prepend not working...
+  firebase.auth().signOut().then(function() {
+  console.log('Signed Out');
+}, function(error) {
+  console.error('Sign Out Error', error);
+});
+    localStorage.removeItem('customToken');
   window.location.href = "http://api.dpscanteen.ml/entrar/login";
+
 }
 
 
@@ -267,10 +275,39 @@ function topUp(type) {
       var restriction = preRest.concat(restrictions);
       return restriction
     });
+
+        firebase.database().ref('users/'+adNo+'/menuBalance').transaction(function(menuBalance) {
+          return menuBalance + amount
+        }).then(function() {
+          preRest.length = 0;
+          toast('Recharge successful');
+          clearSelection();
+          getPreRest();
+        });
+       }else{
+       firebase.database().ref('users/'+adNo+'/balance').transaction(function(balance) {
+        console.log("i happpen");
+        return balance + amount
+      }).then(function() {
+        toast('Recharge successful');
+        });
+      }
+    
+   
+  var obj = {
+   name: "sampleboi",
+   id: 1234,
+   array: ["this works","hopefully"]
+  }
+  console.log(obj);
+  //redirects to billing
+  //userprofile
+
     userRef.child('menuBalance').transaction(function(menuBalance) {
       return menuBalance + amount
     }).then(function() {
       //sending to the billiing page 
+
    var user_profile = {
     name: document.getElementById("studentName").value,
     id: adNo,
@@ -278,7 +315,6 @@ function topUp(type) {
     type: type, 
     menu_items: c_user_menu,
  }
- console.log(user_profile);
 //serializing obj and creting the parameters
  var str = "";
  for (var key in user_profile) {
@@ -289,6 +325,7 @@ function topUp(type) {
  }
  //sending the link with the parameters
  window.location = "https://api.dpscanteen.ml/paytm?" + str;
+
       preRest.length = 0;
       toast('Recharge successful');
       clearSelection();
@@ -303,6 +340,7 @@ function topUp(type) {
 
   });
 }
+
 
 
 }
@@ -375,8 +413,23 @@ function toast(toast) {
 
   // Add the "show" class to DIV
   x.className = "show";
-
+  x.style.backgroundColor = "#333";
+  x.style.color = "#fff";
   // After 3 seconds, remove the show class from DIV
   setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
+
+function expToast(message) {
+   // Get the snackbar DIV
+  $("#snackbar").html(message);
+  var x = document.getElementById("snackbar")
+
+  // Add the "show" class to DIV
+  x.className = "show";
+  x.style.backgroundColor = "#6E0F0F";
+  x.style.color = "#FFFFFF";
+  // After 3 seconds, remove the show class from DIV
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
 
