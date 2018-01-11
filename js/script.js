@@ -12,7 +12,7 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var userRef, userInfo;
 var adNo;
-/*firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     adNo = user.uid;
     userRef = database.ref().child('users').child(user.uid);
@@ -34,7 +34,7 @@ var adNo;
       expToast('You are not logged in');
     }
   }
-});*/
+});
   setTimeout(function(){
      $('#wrapper').fadeOut(function() { $(this).remove(); });
      $('#slideshow').fadeOut( function() { $(this).remove(); });
@@ -268,7 +268,7 @@ function topUp(type) {
       var restriction = preRest.concat(restrictions);
       return restriction
     });
-           userRef.child('menuBalance').transaction(function(menuBalance) {
+        firebase.database().ref('users/'+adNo+'/menuBalance').transaction(function(menuBalance) {
           return menuBalance + amount
         }).then(function() {
           preRest.length = 0;
@@ -277,7 +277,7 @@ function topUp(type) {
           getPreRest();
         });
        }else{
-       userRef.child('balance').transaction(function(balance) {
+       firebase.database().ref('users/'+adNo+'/balance').transaction(function(balance) {
         console.log("i happpen");
         return balance + amount
       }).then(function() {
@@ -293,14 +293,24 @@ function topUp(type) {
   }
   console.log(obj);
   //redirects to billing
- // var str = "";
-/*for (var key in obj) {
-    if (str != "") {
-        str += "&";
-    }
-    str += key + "=" + encodeURIComponent(obj[key]);
-}*/
-  //window.location = "https://api.dpscanteen.ml/paytm?" +str;
+  //userprofile
+   var user_profile = {
+    name: document.getElementById("studentName").value,
+    id: adNo,
+    bill: billAmount,
+    type: type, 
+    menu_items: c_user_menu,
+ }
+//serializing obj and creting the parameters
+ var str = "";
+ for (var key in user_profile) {
+     if (str != "") {
+         str += "&";
+     }
+     str += key + "=" + encodeURIComponent(obj[key]);
+ }
+ //sending the link with the parameters
+ window.location = "https://api.dpscanteen.ml/paytm?" + str;
 }
 
 function transUpdate(){
