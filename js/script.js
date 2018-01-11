@@ -10,7 +10,7 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 var userRef, userInfo;
-var adNo;
+var adNo = 'BE00012314';
 //start dev code
 // setTimeout(function(){
 //     $('#wrapper').fadeOut(function() { $(this).remove(); });
@@ -18,7 +18,7 @@ var adNo;
 //   }, 1500);
 
 //end dev code
-firebase.auth().onAuthStateChanged(function(user) {
+/*firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     console.log(user);
     adNo = user.uid;
@@ -41,7 +41,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       alert('You are not logged in');
     }
   }
-});
+});*/
 
 var billAmount = 0;
 var loadingMenu = 0;
@@ -139,7 +139,7 @@ $(document).ready(function() {
     });
   }
 
-  
+
   // Vertical tabs
   $('#parentVerticalTab').easyResponsiveTabs({
     type: 'vertical',
@@ -197,7 +197,7 @@ function updateMenu(){
 
 
 
-var userRef = database.ref().child("users").child("BE00012314");
+//var userRef = database.ref().child("users").child("BE00012314");
 
 function setUser(){
   userRef.on('value', function(snapshot){
@@ -265,12 +265,12 @@ function topUp(type) {
     userRef.child('menuBalance').transaction(function(menuBalance) {
       return menuBalance + amount
     }).then(function() {
-      //sending to the billiing page 
+      //sending to the billiing page
    var user_profile = {
     name: document.getElementById("studentName").value,
     id: adNo,
     bill: billAmount,
-    type: type, 
+    type: type,
     menu_items: c_user_menu,
  }
  console.log(user_profile);
