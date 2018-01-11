@@ -12,6 +12,13 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var userRef, userInfo;
 var adNo;
+//start dev code
+// setTimeout(function(){
+//     $('#wrapper').fadeOut(function() { $(this).remove(); });
+//     $('#slideshow').fadeOut( function() { $(this).remove(); });
+//   }, 1500);
+
+//end dev code
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     adNo = user.uid;
@@ -47,6 +54,7 @@ var menu = [];
 var menu_count ;
 var preRest = [];
 var menIdt = 1;
+var c_user_menu = [];
 var trig = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 var prices = [50,50,50,50,50,50,50,50,100,50,50,50,50,50,50,50,50,50,50,50];
 var currentBal = 0;
@@ -135,7 +143,6 @@ $(document).ready(function() {
     });
   }
 
- 
   $('#parentVerticalTab').easyResponsiveTabs({
     type: 'vertical',
     width: 'auto',
@@ -203,7 +210,7 @@ function updateMenu(){
 
 
 
-//var userRef = database.ref().child("users").child("BE00012314");
+var userRef = database.ref().child("users").child("BE00012314");
 
 function setUser(){
   userRef.on('value', function(snapshot){
@@ -240,11 +247,11 @@ function topUp(type) {
   var admNo = $('#idNum').val();
   if (type == 'menu') {
     var amount = billAmount;
-    console.log(amount);
     menIdt = 0;
     var restrictions = [];
     for(var i = 0; i < 20; i++){
       if(trig[i] == 1){
+        c_user_menu[i] = menu[i];
         restrictions.push(menu[i]);
       }
     }
@@ -268,6 +275,7 @@ function topUp(type) {
       var restriction = preRest.concat(restrictions);
       return restriction
     });
+
         firebase.database().ref('users/'+adNo+'/menuBalance').transaction(function(menuBalance) {
           return menuBalance + amount
         }).then(function() {
@@ -294,6 +302,12 @@ function topUp(type) {
   console.log(obj);
   //redirects to billing
   //userprofile
+
+    userRef.child('menuBalance').transaction(function(menuBalance) {
+      return menuBalance + amount
+    }).then(function() {
+      //sending to the billiing page 
+
    var user_profile = {
     name: document.getElementById("studentName").value,
     id: adNo,
@@ -311,6 +325,24 @@ function topUp(type) {
  }
  //sending the link with the parameters
  window.location = "https://api.dpscanteen.ml/paytm?" + str;
+
+      preRest.length = 0;
+      toast('Recharge successful');
+      clearSelection();
+      getPreRest();
+    });
+  }else{
+  userRef.child('balance').transaction(function(balance) {
+    console.log("i happpen");
+    return balance + amount
+  }).then(function() {
+    toast('Recharge successful');
+
+  });
+}
+
+
+
 }
 
 function transUpdate(){
