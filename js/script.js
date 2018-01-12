@@ -264,7 +264,7 @@ function setCurrentBal(){
 
 //On recharge btn click
 function topUp(type) {
-  toast("Redirecting to billing..");
+  modified_Toast("Redirecting to billing..",10000)
   var admNo = $('#idNum').val();
   //For the menu
   if (type == 'menu') {
@@ -458,6 +458,19 @@ function toast(toast) {
   x.style.color = "#fff";
   // After 3 seconds, remove the show class from DIV
   setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+function modified_Toast(toast,time) {
+    // Get the snackbar DIV
+  $("#snackbar").html(toast);
+  var x = document.getElementById("snackbar")
+
+  // Add the "show" class to DIV
+  x.className = "show";
+  x.style.backgroundColor = "#333";
+  x.style.color = "#fff";
+  // After 3 seconds, remove the show class from DIV
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, time);
 }
 
 
