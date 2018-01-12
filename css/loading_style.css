@@ -16,7 +16,7 @@ html {
         position:absolute;
         bottom:3vh;
         left:3vw;
-        font-size: 1em;
+        font-size: 2em;
   font-family: 'Oswald', sans-serif;
   color: white;
   display: -webkit-box;
@@ -687,7 +687,7 @@ html {
    }
 
    #UserNotRegistered {
-           font-size:1em;
+           font-size:1.35em;
    }
 }
 @media (max-width:230px) {

@@ -19,7 +19,15 @@ var adNo;
 //   }, 1500);
 
 //end dev code
-
+function changeErrorMessage(msg) {
+  setTimeout(() => {
+    var error_board = document.getElementById("UserNotRegistered");
+    var loading_thing = document.querySelector(".loader");
+   error_board.innerHTML = msg;
+   error_board.style="display:block";
+   loading_thing.style = "display:none";
+  },100); 
+}
 //auth starts
 firebase.auth().onAuthStateChanged(function(user) {
   if (user != null) {
@@ -34,13 +42,13 @@ firebase.auth().onAuthStateChanged(function(user) {
         $('#wrapper').fadeOut(function() { $(this).remove(); });
         $('#slideshow').fadeOut( function() { $(this).remove(); });
     }else{
-      window.alert("Unregistered User");
+      changeErrorMessage("Unregistered User");
     }
     });
   } else {
     console.log('logged out');
     if (!$.urlParam('token')) {
-      window.alert('You are not logged in');
+      changeErrorMessage('You are not logged in :-(');
     }
   }
 });
