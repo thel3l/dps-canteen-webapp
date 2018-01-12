@@ -42,7 +42,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         $('#wrapper').fadeOut(function() { $(this).remove(); });
         $('#slideshow').fadeOut( function() { $(this).remove(); });
     }else{
-      changeErrorMessage("Unregistered User");
+      changeErrorMessage("You shall not pass :-)");
     }
     });
   } else {
