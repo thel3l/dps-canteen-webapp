@@ -338,29 +338,27 @@ optimize loading page speed
 */
 
 //menuitems array refining for data transafer
-var temp_menu = [];
-for(var x in c_user_menu) {
-  if(c_user_menu[x] != " " && c_user_menu != null) {
-     temp_menu.push(c_user_menu[x]);
-  }
-}
-  //sending to the billiing page 
-  var user_profile = {
-    name: document.getElementById("studentName").value,
-    id: adNo,
-    bill: billAmount,
-    type: type, 
-    menu_items: temp_menu,
- }
- console.log(user_profile);
-//serializing obj and creating the parameters
- var str = "";
- for (var key in user_profile) {
-     if (str != "") {
-         str += "&";
-     }
-     str += key + "=" + encodeURIComponent(user_profile[key]);
- }
+// var temp_menu = [];
+// for(var x in c_user_menu) {
+//   if(c_user_menu[x] != " " && c_user_menu != null) {
+//      temp_menu.push(c_user_menu[x]);
+//   }
+// }
+//   //sending to the billiing page 
+//   var user_profile = {
+//     bill: billAmount,
+//     type: type, 
+//     menu_items: temp_menu,
+//  }
+//  console.log(user_profile);
+// //serializing obj and creating the parameters
+//  var str = "";
+//  for (var key in user_profile) {
+//      if (str != "") {
+//          str += "&";
+//      }
+//      str += key + "=" + encodeURIComponent(user_profile[key]);
+//  }
  //sending the link with the parameters
  //window.location = "https://api.dpscanteen.ml/paytm?" + str;
 
