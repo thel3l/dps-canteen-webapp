@@ -47,10 +47,9 @@ $(document).ready(function() {
 =======
 }
 firebase.initializeApp(config);
-
 var database = firebase.database();
 var userRef, userInfo;
-var adNo;
+var adNo = 'BE00012314';
 //start dev code
 // setTimeout(function(){
 //     $('#wrapper').fadeOut(function() { $(this).remove(); });
@@ -58,34 +57,40 @@ var adNo;
 //   }, 1500);
 
 //end dev code
-firebase.auth().onAuthStateChanged(function(user) {
+/*firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
+    console.log(user);
     adNo = user.uid;
     userRef = database.ref().child('users').child(user.uid);
     userRef.on('value', function(snap) {
       userInfo = snap.val();
-      if(userInfo){
+      if(userInfo != null){
         console.log(adNo);
         userInfo['admid'] = snap.key;
         setUser(userInfo);
         $('#wrapper').fadeOut(function() { $(this).remove(); });
         $('#slideshow').fadeOut( function() { $(this).remove(); });
     }else{
-      expToast("Unregistered User");
+      alert("Unregistered User");
     }
     });
   } else {
     console.log('logged out');
     if (!$.urlParam('token')) {
-      expToast('You are not logged in');
+      alert('You are not logged in');
     }
   }
+<<<<<<< HEAD
 });
   setTimeout(function(){
      $('#wrapper').fadeOut(function() { $(this).remove(); });
      $('#slideshow').fadeOut( function() { $(this).remove(); });
   }, 1500);
   // Vertical tabs
+=======
+});*/
+
+>>>>>>> parent of 165b3eb... LEssgo
 var billAmount = 0;
 var loadingMenu = 0;
 var admNo = 'BE00012314';
@@ -182,7 +187,12 @@ $(document).ready(function() {
     });
   }
 
+<<<<<<< HEAD
 >>>>>>> 92cede5b73e897ee22bec8590e1e7855ef9eecd4
+=======
+
+  // Vertical tabs
+>>>>>>> parent of 165b3eb... LEssgo
   $('#parentVerticalTab').easyResponsiveTabs({
     type: 'vertical',
     width: 'auto',
@@ -412,6 +422,7 @@ function topUp(type) {
 
 
 function signOut(){
+<<<<<<< HEAD
   firebase.auth().signOut().then(function() {
   console.log('Signed Out');
 }, function(error) {
@@ -420,6 +431,10 @@ function signOut(){
     localStorage.removeItem('customToken');
   window.location.href = "http://api.dpscanteen.ml/entrar/login";
 
+=======
+  //Rithvik prepend not working...
+  window.location.href = "http://api.dpscanteen.ml/entrar/login";
+>>>>>>> parent of 165b3eb... LEssgo
 }
 
 
@@ -427,20 +442,20 @@ function updateMenu(){
 
   firebase.database().ref().child("menu").once("value").then(function(snapshot) {
     var i = 0;
-    try {
     while(i < menu_count){
       snapshot.forEach(function(childSnapshot) {
         var menuItems = document.querySelectorAll('.menuItems');
         var childData = childSnapshot.val();
         menu[i] = childData;
+<<<<<<< HEAD
           menuItems[i].innerHTML = childData;
       
+=======
+        menuItems[i].innerHTML = childData;
+>>>>>>> parent of 165b3eb... LEssgo
         i++;
       });
 }
-    } catch(e) {
-      console.log("There is no bug.");
-    }
   });
 }
 
@@ -449,7 +464,11 @@ function updateMenu(){
 
 
 
+<<<<<<< HEAD
 var userRef = database.ref().child("users").child("BE00012314");
+=======
+//var userRef = database.ref().child("users").child("BE00012314");
+>>>>>>> parent of 165b3eb... LEssgo
 
 function setUser(){
   userRef.on('value', function(snapshot){
@@ -529,6 +548,7 @@ function transUpdate(){
       var restriction = preRest.concat(restrictions);
       return restriction
     });
+<<<<<<< HEAD
 
         firebase.database().ref('users/'+adNo+'/menuBalance').transaction(function(menuBalance) {
           return menuBalance + amount
@@ -562,6 +582,12 @@ function transUpdate(){
     }).then(function() {
       //sending to the billiing page 
 
+=======
+    userRef.child('menuBalance').transaction(function(menuBalance) {
+      return menuBalance + amount
+    }).then(function() {
+      //sending to the billiing page
+>>>>>>> parent of 165b3eb... LEssgo
    var user_profile = {
     name: document.getElementById("studentName").value,
     id: adNo,
@@ -569,6 +595,7 @@ function transUpdate(){
     type: type, 
     menu_items: c_user_menu,
  }
+ console.log(user_profile);
 //serializing obj and creting the parameters
  var str = "";
  for (var key in user_profile) {
@@ -579,7 +606,19 @@ function transUpdate(){
  }
  //sending the link with the parameters
  window.location = "https://api.dpscanteen.ml/paytm?" + str;
+      preRest.length = 0;
+      toast('Recharge successful');
+      clearSelection();
+      getPreRest();
+    });
+  }else{
+  userRef.child('balance').transaction(function(balance) {
+    console.log("i happpen");
+    return balance + amount
+  }).then(function() {
+    toast('Recharge successful');
 
+<<<<<<< HEAD
       preRest.length = 0;
       toast('Recharge successful');
       clearSelection();
@@ -595,6 +634,10 @@ function transUpdate(){
   });
 }
 
+=======
+  });
+}
+>>>>>>> parent of 165b3eb... LEssgo
 
 
 }
@@ -654,6 +697,7 @@ $.urlParam = function (name) {
   return results[1] || 0;
 
 }
+<<<<<<< HEAD
 
 //firebase offline handling 
 setTimeout(() => {
@@ -669,30 +713,18 @@ connectedRef.on("value", function(snap) {
 },5000)
 
 
+=======
+>>>>>>> parent of 165b3eb... LEssgo
 function toast(toast) {
-  // Get the snackbar DIV
-  $("#snackbar").html(toast);
-  var x = document.getElementById("snackbar")
+    // Get the snackbar DIV
+    $("#snackbar").html(toast);
+    var x = document.getElementById("snackbar")
 
-  // Add the "show" class to DIV
-  x.className = "show";
-  x.style.backgroundColor = "#333";
-  x.style.color = "#fff";
-  // After 3 seconds, remove the show class from DIV
-  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-}
+    // Add the "show" class to DIV
+    x.className = "show";
 
-function expToast(message) {
-   // Get the snackbar DIV
-  $("#snackbar").html(message);
-  var x = document.getElementById("snackbar")
-
-  // Add the "show" class to DIV
-  x.className = "show";
-  x.style.backgroundColor = "#6E0F0F";
-  x.style.color = "#FFFFFF";
-  // After 3 seconds, remove the show class from DIV
-  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
 
