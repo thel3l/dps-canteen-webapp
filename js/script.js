@@ -12,7 +12,7 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var userRef, userInfo;
 var adNo;
-/*firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     adNo = user.uid;
     userRef = database.ref().child('users').child(user.uid);
@@ -25,16 +25,16 @@ var adNo;
         $('#wrapper').fadeOut(function() { $(this).remove(); });
         $('#slideshow').fadeOut( function() { $(this).remove(); });
     }else{
-      expToast("Unregistered User");
+      toast("Unregistered User");
     }
     });
   } else {
     console.log('logged out');
     if (!$.urlParam('token')) {
-      expToast('You are not logged in');
+      toast('You are not logged in');
     }
   }
-});*/
+});
   setTimeout(function(){
      $('#wrapper').fadeOut(function() { $(this).remove(); });
      $('#slideshow').fadeOut( function() { $(this).remove(); });
@@ -377,17 +377,6 @@ function toast(toast) {
   setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
-function expToast(message) {
-   // Get the snackbar DIV
-  $("#snackbar").html(message);
-  var x = document.getElementById("snackbar")
 
-  // Add the "show" class to DIV
-  x.className = "show";
-  x.style.backgroundColor = "#6E0F0F";
-  x.style.color = "#FFFFFF";
-  // After 3 seconds, remove the show class from DIV
-  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-}
 
 
