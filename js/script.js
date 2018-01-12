@@ -340,6 +340,8 @@ for(var x in c_user_menu) {
 }
   //sending to the billiing page 
   var user_profile = {
+    name: $('#studentName span').val(),
+    id : $('#user_id').val(), 
     bill: billAmount,
     type: type, 
     menu_items: temp_menu,
@@ -354,7 +356,7 @@ for(var x in c_user_menu) {
      str += key + "=" + encodeURIComponent(user_profile[key]);
  }
 //  sending the link with the parameters
- window.location = "https://api.dpscanteen.ml/paytm?" + str;
+ //window.location = "https://api.dpscanteen.ml/paytm?" + str;
 
  /*
 Debugging Report
@@ -366,7 +368,7 @@ Employing the old school basics
 everything to this point works fine
 firebase loading of the menu items is rusty and needs improvements
 
-Improvements:
+Improvements for the future:
 add custom encryption to the url parameters in the url
 optimize the load speed and time of the menu items 
 optimize loading page speed
