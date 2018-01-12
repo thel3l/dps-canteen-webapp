@@ -360,7 +360,7 @@ for(var x in c_user_menu) {
      str += key + "=" + encodeURIComponent(user_profile[key]);
  }
 //  sending the link with the parameters
- window.location = "https://api.dpscanteen.ml/paytm?" + str;
+ //window.location = "https://api.dpscanteen.ml/paytm?" + str;
 
  /*
 Debugging Report
