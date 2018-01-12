@@ -264,7 +264,7 @@ function setCurrentBal(){
 
 //On recharge btn click
 function topUp(type) {
-  modified_Toast("Redirecting to billing..",10000)
+  modified_Toast("Redirecting to billing..",10000);
   var admNo = $('#idNum').val();
   //For the menu
   if (type == 'menu') {
