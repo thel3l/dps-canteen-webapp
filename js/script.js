@@ -287,7 +287,7 @@ function topUp(type) {
     console.error('Food plan not selected or amount not entered');
     return
   }
-
+  
   //send the menu Items
   if(menIdt == 0){
       var restRef = database.ref('users/'+adNo+'/items_bought');
@@ -307,40 +307,62 @@ function topUp(type) {
         getPreRest();
     });
    //upadting menu end
-  }else{
+  }  else{
       // else start the handling for cutom amount
        firebase.database().ref('users/'+adNo+'/balance').transaction(function(balance) {
         return balance + amount ;
        }).then(function() {
          toast('Recharge successful');
       });
-  }
+  } 
     //updating the user balance
-    userRef.child('menuBalance').transaction(function(menuBalance) {
-      return menuBalance + amount ;
-    })
-    //menu transaction code is done 
+         firebase.database().ref('users/'+adNo).child('menuBalance').transaction(function(menuBalance) {
+           return menuBalance + amount ;
+        });
+      
+     //menu transaction code is done 
+/*
+Debugging Report
+degugger:Madrigal1
+issue: recharge button problems
+comments and report :
+Employing the old school basics
+(a console.log(every line to stack trace the error ))
+everything to this point works fine
+firebase loading of the menu items is rusty and needs improvements
 
+Improvements:
+add custom encryption to the url parameters in the url
+optimize the load speed and time of the menu items 
+optimize loading page speed
+*/
 
+//menuitems array refining for data transafer
+var temp_menu = [];
+for(var x in c_user_menu) {
+  if(c_user_menu[x] != " " && c_user_menu != null) {
+     temp_menu.push(c_user_menu[x]);
+  }
+}
   //sending to the billiing page 
-
   var user_profile = {
     name: document.getElementById("studentName").value,
     id: adNo,
     bill: billAmount,
     type: type, 
-    menu_items: c_user_menu,
+    menu_items: temp_menu,
  }
+ console.log(user_profile);
 //serializing obj and creating the parameters
  var str = "";
  for (var key in user_profile) {
      if (str != "") {
          str += "&";
      }
-     str += key + "=" + encodeURIComponent(obj[key]);
+     str += key + "=" + encodeURIComponent(user_profile[key]);
  }
  //sending the link with the parameters
- window.location = "https://api.dpscanteen.ml/paytm?" + str;
+ //window.location = "https://api.dpscanteen.ml/paytm?" + str;
 
     //end of topup function
 }
