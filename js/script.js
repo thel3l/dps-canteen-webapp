@@ -28,6 +28,14 @@ function changeErrorMessage(msg) {
    loading_thing.style = "display:none";
   },100); 
 }
+/*
+Debugging report 
+debugger: Madrigal1
+issue: recharge button spazzes out 
+ the code block starting from 'auth starts' to 'auth ends appears to be the cause of the problem'
+  Solutions :
+   Ongoing 
+*/
 //auth starts
 // firebase.auth().onAuthStateChanged(function(user) {
 //   if (user != null) {
@@ -321,21 +329,7 @@ function topUp(type) {
         });
       
      //menu transaction code is done 
-/*
-Debugging Report
-degugger:Madrigal1
-issue: recharge button problems
-comments and report :
-Employing the old school basics
-(a console.log(every line to stack trace the error ))
-everything to this point works fine
-firebase loading of the menu items is rusty and needs improvements
 
-Improvements:
-add custom encryption to the url parameters in the url
-optimize the load speed and time of the menu items 
-optimize loading page speed
-*/
 
 // menuitems array refining for data transafer
 var temp_menu = [];
@@ -361,6 +355,22 @@ for(var x in c_user_menu) {
  }
 //  sending the link with the parameters
  window.location = "https://api.dpscanteen.ml/paytm?" + str;
+
+ /*
+Debugging Report
+degugger:Madrigal1
+issue: recharge button problems
+comments and report :
+Employing the old school basics
+(a console.log(every line to stack trace the error ))
+everything to this point works fine
+firebase loading of the menu items is rusty and needs improvements
+
+Improvements:
+add custom encryption to the url parameters in the url
+optimize the load speed and time of the menu items 
+optimize loading page speed
+*/
 
     //end of topup function
 }
