@@ -14,10 +14,10 @@ var userRef, userInfo;
 var adNo;
 var temp_adno;
 //start dev code
-setTimeout(function(){
-    $('#wrapper').fadeOut(function() { $(this).remove(); });
-    $('#slideshow').fadeOut( function() { $(this).remove(); });
-  }, 1500);
+// setTimeout(function(){
+//     $('#wrapper').fadeOut(function() { $(this).remove(); });
+//     $('#slideshow').fadeOut( function() { $(this).remove(); });
+//   }, 1500);
 
 //end dev code
 function changeErrorMessage(msg) {
@@ -44,7 +44,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     userRef = database.ref().child('users').child(user.uid);
        firebase.database().ref('users/'+adNo).once('value').then( (snap) => {
        userInfo = snap.val();
-       console.log(userInfo);
        if(userInfo){
         console.log(adNo);
         temp_adno = adNo;
@@ -265,6 +264,7 @@ function setCurrentBal(){
 
 //On recharge btn click
 function topUp(type) {
+  toast("Redirecting to billing..");
   var admNo = $('#idNum').val();
   //For the menu
   if (type == 'menu') {
@@ -344,8 +344,8 @@ for(var x in c_user_menu) {
 }
   //sending to the billiing page 
   var user_profile = {
-    name: $('#studentName span').val(),
-    id : $('#user_id').val(), 
+    name: $('#studentName span').text(),
+    id : $('#user_id').text(), 
     bill: billAmount,
     type: type, 
     menu_items: temp_menu,
