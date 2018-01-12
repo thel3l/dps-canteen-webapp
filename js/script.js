@@ -38,20 +38,22 @@ issue: recharge button spazzes out
 */
 //auth starts
 firebase.auth().onAuthStateChanged(function(user) {
-  if (user != null) {
+  if (user) {
     adNo = user.uid;
     userRef = database.ref().child('users').child(user.uid);
-    userRef.on('value', function(snap) {
-      userInfo = snap.val();
-      if(userInfo){
+       firebase.database().ref('users/'+adNo).once('value').then( (snap) => {
+       userInfo = snap.val();
+       console.log(userInfo);
+       if(userInfo){
         console.log(adNo);
         userInfo['admid'] = snap.key;
         setUser(userInfo);
         $('#wrapper').fadeOut(function() { $(this).remove(); });
         $('#slideshow').fadeOut( function() { $(this).remove(); });
-    }else{
-      changeErrorMessage("You shall not pass :-)");
-    }
+       }
+       else{
+        changeErrorMessage("You shall not pass :-)");
+      }
     });
   } else {
     console.log('logged out');
