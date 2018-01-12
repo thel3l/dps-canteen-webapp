@@ -44,7 +44,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     userRef = database.ref().child('users').child(user.uid);
        firebase.database().ref('users/'+adNo).once('value').then( (snap) => {
        userInfo = snap.val();
-       console.log(userInfo);
        if(userInfo){
         console.log(adNo);
         temp_adno = adNo;
