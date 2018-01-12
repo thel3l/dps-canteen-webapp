@@ -12,6 +12,7 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var userRef, userInfo;
 var adNo;
+var temp_adno;
 //start dev code
 setTimeout(function(){
     $('#wrapper').fadeOut(function() { $(this).remove(); });
@@ -46,6 +47,7 @@ firebase.auth().onAuthStateChanged(function(user) {
        console.log(userInfo);
        if(userInfo){
         console.log(adNo);
+        temp_adno = adNo;
         userInfo['admid'] = snap.key;
         setUser(userInfo);
         $('#wrapper').fadeOut(function() { $(this).remove(); });
