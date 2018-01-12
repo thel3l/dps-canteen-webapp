@@ -1,4 +1,4 @@
-//initializeApp
+﻿﻿//initializeApp
 var config = {
   apiKey: "AIzaSyCas9WSzPdCvatx7ODWMTquCCwiuZEj-UI",
   authDomain: "dpsemca-1f00a.firebaseapp.com",
@@ -12,40 +12,59 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var userRef, userInfo;
 var adNo;
+var temp_adno;
 //start dev code
-// setTimeout(function(){
-//     $('#wrapper').fadeOut(function() { $(this).remove(); });
-//     $('#slideshow').fadeOut( function() { $(this).remove(); });
-//   }, 1500);
+setTimeout(function(){
+    $('#wrapper').fadeOut(function() { $(this).remove(); });
+    $('#slideshow').fadeOut( function() { $(this).remove(); });
+  }, 1500);
 
 //end dev code
+function changeErrorMessage(msg) {
+  setTimeout(() => {
+    var error_board = document.getElementById("UserNotRegistered");
+    var loading_thing = document.querySelector(".loader");
+   error_board.innerHTML = msg;
+   error_board.style="display:block";
+   loading_thing.style = "display:none";
+  },100); 
+}
+/*
+Debugging report 
+debugger: Madrigal1
+issue: recharge button spazzes out 
+ the code block starting from 'auth starts' to 'auth ends appears to be the cause of the problem'
+  Solutions :
+   Ongoing 
+*/
+//auth starts
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     adNo = user.uid;
     userRef = database.ref().child('users').child(user.uid);
-    userRef.on('value', function(snap) {
-      userInfo = snap.val();
-      if(userInfo){
+       firebase.database().ref('users/'+adNo).once('value').then( (snap) => {
+       userInfo = snap.val();
+       console.log(userInfo);
+       if(userInfo){
         console.log(adNo);
+        temp_adno = adNo;
         userInfo['admid'] = snap.key;
         setUser(userInfo);
         $('#wrapper').fadeOut(function() { $(this).remove(); });
         $('#slideshow').fadeOut( function() { $(this).remove(); });
-    }else{
-      expToast("Unregistered User");
-    }
+       }
+       else{
+        changeErrorMessage("You shall not pass :-)");
+      }
     });
   } else {
     console.log('logged out');
     if (!$.urlParam('token')) {
-      expToast('You are not logged in');
+      changeErrorMessage('You are not logged in :-(');
     }
   }
 });
-  setTimeout(function(){
-     $('#wrapper').fadeOut(function() { $(this).remove(); });
-     $('#slideshow').fadeOut( function() { $(this).remove(); });
-  }, 1500);
+//auth end
   // Vertical tabs
 var billAmount = 0;
 var loadingMenu = 0;
@@ -243,8 +262,11 @@ $(document).ready(function(){
 function setCurrentBal(){
       $('#currentWalletBal').text(currentBal);
 }
+
+//On recharge btn click
 function topUp(type) {
   var admNo = $('#idNum').val();
+  //For the menu
   if (type == 'menu') {
     var amount = billAmount;
     menIdt = 0;
@@ -255,6 +277,9 @@ function topUp(type) {
         restrictions.push(menu[i]);
       }
     }
+  //menu end
+
+  //custom start
   } else  if (type == 'custom') {
     var wantedAmount = parseInt($('#customMon').val());
     if(wantedAmount < 10){
@@ -264,87 +289,103 @@ function topUp(type) {
     }else{
     var amount = wantedAmount;
     }
+  //custom end
+  } else {
+    console.log("error");
   }
+
+  //check if menu items have not been selcted
   if (!amount) {
     console.error('Food plan not selected or amount not entered');
     return
   }
+  
+  //send the menu Items
   if(menIdt == 0){
-    var restRef = database.ref('users/'+adNo+'/items_bought');
-    restRef.transaction(function(){
-      var restriction = preRest.concat(restrictions);
-      return restriction
-    });
+      var restRef = database.ref('users/'+adNo+'/items_bought');
+      //making the menu items list 
+      restRef.transaction(function(){
+        var restriction = preRest.concat(restrictions);
+        return restriction
+       });
 
-        firebase.database().ref('users/'+adNo+'/menuBalance').transaction(function(menuBalance) {
-          return menuBalance + amount
-        }).then(function() {
-          preRest.length = 0;
-          toast('Recharge successful');
-          clearSelection();
-          getPreRest();
-        });
-       }else{
-       firebase.database().ref('users/'+adNo+'/balance').transaction(function(balance) {
-        console.log("i happpen");
-        return balance + amount
+      //updating menu
+      firebase.database().ref('users/'+adNo+'/menuBalance').transaction(function(menuBalance) {
+        return menuBalance + amount
       }).then(function() {
+        preRest.length = 0;
         toast('Recharge successful');
+        clearSelection();
+        getPreRest();
+    });
+   //upadting menu end
+  }  else{
+      // else start the handling for cutom amount
+       firebase.database().ref('users/'+adNo+'/balance').transaction(function(balance) {
+        return balance + amount ;
+       }).then(function() {
+         toast('Recharge successful');
+      });
+  } 
+    //updating the user balance
+         firebase.database().ref('users/'+adNo).child('menuBalance').transaction(function(menuBalance) {
+           return menuBalance + amount ;
         });
-      }
-    
-   
-  var obj = {
-   name: "sampleboi",
-   id: 1234,
-   array: ["this works","hopefully"]
+      
+     //menu transaction code is done 
+
+
+// menuitems array refining for data transafer
+var temp_menu = [];
+for(var x in c_user_menu) {
+  if(c_user_menu[x] != " " && c_user_menu != null) {
+     temp_menu.push(c_user_menu[x]);
   }
-  console.log(obj);
-  //redirects to billing
-  //userprofile
-
-    userRef.child('menuBalance').transaction(function(menuBalance) {
-      return menuBalance + amount
-    }).then(function() {
-      //sending to the billiing page 
-
-   var user_profile = {
-    name: document.getElementById("studentName").value,
-    id: adNo,
+}
+  //sending to the billiing page 
+  var user_profile = {
+    name: $('#studentName span').val(),
+    id : $('#user_id').val(), 
     bill: billAmount,
     type: type, 
-    menu_items: c_user_menu,
+    menu_items: temp_menu,
  }
-//serializing obj and creting the parameters
+ console.log(user_profile);
+//serializing obj and creating the parameters
  var str = "";
  for (var key in user_profile) {
      if (str != "") {
          str += "&";
      }
-     str += key + "=" + encodeURIComponent(obj[key]);
+     str += key + "=" + encodeURIComponent(user_profile[key]);
  }
- //sending the link with the parameters
+//  sending the link with the parameters
  window.location = "https://api.dpscanteen.ml/paytm?" + str;
 
-      preRest.length = 0;
-      toast('Recharge successful');
-      clearSelection();
-      getPreRest();
-    });
-  }else{
-  userRef.child('balance').transaction(function(balance) {
-    console.log("i happpen");
-    return balance + amount
-  }).then(function() {
-    toast('Recharge successful');
+ /*
+Debugging Report
+degugger:Madrigal1
+issue: recharge button problems
+comments and report :
+Employing the old school basics
+(a console.log(every line to stack trace the error ))
+everything to this point works fine
+firebase loading of the menu items is rusty and needs improvements
 
-  });
+Improvements for the future:
+add custom encryption to the url parameters in the url
+optimize the load speed and time of the menu items 
+optimize loading page speed
+*/
+
+    //end of topup function
 }
 
 
 
-}
 
+
+     
 function transUpdate(){
   var limit = parseInt($('#transPrec').val());
   database.ref('transactions').child(adNo).orderByChild('timestamp').limitToLast(limit).once('value').then(function(snapshot) {
@@ -419,17 +460,5 @@ function toast(toast) {
   setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
-function expToast(message) {
-   // Get the snackbar DIV
-  $("#snackbar").html(message);
-  var x = document.getElementById("snackbar")
-
-  // Add the "show" class to DIV
-  x.className = "show";
-  x.style.backgroundColor = "#6E0F0F";
-  x.style.color = "#FFFFFF";
-  // After 3 seconds, remove the show class from DIV
-  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-}
 
 
