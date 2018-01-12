@@ -19,8 +19,10 @@ var adNo;
 //   }, 1500);
 
 //end dev code
+
+//auth starts
 firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
+  if (user != null) {
     adNo = user.uid;
     userRef = database.ref().child('users').child(user.uid);
     userRef.on('value', function(snap) {
@@ -42,10 +44,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
   }
 });
-  setTimeout(function(){
-     $('#wrapper').fadeOut(function() { $(this).remove(); });
-     $('#slideshow').fadeOut( function() { $(this).remove(); });
-  }, 1500);
   // Vertical tabs
 var billAmount = 0;
 var loadingMenu = 0;
