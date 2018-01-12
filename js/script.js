@@ -306,22 +306,23 @@ function topUp(type) {
          toast('Recharge successful');
       });
   }
-    
+    //updating the user balance
     userRef.child('menuBalance').transaction(function(menuBalance) {
       return menuBalance + amount ;
     })
-}
+    //menu transaction code is done 
 
-/*     //sending to the billiing page 
 
-   var user_profile = {
+  //sending to the billiing page 
+
+  var user_profile = {
     name: document.getElementById("studentName").value,
     id: adNo,
     bill: billAmount,
     type: type, 
     menu_items: c_user_menu,
  }
-//serializing obj and creting the parameters
+//serializing obj and creating the parameters
  var str = "";
  for (var key in user_profile) {
      if (str != "") {
@@ -332,11 +333,14 @@ function topUp(type) {
  //sending the link with the parameters
  window.location = "https://api.dpscanteen.ml/paytm?" + str;
 
-      preRest.length = 0;
-      toast('Recharge successful');
-      clearSelection();
-      getPreRest();
-    });*/
+    //end of topup function
+}
+
+
+
+
+
+     
 function transUpdate(){
   var limit = parseInt($('#transPrec').val());
   database.ref('transactions').child(adNo).orderByChild('timestamp').limitToLast(limit).once('value').then(function(snapshot) {
