@@ -14,10 +14,10 @@ var userRef, userInfo;
 var adNo;
 var temp_adno;
 //start dev code
-setTimeout(function(){
-    $('#wrapper').fadeOut(function() { $(this).remove(); });
-    $('#slideshow').fadeOut( function() { $(this).remove(); });
-  }, 1500);
+// setTimeout(function(){
+//     $('#wrapper').fadeOut(function() { $(this).remove(); });
+//     $('#slideshow').fadeOut( function() { $(this).remove(); });
+//   }, 1500);
 
 //end dev code
 function changeErrorMessage(msg) {
