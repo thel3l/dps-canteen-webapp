@@ -1,7 +1,7 @@
 # dps-canteen-webapp
-The master version may be found at:
+The main ver can be found at :
 https://dpscanteen.ml
 
-The dev version is at:
 
+The dev version at 
 https://thel3l.github.io/dps-canteen-webapp/
