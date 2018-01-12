@@ -243,6 +243,8 @@ $(document).ready(function(){
 function setCurrentBal(){
       $('#currentWalletBal').text(currentBal);
 }
+
+//On recharge btn click
 function topUp(type) {
   var admNo = $('#idNum').val();
   //For the menu
