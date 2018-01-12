@@ -11,8 +11,25 @@ html {
     background: transparent;  /* just make scrollbar invisible */
 }
 
-
-.loader {
+#UserNotRegistered {
+        display:none;
+        position:absolute;
+        bottom:3vh;
+        left:3vw;
+        font-size: 2em;
+  font-family: 'Oswald', sans-serif;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  
+  position: fixed;
+  right: 0;
+}
+.loader { 
         font-size:2em;
         position: absolute;
         top:90%;
@@ -667,6 +684,10 @@ html {
    }
    #footer span {
      top:18vh;
+   }
+
+   #UserNotRegistered {
+           font-size:1.35em;
    }
 }
 @media (max-width:230px) {

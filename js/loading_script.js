@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var start_time = new Date().getTime();
   var upward_moving_group = document.getElementById("phrases");
   upward_moving_group.currentY = 0;
-  var checks = phrases.map(function(_, i) {
+  var checks = phrases.map(function(_, i) { 
     return {check: document.getElementById(checkmarkIdPrefix + i), circle: document.getElementById(checkmarkCircleIdPrefix + i)};
   });
   function animateLoading() {

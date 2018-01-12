@@ -58,10 +58,6 @@
                         $respTabs.find('.resp-tabs-list').css('display', 'none');
                     }
                 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 92cede5b73e897ee22bec8590e1e7855ef9eecd4
                 //Assigning the h2 markup to accordion title
                 var $tabItemh2;
                 $respTabs.find('.resp-tab-content.' + options.tabidentify).before("<h2 class='resp-accordion " + options.tabidentify + "' role='tab'><span class='resp-arrow'></span></h2>");
@@ -138,19 +134,11 @@
                 else {
                    // $($respTabs.find('.resp-tab-content.' + options.tabidentify)[tabNum]).addClass('resp-accordion-closed'); //removed resp-tab-content-active
                 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 92cede5b73e897ee22bec8590e1e7855ef9eecd4
                 //Tab Click action function
                 $respTabs.find("[role=tab]").each(function () {
 
                     var $currentTab = $(this);
                     $currentTab.click(function () {
-<<<<<<< HEAD
-
-=======
->>>>>>> 92cede5b73e897ee22bec8590e1e7855ef9eecd4
                         var $currentTab = $(this);
                         var $tabAria = $currentTab.attr('aria-controls');
 
@@ -162,10 +150,6 @@
                                 'background-color': options.inactive_bg,
                                 'border-color': 'none'
                             });
-<<<<<<< HEAD
-                            return false;
-=======
->>>>>>> 92cede5b73e897ee22bec8590e1e7855ef9eecd4
                         }
                         if (!$currentTab.hasClass('resp-tab-active') && $currentTab.hasClass('resp-accordion')) {
                             $respTabs.find('.resp-tab-active.' + options.tabidentify).removeClass('resp-tab-active').css({
@@ -180,10 +164,6 @@
 
                             $respTabs.find('.resp-tab-content[aria-labelledby = ' + $tabAria + '].' + options.tabidentify).slideDown().addClass('resp-tab-content-active');
                         } else {
-<<<<<<< HEAD
-                            console.log('here');
-=======
->>>>>>> 92cede5b73e897ee22bec8590e1e7855ef9eecd4
                             $respTabs.find('.resp-tab-active.' + options.tabidentify).removeClass('resp-tab-active').css({
                                 'background-color': options.inactive_bg,
                                 'border-color': 'none'

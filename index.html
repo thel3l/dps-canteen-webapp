@@ -1,153 +1,75 @@
-
 <!DOCTYPE html>
-<!-- html -->
 <html>
-
 <head>
   <title>DPSE Canteen Portal</title>
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  <link rel="shortcut icon" href="images/dpsIcon.jpg">
+  <link rel="manifest" href="manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+<!--  <link rel="icon" sizes="192x192" href="images/dpsIcon.jpg"> -->
+<link rel="stylesheet" href="./css/loading_style.css" type="text/css">
+<script src="./js/loading_script.js"></script>
+  <link rel="prefetch" href="./js/script.js">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Oxygen">
   <link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ResponsiveSlides.js/1.55/responsiveslides.min.js"></script>
-	<!-- Vertical tabs -->
-  <br>
-  <br>
-  <div class="categories-section main-grid-border" id="vertTab">
-    <div class="container">
-      <div class="category-list">
-        <div id="parentVerticalTab">
-          <div class="agileits-tab_nav">
-            <ul class="resp-tabs-list hor_1">
-              <li><i aria-hidden="true" class="icon fa fa-credit-card"></i>Wallets Topup</li>
-              <li><i aria-hidden="true" class="icon fa fa-television"></i>Transaction History</li>
-              <li><i aria-hidden="true" class="icon fa fa-file"></i>Menu</li>
-              <li><i aria-hidden="true" class="icon fa fa-home"></i>About</li>
-              <li><i aria-hidden="true" class="icon fa fa-lightbulb-o"></i>Creators</li>
-              <li><i aria-hidden="true" class="icon fa fa-users"></i>Profile</li>
-            </ul>
-          </div>
-          <div class="resp-tabs-container hor_1">
-
-						<!-- Wallet Topup -->
-            <div>
-              <div class="tabs-box container-fluid">
-                <i aria-hidden="true" class="icon fa fa-credit-card inner-icon"></i>
-                <ul class="tabs-menu">
-                  <li><a href="#tab1"><label class="radio"><input checked name="radio" type="radio"><i></i>Packages</label></a></li>
-                  <li><a href="#tab2"><label class="radio"><input name="radio" type="radio"><i></i>Custom</label></a></li>
-                </ul>
-								<br>
-								<p>Enter your admission number</p>
-								<input id="idNum" name="idNum" placeholder="Enter Admission Number" readonly="true" required="required" value="BE/0001234">
-								<br><br>
-                <div class="tab-grids">
-                  <div class="tab-grid" id="tab1">
-                    <select class="selectpicker show-tick" data-live-search="true" id="foodPlans" name="plans" required>
-                      <option data-tokens="Select Operator" disabled selected>Select Plan</option>
-                      <option data-tokens="day" value="50">1 Meal</option>
-                      <option data-tokens="week" value="250">5 Meals</option>
-                      <option data-tokens="month" value="1000">30 Meals</option>
-                    </select>
-										<br><br>
-										<input class="submit" onclick="topUp('package')" type="submit" value="Recharge Now">
-                  </div>
-                  <div class="tab-grid" id="tab2">
-										<input id="customMon" name="amount" placeholder="Enter amount" type="number" required>
-										<br><br>
-										<input class="submit" onclick="topUp('custom')" type="submit" value="Recharge Now">
-                  </div>
-                </div>
-              </div>
-            </div>
-						<!-- END Wallet Topup -->
-
-						<!-- Transaction History -->
-            <div>
-              <i aria-hidden="true" class="icon fa fa-television inner-icon"></i><br><br>
-              <select class="selectpicker show-tick" data-live-search="true" id="transPrec">
-                <option data-tokens="day" value="1">Last Usage</option>
-                <option data-tokens="ten" value="10">Last 10 Usages</option>
-                <option data-tokens="thirty" value="30">Last 30 Usages</option>
-                <option data-tokens="fifty" value="50">Last 50 Usages</option>
-              </select>
-							<br><br>
-              <input class="submit" data-target="#transModal" data-toggle="modal" onclick="transUpdate()" type="submit" value="View Now">
-            </div>
-						<!-- END Transaction history -->
-
-						<!-- Menu -->
-            <div>
-
-							<img class="img-responsive" src="">
-            </div>
-						<!-- END Menu -->
-
-						<!-- About -->
-            <div>
-
-							<img class="img-responsive" id="aboutProject" src="images/aboutdpse.png">
-            </div>
-						<!-- END About -->
-
-						<!-- Creators -->
-            <div>
-
-							<img class="img-responsive" id="aboutCreators" src="images/creatorsdpse.png">
-            </div>
-						<!-- END Creators -->
-
-						<!-- Profile -->
-            <div>
-              <!-- <i aria-hidden="true" class="icon fa fa-user inner-icon"></i> -->
-
-							<div class="container-fluid">
-								<div class="row">
-									<div class="col-xs-12 col-md-3">
-										<img id="profileImage" alt="Profile picture" class="img-responsive img-circle" src="">
-									</div>
-									<div class="col-xs-12 col-md-9">
-										<br><h4 id="studentName"><span></span></h4>
-										<br><h5 id="admNumber">Admission number: <span>BE00012314</span></h5>
-										<h4 id="walletBal">Wallet balance: ₹ <span></span></h4>
-									</div>
-								</div>
-							</div>
-
-            </div>
-						<!-- END Profile -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-database.js"></script>
-  <link rel="stylesheet" href="./css/loading_style.css" type="text/css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
  <!--Googe fonts-->
  <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=Montserrat">
  <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=Roboto">
+ <link href="https://fonts.googleapis.com/css?family=Rock+Salt" rel="stylesheet">
   <script src="js/script.js"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body id = "theBody" onload="updateMenu()">
   <div id="wrapper">
-    <div id="slideshow">
-        <div id="heading">
-            <span id="title">Dpse Canteen</span><br>
-            <span id="sub_title">The official online portal</span>
-        </div>
-    <img src="pics/burger.jpeg" alt="Img Not found" id="right" >
-    <img src="pics/burrito.jpeg" alt="Img Not found" id="middle-bottom" >
-    <img src="pics/pancake.jpeg" alt="Img Not found" id="middle-top"> 
-    <img src="pics/coffee.jpeg" alt="Img Not found" id="left">
+   <div id="slideshow">
+    <div id="page">
+      <div id="phrase_box">
+      <svg width="100%" height="100%">
+        <defs>
+          <!--<style type="text/css">
+            @font-face {
+              font-family: "Proxima";
+              src: url('');
+            }
+          </style>-->
+          <mask id="mask" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse">
+            <linearGradient id="linearGradient" gradientUnits="objectBoundingBox" x2="0" y2="1">
+              <stop stop-color="white" stop-opacity="0" offset="0%"/>
+              <stop stop-color="white" stop-opacity="1" offset="30%"/>
+              <stop stop-color="white" stop-opacity="1" offset="70%"/>
+              <stop stop-color="white" stop-opacity="0" offset="100%"/>
+            </linearGradient>
+            <rect width="100%" height="100%" fill="url(#linearGradient)"/>
+          </mask>
+        </defs>
+        <g width="100%" height="100%" style="mask: url(#mask);">
+          <g id="phrases"></g>
+        </g>
+      </svg>
+      </div>
+      <div id="footer">
+        Delhi Public School <br>
+        East <br>
+        <span id="faint">Official Canteen</span>
+      </div>
+      <div id="UserNotRegistered">
+         
+      </div>
+      <div class="loader">Loading<span class="loader__dot">.</span><span class="loader__dot">.</span><span class="loader__dot">.</span></div>
+    </div>
     </div>
   </div>
   <!--check-->
@@ -326,7 +248,7 @@
                     <div class="w3-card-4" style="width:100%">
                       <div class="w3-container">
                         <br>
-                        <img src="https://dyn.web.whatsapp.com/pp?e=https%3A%2F%2Fpps.whatsapp.net%2Fv%2Ft61.11540-24%2F16489273_785576664925944_6863185867301715968_n.jpg%3Foe%3D5A2D6C67%26oh%3Def2fdc75988c9603344309c3810e4a09&t=l&u=919483957034%40c.us&i=1438017160" alt="Rithvik Picture" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
+                        <img src="https://lh6.googleusercontent.com/-9KsoKuy-E2I/AAAAAAAAAAI/AAAAAAAAOfI/Tgwz5sXU2FE/photo.jpg" alt="Rithvik Picture" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
                         <p class = "creatorsInfo">Rithvik Vibhu</p><p class = "creatorsInfo">12th Grade</p><br>
                       </div>
                     </div>
@@ -346,7 +268,7 @@
                     <div class="w3-card-4" style="width:100%">
                       <div class="w3-container">
                         <br>
-                        <img src="https://dyn.web.whatsapp.com/pp?e=https%3A%2F%2Fpps.whatsapp.net%2Fv%2Ft61.11540-24%2F17635630_725441380949136_8137667388905619456_n.jpg%3Foe%3D5A2D6C67%26oh%3D5a79cc17819f5c794e5135b723b90a59&t=l&u=919663804498%40c.us&i=1491136193" alt="Rithwik Picture" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
+                        <img src="https://image.ibb.co/czUmVR/rithvik_Jayashima.jpg" alt="Rithwik Picture" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
                         <p class = "creatorsInfo">Rithwik Jayasimha</p><p class = "creatorsInfo">12th Grade</p><br>
                       </div>
                     </div>
@@ -356,7 +278,7 @@
                     <div class="w3-card-4" style="width:100%">
                       <div class="w3-container">
                         <br>
-                        <img src="https://dyn.web.whatsapp.com/pp?e=https%3A%2F%2Fpps.whatsapp.net%2Fv%2Ft61.11540-24%2F16489286_411056719246615_8485591509754707968_n.jpg%3Foe%3D5A2D7A90%26oh%3D7c7d329de24b4bba158ef6af459b9973&t=l&u=918008474019%40c.us&i=1480512050" alt="Ranga Picture" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
+                        <img src="https://image.ibb.co/n8qSn6/madhubushisanga.jpg" alt="Ranga Picture" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
                         <p class = "creatorsInfo">Ranga Madabushi</p><p class = "creatorsInfo">12th Grade</p><br>
                       </div>
                     </div>
@@ -366,7 +288,7 @@
                     <div class="w3-card-4" style="width:100%">
                       <div class="w3-container">
                         <br>
-                        <img src="data:image/jpeg;base64,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" alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
+                        <img src="https://image.ibb.co/cWoy1b/IMG_20171230_WA0003.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
                         <p class = "creatorsInfo">Kartik Soni</p><p class = "creatorsInfo">11th Grade</p><br>
                       </div>
                     </div>
@@ -376,7 +298,7 @@
                     <div class="w3-card-4" style="width:100%">
                       <div class="w3-container">
                         <br>
-                        <img src="data:image/jpeg;base64,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" alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
+                        <img src="https://image.ibb.co/mh63um/shreyaj.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px">
                         <p class = "creatorsInfo">Shreya J</p><p class = "creatorsInfo">11th Grade</p><br>
                       </div>
                     </div>
@@ -396,7 +318,7 @@
                     </div>
                     <div class="col-xs-12 col-md-9">
                       <br><h4 id="studentName"><span></span></h4>
-                      <br><h5 id="admNumber">Admission number: <span>BE00012314</span></h5>
+                      <br><h5 id="admNumber">Admission number: <span id="user_id">BE00012314</span></h5>
                       <h4 id="walletBal">Wallet balance: ₹ <span></span></h4>
                     </div>
                   </div>
@@ -409,7 +331,7 @@
 
       <link href="css/easy-responsive-tabs.css" rel="stylesheet">
       <script src="js/easyResponsiveTabs.js"></script>
-        <script src="./app.js"></script>
+      <!--<script src="./app.js"></script>-->
     </div>
 
   </body>

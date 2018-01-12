@@ -1,31 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-var img = new Image();
-var div = document.getElementById('profileImage');
-
-function goToHome(){
-  location.href = "index.html"
-}
-$(document).ready(function() {
-  $("#tab2").hide();
-  $("#tab3").hide();
-  $("#tab4").hide();
-  $(".tabs-menu a").click(function(event){
-    event.preventDefault();
-    var tab=$(this).attr("href");
-    $(".tab-grid").not(tab).css("display","none");
-    $(tab).fadeIn("slow");
-  });
-});
-
-$(document).ready(function() {
-
-  //Vertical Tab
-=======
-// Initialize Firebase
-=======
-//initializeApp
->>>>>>> 92cede5b73e897ee22bec8590e1e7855ef9eecd4
+﻿﻿//initializeApp
 var config = {
   apiKey: "AIzaSyCas9WSzPdCvatx7ODWMTquCCwiuZEj-UI",
   authDomain: "dpsemca-1f00a.firebaseapp.com",
@@ -33,23 +6,13 @@ var config = {
   projectId: "dpsemca-1f00a",
   storageBucket: "dpsemca-1f00a.appspot.com",
   messagingSenderId: "696186948502"
-<<<<<<< HEAD
-};
-firebase.initializeApp(config);
-
-$(document).ready(function() {
-  setTimeout(function(){
-    $('#wrapper').fadeOut(function() { $(this).remove(); });
-    $('#slideshow').fadeOut( function() { $(this).remove(); });
-}, 1500);
-  // Vertical tabs
->>>>>>> 139a4b34b63f977383bdc9b4cdaf5e9d769df5cf
-=======
 }
 firebase.initializeApp(config);
+
 var database = firebase.database();
 var userRef, userInfo;
-var adNo = 'BE00012314';
+var adNo;
+var temp_adno;
 //start dev code
 // setTimeout(function(){
 //     $('#wrapper').fadeOut(function() { $(this).remove(); });
@@ -57,40 +20,51 @@ var adNo = 'BE00012314';
 //   }, 1500);
 
 //end dev code
-/*firebase.auth().onAuthStateChanged(function(user) {
+function changeErrorMessage(msg) {
+  setTimeout(() => {
+    var error_board = document.getElementById("UserNotRegistered");
+    var loading_thing = document.querySelector(".loader");
+   error_board.innerHTML = msg;
+   error_board.style="display:block";
+   loading_thing.style = "display:none";
+  },100);
+}
+/*
+Debugging report
+debugger: Madrigal1
+issue: recharge button spazzes out
+ the code block starting from 'auth starts' to 'auth ends appears to be the cause of the problem'
+  Solutions :
+   Ongoing
+*/
+//auth starts
+firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    console.log(user);
     adNo = user.uid;
     userRef = database.ref().child('users').child(user.uid);
-    userRef.on('value', function(snap) {
-      userInfo = snap.val();
-      if(userInfo != null){
+       firebase.database().ref('users/'+adNo).once('value').then( (snap) => {
+       userInfo = snap.val();
+       if(userInfo){
         console.log(adNo);
+        temp_adno = adNo;
         userInfo['admid'] = snap.key;
         setUser(userInfo);
         $('#wrapper').fadeOut(function() { $(this).remove(); });
         $('#slideshow').fadeOut( function() { $(this).remove(); });
-    }else{
-      alert("Unregistered User");
-    }
+       }
+       else{
+        changeErrorMessage("You shall not pass :-)");
+      }
     });
   } else {
     console.log('logged out');
     if (!$.urlParam('token')) {
-      alert('You are not logged in');
+      changeErrorMessage('You are not logged in :-(');
     }
   }
-<<<<<<< HEAD
 });
-  setTimeout(function(){
-     $('#wrapper').fadeOut(function() { $(this).remove(); });
-     $('#slideshow').fadeOut( function() { $(this).remove(); });
-  }, 1500);
+//auth end
   // Vertical tabs
-=======
-});*/
-
->>>>>>> parent of 165b3eb... LEssgo
 var billAmount = 0;
 var loadingMenu = 0;
 var admNo = 'BE00012314';
@@ -187,27 +161,13 @@ $(document).ready(function() {
     });
   }
 
-<<<<<<< HEAD
->>>>>>> 92cede5b73e897ee22bec8590e1e7855ef9eecd4
-=======
-
-  // Vertical tabs
->>>>>>> parent of 165b3eb... LEssgo
   $('#parentVerticalTab').easyResponsiveTabs({
     type: 'vertical',
     width: 'auto',
     fit: true,
     closed: 'accordion',
     tabidentify: 'hor_1',
-<<<<<<< HEAD
-<<<<<<< HEAD
-    activate: function(event) {
-=======
     activate: function() {
->>>>>>> 139a4b34b63f977383bdc9b4cdaf5e9d769df5cf
-=======
-    activate: function() {
->>>>>>> 92cede5b73e897ee22bec8590e1e7855ef9eecd4
       var $tab = $(this);
       var $info = $('#nested-tabInfo2');
       var $name = $('span', $info);
@@ -215,197 +175,6 @@ $(document).ready(function() {
       $info.show();
     }
   });
-<<<<<<< HEAD
-<<<<<<< HEAD
-});
-
-//responsiveSlides
-
-$(function () {
-  $("#slider").responsiveSlides({
-    auto: true,
-    speed: 500,
-    namespace: "callbacks",
-    pager: true,
-  });
-});
-img.onload = function() {
-  div.appendChild(img);
-}
-
-$(document).ready(function () {
-  var mySelect = $('#first-disabled2');
-
-  $('#special').on('click', function () {
-    mySelect.find('option:selected').prop('disabled', true);
-    mySelect.selectpicker('refresh');
-  });
-
-  $('#special2').on('click', function () {
-    mySelect.find('option:disabled').prop('disabled', false);
-    mySelect.selectpicker('refresh');
-  });
-
-  $('#basic2').selectpicker({
-    liveSearch: true,
-    maxOptions: 1
-  });
-});
-
-jQuery(document).ready(function($) {
-  $(".scroll").click(function(event){
-    event.preventDefault();
-    $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-
-  });
-});
-$(document).ready(function() {
-  $().UItoTop({ easingType: 'easeOutQuart' });
-});
-
-//firebase
-var screen = document.getElementById("options");
-var userRef = firebase.database().ref().child("users").child("BE0001234");
-var walletRef = userRef.child("balance");
-var studentNameRef = userRef.child("name");
-var studentIDRef = userRef.child("photo");
-img.setAttribute("class", "img-responsive");
-
-walletRef.on("value",function(snapshot) {
-  var w_val = snapshot.val();
-  var wval = document.getElementById("walletBal");
-  wval.setAttribute("value", w_val);
-});
-studentNameRef.on("value", function(snapshot){
-  var n_val = snapshot.val();
-  var nameS = document.getElementById("studentName");
-  nameS.setAttribute("value", n_val);
-});
-studentIDRef.on("value", function(snapshot){
-  var id_val = snapshot.val();
-  img.style.position = "relative";
-  img.style.margin = "auto";
-  img.style.width = "50%";
-  img.style.height = "50%";
-  img.style.webkitUserDrag = "none";
-  img.style.msUserDrag = "none";
-  img.style.mozUserDrag = "none";
-  img.style.webkitUserSelect = "none";
-  img.style.mozUserSelect = "none";
-  img.style.msUserSelect = "none";
-  img.classList.add("img-responsive");
-  img.src = id_val;
-});
-var money = 0;
-function topUpPre(){
-  if(document.getElementById("idNum").value == ""){
-      console.log("TF?");
-  }else if(document.getElementById("idNum").value == "BE/00012314"){
-    var ddl = document.getElementById("foodPlans");
-    var selectedPlan = ddl.options[ddl.selectedIndex].value;
-    if (selectedPlan == "day"){
-      money += 50;
-    }else if(selectedPlan == "week"){
-      money += 250;
-    }else if(selectedPlan == "month"){
-      money += 1000;
-    }else{
-      $("#selectValue").modal("show");
-    }
-
-    walletRef.once("value",function(snapshot) {
-      var w_val = snapshot.val();
-      money += w_val;
-    });
-    console.log(money);
-    walletRef.set(money);
-  }
-}
-function topUp(){
-  if(document.getElementById("idNum2").value == ""){
-      console.log("TF?");
-  }else if(document.getElementById("idNum2").value == "BE/00012314"){
-    var customMon = document.getElementById("customMon");
-    money = parseFloat(customMon.value);
-    console.log(money);
-    walletRef.on("value",function(snapshot) {
-      var w_val = snapshot.val();
-      money += w_val;
-    });
-    console.log(money);
-    walletRef.set(money);
-  }
-}
-function transUpdate(){
-  var ddl = document.getElementById("transPrec");
-  var query = firebase.database().ref().child("transactions").child("BE0001234");
-  var selectedTrans = ddl.options[ddl.selectedIndex].value;
-  if (selectedTrans == "day"){
-    var trans = query.orderByChild("timestamp").limitToLast(1);
-  }else if(selectedTrans == "ten"){
-    var trans = query.orderByChild("timestamp").limitToLast(10);
-  }else if(selectedTrans == "thirty"){
-    var trans = query.orderByChild("timestamp").limitToLast(30);
-  }else if(selectedTrans == "fifty"){
-    var trans = query.orderByChild("timestamp").limitToLast(50);
-  }else{
-    $("#selectValue").modal("show");
-  }
-    document.getElementById("tranHist").innerHTML = "";
-  trans.on("child_added", function(snap){
-    var timestamp = snap.val().timestamp;
-    var amount = snap.val().amount;
-    var payment = snap.val().gateway;
-    document.getElementById("tranHist").innerHTML += "<tr><td>"+timestamp+"</td>"+"<td>"+amount+"</td>"+"<td>"+payment+"</td>"+"</tr>";
-    console.log(timestamp);
-=======
-
-  // Switch horizontal tabs (under Whallet Topop)
-  $(".tabs-menu a").click(function(){
-    var $tab = $(this).attr("href");
-    $(".tab-grid").not($tab).hide();
-    $($tab).fadeIn("slow");
-    return false
-  });
-
-  // Scroll from slider to content below
-  $(".scroll").click(function(){
-      $('html, body').animate({
-          scrollTop: $( $(this).attr('href') ).offset().top
-      }, 500);
-      return false;
-  });
-
-  // Scroll to top button
-  $('#scrollToTop').click(function() {
-    $("html, body").animate({ scrollTop: 0 }, "slow");
-    return false;
-  });
-
-});
-
-// Firebase
-var database = firebase.database();
-var userRef = database.ref().child("users").child("BE0001234");
-
-// Update student info
-userRef.on('value', function(snapshot) {
-  var userInfo = snapshot.val();
-  $('#studentName span').text(userInfo.name);
-  $('#walletBal span').text(userInfo.balance);
-  $('#profileImage').attr('src', userInfo.photo);
-});
-function topUp(type) {
-  var admNo = $('#idNum').val();
-  if (type == 'package') {
-    var amount = parseInt($('#foodPlans').val());
-  } else  if (type == 'custom') {
-    var amount = parseInt($('#customMon').val());
-  }
-  if (!admNo) {
-    console.error('Empty admission number');
-    return
-=======
 
   // Switch horizontal tabs (under Whallet Topop)
   $(".tabs-menu a").click(function(){
@@ -422,7 +191,6 @@ function topUp(type) {
 
 
 function signOut(){
-<<<<<<< HEAD
   firebase.auth().signOut().then(function() {
   console.log('Signed Out');
 }, function(error) {
@@ -431,10 +199,6 @@ function signOut(){
     localStorage.removeItem('customToken');
   window.location.href = "http://api.dpscanteen.ml/entrar/login";
 
-=======
-  //Rithvik prepend not working...
-  window.location.href = "http://api.dpscanteen.ml/entrar/login";
->>>>>>> parent of 165b3eb... LEssgo
 }
 
 
@@ -442,20 +206,20 @@ function updateMenu(){
 
   firebase.database().ref().child("menu").once("value").then(function(snapshot) {
     var i = 0;
+    try {
     while(i < menu_count){
       snapshot.forEach(function(childSnapshot) {
         var menuItems = document.querySelectorAll('.menuItems');
         var childData = childSnapshot.val();
         menu[i] = childData;
-<<<<<<< HEAD
           menuItems[i].innerHTML = childData;
-      
-=======
-        menuItems[i].innerHTML = childData;
->>>>>>> parent of 165b3eb... LEssgo
+
         i++;
       });
 }
+    } catch(e) {
+      console.log("There is no bug.");
+    }
   });
 }
 
@@ -464,11 +228,7 @@ function updateMenu(){
 
 
 
-<<<<<<< HEAD
 var userRef = database.ref().child("users").child("BE00012314");
-=======
-//var userRef = database.ref().child("users").child("BE00012314");
->>>>>>> parent of 165b3eb... LEssgo
 
 function setUser(){
   userRef.on('value', function(snapshot){
@@ -501,8 +261,12 @@ $(document).ready(function(){
 function setCurrentBal(){
       $('#currentWalletBal').text(currentBal);
 }
+
+//On recharge btn click
 function topUp(type) {
+  toast("Redirecting to billing..");
   var admNo = $('#idNum').val();
+  //For the menu
   if (type == 'menu') {
     var amount = billAmount;
     menIdt = 0;
@@ -513,6 +277,9 @@ function topUp(type) {
         restrictions.push(menu[i]);
       }
     }
+  //menu end
+
+  //custom start
   } else  if (type == 'custom') {
     var wantedAmount = parseInt($('#customMon').val());
     if(wantedAmount < 10){
@@ -522,143 +289,111 @@ function topUp(type) {
     }else{
     var amount = wantedAmount;
     }
->>>>>>> 92cede5b73e897ee22bec8590e1e7855ef9eecd4
+  //custom end
+  } else {
+    console.log("error");
   }
+
+  //check if menu items have not been selcted
   if (!amount) {
     console.error('Food plan not selected or amount not entered');
     return
   }
-<<<<<<< HEAD
-  userRef.child('balance').transaction(function(balance) {
-    return balance + amount
-  }).then(function() {
-    console.log('Recharge successful');
-  });
-}
 
-function transUpdate(){
-  var admNo = 'BE0001234';
-  var limit = parseInt($('#transPrec').val());
-
-  database.ref('transactions').child(admNo).orderByChild('timestamp').limitToLast(limit).once('value').then(function(snapshot) {
-=======
+  //send the menu Items
   if(menIdt == 0){
-    var restRef = database.ref('users/'+adNo+'/items_bought');
-    restRef.transaction(function(){
-      var restriction = preRest.concat(restrictions);
-      return restriction
-    });
-<<<<<<< HEAD
+      var restRef = database.ref('users/'+adNo+'/items_bought');
+      //making the menu items list
+      restRef.transaction(function(){
+        var restriction = preRest.concat(restrictions);
+        return restriction
+       });
 
-        firebase.database().ref('users/'+adNo+'/menuBalance').transaction(function(menuBalance) {
-          return menuBalance + amount
-        }).then(function() {
-          preRest.length = 0;
-          toast('Recharge successful');
-          clearSelection();
-          getPreRest();
-        });
-       }else{
-       firebase.database().ref('users/'+adNo+'/balance').transaction(function(balance) {
-        console.log("i happpen");
-        return balance + amount
-      }).then(function() {
-        toast('Recharge successful');
-        });
-      }
-    
-   
-  var obj = {
-   name: "sampleboi",
-   id: 1234,
-   array: ["this works","hopefully"]
+      //updating menu
+    //   firebase.database().ref('users/'+adNo+'/menuBalance').transaction(function(menuBalance) {
+    //     return menuBalance + amount
+    //   }).then(function() {
+    //     preRest.length = 0;
+    //     toast('Recharge successful');
+    //     clearSelection();
+    //     getPreRest();
+    // });
+   //upadting menu end
+  }  else{
+      // else start the handling for cutom amount
+      //  firebase.database().ref('users/'+adNo+'/balance').transaction(function(balance) {
+      //   return balance + amount ;
+      //  }).then(function() {
+      //    toast('Recharge successful');
+      // });
   }
-  console.log(obj);
-  //redirects to billing
-  //userprofile
+    //updating the user balance
+        //  firebase.database().ref('users/'+adNo).child('menuBalance').transaction(function(menuBalance) {
+        //    return menuBalance + amount ;
+        // });
 
-    userRef.child('menuBalance').transaction(function(menuBalance) {
-      return menuBalance + amount
-    }).then(function() {
-      //sending to the billiing page 
+     //menu transaction code is done
 
-=======
-    userRef.child('menuBalance').transaction(function(menuBalance) {
-      return menuBalance + amount
-    }).then(function() {
-      //sending to the billiing page
->>>>>>> parent of 165b3eb... LEssgo
-   var user_profile = {
-    name: document.getElementById("studentName").value,
-    id: adNo,
+
+// menuitems array refining for data transafer
+var temp_menu = [];
+for(var x in c_user_menu) {
+  if(c_user_menu[x] != " " && c_user_menu != null) {
+     temp_menu.push(c_user_menu[x]);
+  }
+}
+  //sending to the billiing page
+  var user_profile = {
+    name: $('#studentName span').text(),
+    id : $('#user_id').text(),
     bill: billAmount,
-    type: type, 
-    menu_items: c_user_menu,
+    type: type,
+    menu_items: temp_menu,
  }
  console.log(user_profile);
-//serializing obj and creting the parameters
+//serializing obj and creating the parameters
  var str = "";
  for (var key in user_profile) {
      if (str != "") {
          str += "&";
      }
-     str += key + "=" + encodeURIComponent(obj[key]);
+     str += key + "=" + encodeURIComponent(user_profile[key]);
  }
- //sending the link with the parameters
+//  sending the link with the parameters
  window.location = "https://api.dpscanteen.ml/paytm?" + str;
-      preRest.length = 0;
-      toast('Recharge successful');
-      clearSelection();
-      getPreRest();
-    });
-  }else{
-  userRef.child('balance').transaction(function(balance) {
-    console.log("i happpen");
-    return balance + amount
-  }).then(function() {
-    toast('Recharge successful');
 
-<<<<<<< HEAD
-      preRest.length = 0;
-      toast('Recharge successful');
-      clearSelection();
-      getPreRest();
-    });
-  }else{
-  userRef.child('balance').transaction(function(balance) {
-    console.log("i happpen");
-    return balance + amount
-  }).then(function() {
-    toast('Recharge successful');
+ /*
+Debugging Report
+degugger:Madrigal1
+issue: recharge button problems
+comments and report :
+Employing the old school basics
+(a console.log(every line to stack trace the error ))
+everything to this point works fine
+firebase loading of the menu items is rusty and needs improvements
 
-  });
+Improvements for the future:
+add custom encryption to the url parameters in the url
+optimize the load speed and time of the menu items
+optimize loading page speed
+*/
+
+    //end of topup function
 }
 
-=======
-  });
-}
->>>>>>> parent of 165b3eb... LEssgo
 
 
-}
+
+
 
 function transUpdate(){
   var limit = parseInt($('#transPrec').val());
   database.ref('transactions').child(adNo).orderByChild('timestamp').limitToLast(limit).once('value').then(function(snapshot) {
->>>>>>> 92cede5b73e897ee22bec8590e1e7855ef9eecd4
     var html = '';
     snapshot.forEach(function(transaction) {
       var trans = transaction.val();
       var date = moment(trans.timestamp).format('dddd, MMMM Do YYYY, h:mm:ss a');
       var row = `<tr><td>${date}</td>'+'<td>${trans.amount}</td>'+'<td>${trans.gateway}</td></tr>`;
-<<<<<<< HEAD
-      html += row;
-    });
-    $('#tranHist').html(html);
->>>>>>> 139a4b34b63f977383bdc9b4cdaf5e9d769df5cf
-  });
-}
-=======
       html = row + html;
     });
     $('#tranHist').html(html);
@@ -697,9 +432,8 @@ $.urlParam = function (name) {
   return results[1] || 0;
 
 }
-<<<<<<< HEAD
 
-//firebase offline handling 
+//firebase offline handling
 setTimeout(() => {
   var connectedRef = firebase.database().ref(".info/connected");
 connectedRef.on("value", function(snap) {
@@ -713,19 +447,15 @@ connectedRef.on("value", function(snap) {
 },5000)
 
 
-=======
->>>>>>> parent of 165b3eb... LEssgo
 function toast(toast) {
-    // Get the snackbar DIV
-    $("#snackbar").html(toast);
-    var x = document.getElementById("snackbar")
+  // Get the snackbar DIV
+  $("#snackbar").html(toast);
+  var x = document.getElementById("snackbar")
 
-    // Add the "show" class to DIV
-    x.className = "show";
-
-    // After 3 seconds, remove the show class from DIV
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  // Add the "show" class to DIV
+  x.className = "show";
+  x.style.backgroundColor = "#333";
+  x.style.color = "#fff";
+  // After 3 seconds, remove the show class from DIV
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
-
-
->>>>>>> 92cede5b73e897ee22bec8590e1e7855ef9eecd4
