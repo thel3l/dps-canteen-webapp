@@ -52,6 +52,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
   }
 });
+//auth end
   // Vertical tabs
 var billAmount = 0;
 var loadingMenu = 0;
