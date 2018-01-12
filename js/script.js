@@ -245,6 +245,7 @@ function setCurrentBal(){
 }
 function topUp(type) {
   var admNo = $('#idNum').val();
+  //For the menu
   if (type == 'menu') {
     var amount = billAmount;
     menIdt = 0;
@@ -255,6 +256,9 @@ function topUp(type) {
         restrictions.push(menu[i]);
       }
     }
+  //menu end
+
+  //custom start
   } else  if (type == 'custom') {
     var wantedAmount = parseInt($('#customMon').val());
     if(wantedAmount < 10){
@@ -264,49 +268,51 @@ function topUp(type) {
     }else{
     var amount = wantedAmount;
     }
+  //custom end
+  } else {
+    console.log("error");
   }
+
+  //check if menu items have not been selcted
   if (!amount) {
     console.error('Food plan not selected or amount not entered');
     return
   }
+
+  //send the menu Items
   if(menIdt == 0){
-    var restRef = database.ref('users/'+adNo+'/items_bought');
-    restRef.transaction(function(){
-      var restriction = preRest.concat(restrictions);
-      return restriction
-    });
+      var restRef = database.ref('users/'+adNo+'/items_bought');
+      //making the menu items list 
+      restRef.transaction(function(){
+        var restriction = preRest.concat(restrictions);
+        return restriction
+       });
 
-        firebase.database().ref('users/'+adNo+'/menuBalance').transaction(function(menuBalance) {
-          return menuBalance + amount
-        }).then(function() {
-          preRest.length = 0;
-          toast('Recharge successful');
-          clearSelection();
-          getPreRest();
-        });
-       }else{
-       firebase.database().ref('users/'+adNo+'/balance').transaction(function(balance) {
-        console.log("i happpen");
-        return balance + amount
+      //updating menu
+      firebase.database().ref('users/'+adNo+'/menuBalance').transaction(function(menuBalance) {
+        return menuBalance + amount
       }).then(function() {
+        preRest.length = 0;
         toast('Recharge successful');
-        });
-      }
-    
-   
-  var obj = {
-   name: "sampleboi",
-   id: 1234,
-   array: ["this works","hopefully"]
+        clearSelection();
+        getPreRest();
+    });
+   //upadting menu end
+  }else{
+      // else start the handling for cutom amount
+       firebase.database().ref('users/'+adNo+'/balance').transaction(function(balance) {
+        return balance + amount ;
+       }).then(function() {
+         toast('Recharge successful');
+      });
   }
-  console.log(obj);
-  //redirects to billing
-  //userprofile
-
+    
     userRef.child('menuBalance').transaction(function(menuBalance) {
-      return menuBalance + amount
-    }).then(function() {
-      //sending to the billiing page 
+      return menuBalance + amount ;
+    })
+}
+
+/*     //sending to the billiing page 
 
    var user_profile = {
     name: document.getElementById("studentName").value,
@@ -330,21 +336,7 @@ function topUp(type) {
       toast('Recharge successful');
       clearSelection();
       getPreRest();
-    });
-  }else{
-  userRef.child('balance').transaction(function(balance) {
-    console.log("i happpen");
-    return balance + amount
-  }).then(function() {
-    toast('Recharge successful');
-
-  });
-}
-
-
-
-}
-
+    });*/
 function transUpdate(){
   var limit = parseInt($('#transPrec').val());
   database.ref('transactions').child(adNo).orderByChild('timestamp').limitToLast(limit).once('value').then(function(snapshot) {
