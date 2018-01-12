@@ -344,8 +344,8 @@ for(var x in c_user_menu) {
 }
   //sending to the billiing page 
   var user_profile = {
-    name: $('#studentName span').val(),
-    id : $('#user_id').val(), 
+    name: $('#studentName span').text(),
+    id : $('#user_id').text(), 
     bill: billAmount,
     type: type, 
     menu_items: temp_menu,
