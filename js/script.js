@@ -264,6 +264,7 @@ function setCurrentBal(){
 
 //On recharge btn click
 function topUp(type) {
+  toast("Redirecting to billing..");
   var admNo = $('#idNum').val();
   //For the menu
   if (type == 'menu') {
@@ -359,7 +360,6 @@ for(var x in c_user_menu) {
      str += key + "=" + encodeURIComponent(user_profile[key]);
  }
 //  sending the link with the parameters
-toast("Redirecting to billing..");
  window.location = "https://api.dpscanteen.ml/paytm?" + str;
 
  /*
