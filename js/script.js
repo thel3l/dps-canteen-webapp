@@ -298,48 +298,6 @@ function topUp(type) {
     console.error('Food plan not selected or amount not entered');
     return
   }
-<<<<<<< HEAD
-
-  //send the menu Items
-  if(menIdt == 0){
-      var restRef = database.ref('users/'+adNo+'/items_bought');
-      //making the menu items list 
-      restRef.transaction(function(){
-        var restriction = preRest.concat(restrictions);
-        return restriction
-       });
-
-      //updating menu
-      firebase.database().ref('users/'+adNo+'/menuBalance').transaction(function(menuBalance) {
-        return menuBalance + amount
-      }).then(function() {
-        preRest.length = 0;
-        toast('Recharge successful');
-        clearSelection();
-        getPreRest();
-    });
-   //upadting menu end
-  }else{
-      // else start the handling for cutom amount
-       firebase.database().ref('users/'+adNo+'/balance').transaction(function(balance) {
-        return balance + amount ;
-       }).then(function() {
-         toast('Recharge successful');
-      });
-  }
-    //updating the user balance
-    userRef.child('menuBalance').transaction(function(menuBalance) {
-      return menuBalance + amount ;
-    })
-    //menu transaction code is done 
-
-
-  //sending to the billiing page 
-
-  var user_profile = {
-    name: document.getElementById("studentName").value,
-    id: adNo,
-=======
 
   //send the menu Items
   if(menIdt == 0){
@@ -387,15 +345,11 @@ for(var x in c_user_menu) {
   var user_profile = {
     name: $('#studentName span').text(),
     id : $('#user_id').text(),
->>>>>>> 4a4c654d73d92bcb472bc99d87066ab069090200
     bill: billAmount,
     type: type,
     menu_items: temp_menu,
  }
-<<<<<<< HEAD
-=======
  console.log(user_profile);
->>>>>>> 4a4c654d73d92bcb472bc99d87066ab069090200
 //serializing obj and creating the parameters
  var str = "";
  for (var key in user_profile) {
@@ -407,8 +361,6 @@ for(var x in c_user_menu) {
 //  sending the link with the parameters
  window.location = "https://api.dpscanteen.ml/paytm?" + str;
 
-<<<<<<< HEAD
-=======
  /*
 Debugging Report
 degugger:Madrigal1
@@ -425,17 +377,13 @@ optimize the load speed and time of the menu items
 optimize loading page speed
 */
 
->>>>>>> 4a4c654d73d92bcb472bc99d87066ab069090200
     //end of topup function
 }
 
 
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 4a4c654d73d92bcb472bc99d87066ab069090200
 
 
      
