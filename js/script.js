@@ -27,15 +27,15 @@ function changeErrorMessage(msg) {
    error_board.innerHTML = msg;
    error_board.style="display:block";
    loading_thing.style = "display:none";
-  },100); 
+  },100);
 }
 /*
-Debugging report 
+Debugging report
 debugger: Madrigal1
-issue: recharge button spazzes out 
+issue: recharge button spazzes out
  the code block starting from 'auth starts' to 'auth ends appears to be the cause of the problem'
   Solutions :
-   Ongoing 
+   Ongoing
 */
 //auth starts
 firebase.auth().onAuthStateChanged(function(user) {
@@ -213,7 +213,7 @@ function updateMenu(){
         var childData = childSnapshot.val();
         menu[i] = childData;
           menuItems[i].innerHTML = childData;
-      
+
         i++;
       });
 }
@@ -299,40 +299,40 @@ function topUp(type) {
     console.error('Food plan not selected or amount not entered');
     return
   }
-  
+
   //send the menu Items
   if(menIdt == 0){
       var restRef = database.ref('users/'+adNo+'/items_bought');
-      //making the menu items list 
+      //making the menu items list
       restRef.transaction(function(){
         var restriction = preRest.concat(restrictions);
         return restriction
        });
 
       //updating menu
-      firebase.database().ref('users/'+adNo+'/menuBalance').transaction(function(menuBalance) {
-        return menuBalance + amount
-      }).then(function() {
-        preRest.length = 0;
-        toast('Recharge successful');
-        clearSelection();
-        getPreRest();
-    });
+    //   firebase.database().ref('users/'+adNo+'/menuBalance').transaction(function(menuBalance) {
+    //     return menuBalance + amount
+    //   }).then(function() {
+    //     preRest.length = 0;
+    //     toast('Recharge successful');
+    //     clearSelection();
+    //     getPreRest();
+    // });
    //upadting menu end
   }  else{
       // else start the handling for cutom amount
-       firebase.database().ref('users/'+adNo+'/balance').transaction(function(balance) {
-        return balance + amount ;
-       }).then(function() {
-         toast('Recharge successful');
-      });
-  } 
+      //  firebase.database().ref('users/'+adNo+'/balance').transaction(function(balance) {
+      //   return balance + amount ;
+      //  }).then(function() {
+      //    toast('Recharge successful');
+      // });
+  }
     //updating the user balance
-         firebase.database().ref('users/'+adNo).child('menuBalance').transaction(function(menuBalance) {
-           return menuBalance + amount ;
-        });
-      
-     //menu transaction code is done 
+        //  firebase.database().ref('users/'+adNo).child('menuBalance').transaction(function(menuBalance) {
+        //    return menuBalance + amount ;
+        // });
+
+     //menu transaction code is done
 
 
 // menuitems array refining for data transafer
@@ -342,12 +342,12 @@ for(var x in c_user_menu) {
      temp_menu.push(c_user_menu[x]);
   }
 }
-  //sending to the billiing page 
+  //sending to the billiing page
   var user_profile = {
     name: $('#studentName span').text(),
-    id : $('#user_id').text(), 
+    id : $('#user_id').text(),
     bill: billAmount,
-    type: type, 
+    type: type,
     menu_items: temp_menu,
  }
  console.log(user_profile);
@@ -374,7 +374,7 @@ firebase loading of the menu items is rusty and needs improvements
 
 Improvements for the future:
 add custom encryption to the url parameters in the url
-optimize the load speed and time of the menu items 
+optimize the load speed and time of the menu items
 optimize loading page speed
 */
 
@@ -385,7 +385,7 @@ optimize loading page speed
 
 
 
-     
+
 function transUpdate(){
   var limit = parseInt($('#transPrec').val());
   database.ref('transactions').child(adNo).orderByChild('timestamp').limitToLast(limit).once('value').then(function(snapshot) {
@@ -433,7 +433,7 @@ $.urlParam = function (name) {
 
 }
 
-//firebase offline handling 
+//firebase offline handling
 setTimeout(() => {
   var connectedRef = firebase.database().ref(".info/connected");
 connectedRef.on("value", function(snap) {
@@ -459,19 +459,3 @@ function toast(toast) {
   // After 3 seconds, remove the show class from DIV
   setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
-
-function modified_Toast(toast,time) {
-    // Get the snackbar DIV
-  $("#snackbar").html(toast);
-  var x = document.getElementById("snackbar")
-
-  // Add the "show" class to DIV
-  x.className = "show";
-  x.style.backgroundColor = "#333";
-  x.style.color = "#fff";
-  // After 3 seconds, remove the show class from DIV
-  setTimeout(function(){ x.className = x.className.replace("show", ""); }, time);
-}
-
-
-
