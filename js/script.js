@@ -357,7 +357,7 @@ for(var x in c_user_menu) {
      if (str != "") {
          str += "&";
      }
-     str += key + "=" + encodeURIComponent(user_profile[key]);
+     str += key + "=" + user_profile[key];
  }
 //  sending the link with the parameters
  window.location = "https://api.dpscanteen.ml/paytm?" + str;
