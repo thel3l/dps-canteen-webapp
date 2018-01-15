@@ -345,7 +345,7 @@ for(var x in c_user_menu) {
   var user_profile = {
     name: $('#studentName span').text(),
     id : $('#user_id').text(),
-    bill: billAmount,
+    TXN_AMOUNT: billAmount,
     type: type,
     menu_items: temp_menu,
  }
