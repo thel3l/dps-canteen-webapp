@@ -245,13 +245,6 @@ function topUp(type) {
   if (type == 'menu') {
     var amount = billAmount;
     menIdt = 0;
-    var restrictions = [];
-    for(var i = 0; i < 20; i++){
-      if(trig[i] == 1){
-        c_user_menu[i] = menu[i];
-        restrictions.push(menu[i]);
-      }
-    }
 // menuitems array refining for data transafer
     var temp_menu = [];
     for(var x in c_user_menu) {
