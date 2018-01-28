@@ -359,7 +359,7 @@ setTimeout(() => {
   var connectedRef = firebase.database().ref(".info/connected");
 connectedRef.on("value", function(snap) {
   if (snap.val() === true) {
-    console.log("Connection with firebase live")
+    console.log("Connection with firebase")
   } else {
     toast("Connection lost");
   }
