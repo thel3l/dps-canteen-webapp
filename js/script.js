@@ -229,16 +229,6 @@ function setUser(){
     $('#dropdownWallet span').text(userInfo.balance+userInfo.menuBalance);
   });
   var database = firebase.database();
-  getPreRest();
-}
-function getPreRest(){
-  var restRef = database.ref('users/'+adNo+'/items_bought');
-restRef.once("value").then(function(snapshot){
-  snapshot.forEach(function(childSnapshot) {
-    var childData = childSnapshot.val();
-    preRest.push(childData);
-});
-});
 }
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
@@ -307,43 +297,6 @@ function topUp(type) {
     console.error('Food plan not selected or amount not entered');
     return
   }
-
-  //send the menu Items
-  if(menIdt == 0){
-      var restRef = database.ref('users/'+adNo+'/items_bought');
-      //making the menu items list
-      restRef.transaction(function(){
-        var restriction = preRest.concat(restrictions);
-        return restriction
-       });
-
-      //updating menu
-    //   firebase.database().ref('users/'+adNo+'/menuBalance').transaction(function(menuBalance) {
-    //     return menuBalance + amount
-    //   }).then(function() {
-    //     preRest.length = 0;
-    //     toast('Recharge successful');
-    //     clearSelection();
-    //     getPreRest();
-    // });
-   //upadting menu end
-  }  else{
-      // else start the handling for cutom amount
-      //  firebase.database().ref('users/'+adNo+'/balance').transaction(function(balance) {
-      //   return balance + amount ;
-      //  }).then(function() {
-      //    toast('Recharge successful');
-      // });
-  }
-    //updating the user balance
-        //  firebase.database().ref('users/'+adNo).child('menuBalance').transaction(function(menuBalance) {
-        //    return menuBalance + amount ;
-        // });
-
-     //menu transaction code is done
-
-
-
 //serializing obj and creating the parameters
     var str = "";
     for (var key in user_profile) {
@@ -359,7 +312,7 @@ function topUp(type) {
 
 
 
-     
+
 function transUpdate(){
   var limit = parseInt($('#transPrec').val());
   database.ref('transactions').child(adNo).orderByChild('timestamp').limitToLast(limit).once('value').then(function(snapshot) {
