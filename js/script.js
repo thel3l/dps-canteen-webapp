@@ -136,6 +136,7 @@ function priceToolTip(){
 }
 $(document).ready(function() {
   // Login user with token
+  console.log("Kill ME NOW!");
   var token = $.urlParam('token');
   console.log('token:', token);
   if (token) {
