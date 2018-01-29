@@ -229,7 +229,6 @@ function setUser(){
     $('#dropdownWallet span').text(userInfo.balance+userInfo.menuBalance);
   });
   var database = firebase.database();
-  getPreRest();
 }
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
