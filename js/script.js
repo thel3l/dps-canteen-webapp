@@ -23,10 +23,10 @@ function changeErrorMessage(msg) {
   },100);
 }
 // start dev code
-// setTimeout(function(){
-//     $('#wrapper').fadeOut(function() { $(this).remove(); });
-//     $('#slideshow').fadeOut( function() { $(this).remove(); });
-//    }, 1500);
+setTimeout(function(){
+    $('#wrapper').fadeOut(function() { $(this).remove(); });
+    $('#slideshow').fadeOut( function() { $(this).remove(); });
+   }, 1500);
 //auth starts
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
@@ -304,7 +304,7 @@ function topUp(type) {
   }
 
   //increment no_users
-  increaseUserCount();  
+  updateStats(user_profile["TXN_AMOUNT"]);  
 
 //serializing obj and creating the parameters
     var str = "";
@@ -315,18 +315,23 @@ function topUp(type) {
         str += key + "=" + user_profile[key];
     }
 //  sending the link with the parameters
-    window.location = "https://api.dpscanteen.ml/paytm?" + str;
+ //   window.location = "https://api.dpscanteen.ml/paytm?" + str;
 }
 
-function increaseUserCount() {
+function updateStats(amount) {
   firebase.database().ref('stats_admin/general').once("value").then((snap) => {
      let  stats = snap.val();
+     //handle visit counter
      let v = stats.visits;
      let i = v + 1;
      console.log(i);
-     firebase.database().ref('stats_admin/general').set({
-       visits : i
-     });
+     //handle revenue counter
+     let r = stats.total_revenue;
+     let ri = r + amount;
+     let updates = {};
+     updates["stats_admin/general/visits"] =  i;
+     updates["stats_admin/general/total_revenue"] = ri;
+     firebase.database().ref().update(updates);
   });
 }
 
