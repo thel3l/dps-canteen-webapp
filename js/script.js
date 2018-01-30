@@ -299,7 +299,7 @@ function topUp(type) {
   }
 
   //increment no_users
-  increaseUserCount();
+  increaseUserCount();  
 
 //serializing obj and creating the parameters
     var str = "";
