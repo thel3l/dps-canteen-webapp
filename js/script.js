@@ -22,7 +22,7 @@ function changeErrorMessage(msg) {
    loading_thing.style = "display:none";
   },100);
 }
-//start dev code
+// start dev code
 // setTimeout(function(){
 //     $('#wrapper').fadeOut(function() { $(this).remove(); });
 //     $('#slideshow').fadeOut( function() { $(this).remove(); });
