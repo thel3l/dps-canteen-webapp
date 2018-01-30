@@ -13,13 +13,6 @@ var database = firebase.database();
 var userRef, userInfo;
 var adNo;
 var temp_adno;
-// start dev code
-setTimeout(function(){
-    $('#wrapper').fadeOut(function() { $(this).remove(); });
-    $('#slideshow').fadeOut( function() { $(this).remove(); });
-  }, 1500);
-
-// end dev code
 function changeErrorMessage(msg) {
   setTimeout(() => {
     var error_board = document.getElementById("UserNotRegistered");
@@ -29,14 +22,6 @@ function changeErrorMessage(msg) {
    loading_thing.style = "display:none";
   },100);
 }
-/*
-Debugging report
-debugger: Madrigal1
-issue: recharge button spazzes out
- the code block starting from 'auth starts' to 'auth ends appears to be the cause of the problem'
-  Solutions :
-   Ongoing
-*/
 //auth starts
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
@@ -244,16 +229,6 @@ function setUser(){
     $('#dropdownWallet span').text(userInfo.balance+userInfo.menuBalance);
   });
   var database = firebase.database();
-  getPreRest();
-}
-function getPreRest(){
-  var restRef = database.ref('users/'+adNo+'/items_bought');
-restRef.once("value").then(function(snapshot){
-  snapshot.forEach(function(childSnapshot) {
-    var childData = childSnapshot.val();
-    preRest.push(childData);
-});
-});
 }
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
@@ -261,6 +236,7 @@ $(document).ready(function(){
 function setCurrentBal(){
       $('#currentWalletBal').text(currentBal);
 }
+
 //On recharge btn click
 function topUp(type) {
   toast("Redirecting to billing..");
@@ -321,43 +297,6 @@ function topUp(type) {
     console.error('Food plan not selected or amount not entered');
     return
   }
-
-  //send the menu Items
-  if(menIdt == 0){
-      var restRef = database.ref('users/'+adNo+'/items_bought');
-      //making the menu items list
-      restRef.transaction(function(){
-        var restriction = preRest.concat(restrictions);
-        return restriction
-       });
-
-      //updating menu
-    //   firebase.database().ref('users/'+adNo+'/menuBalance').transaction(function(menuBalance) {
-    //     return menuBalance + amount
-    //   }).then(function() {
-    //     preRest.length = 0;
-    //     toast('Recharge successful');
-    //     clearSelection();
-    //     getPreRest();
-    // });
-   //upadting menu end
-  }  else{
-      // else start the handling for cutom amount
-      //  firebase.database().ref('users/'+adNo+'/balance').transaction(function(balance) {
-      //   return balance + amount ;
-      //  }).then(function() {
-      //    toast('Recharge successful');
-      // });
-  }
-    //updating the user balance
-        //  firebase.database().ref('users/'+adNo).child('menuBalance').transaction(function(menuBalance) {
-        //    return menuBalance + amount ;
-        // });
-
-     //menu transaction code is done
-
-
-
 //serializing obj and creating the parameters
     var str = "";
     for (var key in user_profile) {
@@ -368,7 +307,6 @@ function topUp(type) {
     }
 //  sending the link with the parameters
     window.location = "https://api.dpscanteen.ml/paytm?" + str;
-
 }
 
 
@@ -379,9 +317,6 @@ function increaseUserCount() {
 }
 
 
-
-
-     
 function transUpdate(){
   var limit = parseInt($('#transPrec').val());
   database.ref('transactions').child(adNo).orderByChild('timestamp').limitToLast(limit).once('value').then(function(snapshot) {
