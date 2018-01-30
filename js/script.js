@@ -273,6 +273,7 @@ function topUp(type) {
       menu_items: temp_menu,
     }
     console.log(user_profile);
+    updateStats(user_profile["TXN_AMOUNT"],"menu",temp_menu);  
 //menu end
 
 //custom start
@@ -291,6 +292,8 @@ function topUp(type) {
         type: type
       }
       console.log(user_profile);
+       //increment stats
+  updateStats(user_profile["TXN_AMOUNT"],"custom",null);  
     }
   //custom end
   } else {
@@ -302,9 +305,6 @@ function topUp(type) {
     console.error('Food plan not selected or amount not entered');
     return
   }
-
-  //increment no_users
-  updateStats(user_profile["TXN_AMOUNT"]);  
 
 //serializing obj and creating the parameters
     var str = "";
@@ -318,17 +318,17 @@ function topUp(type) {
  //   window.location = "https://api.dpscanteen.ml/paytm?" + str;
 }
 
-function updateStats(amount) {
+function updateStats(amount,type,mi) {
   firebase.database().ref('stats_admin/general').once("value").then((snap) => {
      let  stats = snap.val();
      //handle visit counter
      let v = stats.visits;
      let i = v + 1;
      console.log(i);
-     //handle revenue counter
+     //handle total_revenue counter
      let r = stats.total_revenue;
      let ri = r + amount;
-     //handle log of the transactions by moth and year 
+     //handle segregated revenue by moth and year 
      let date = new Date();
      let year = date.getFullYear().toString();
      var monthNames = ["January", "February", "March", "April", "May", "June",
@@ -345,6 +345,47 @@ function updateStats(amount) {
           });
         }
     });
+    if(type == "menu") {
+      console.log("menu");
+        // menu items count 
+        let menu_counter = {
+          "Pani Puri": 0,
+          "Rasgulla": 0,
+          "Dosa":0,
+          "Meals":0,
+          "Chappati":0,
+          "Noodles":0,
+          "Chicken Dinner":0,
+          "Burger":0,
+          "Biriyani":0,
+          "Fried Rice":0,
+          "Ravai":0,
+          "Ganesh":0,
+          "Puri":0,
+          "Chat":0,
+          "Soup":0,
+          "Soan Papadi":0,
+          "Nuggets":0,
+          "Veg Meals":0,
+          "Crispers":0,
+          "Chocolate Pudding":0
+        };
+        //taking count
+        mi.forEach((item,index) => {
+          menu_counter[item] = menu_counter[item] +1;
+        });
+
+      
+        firebase.database().ref('stats_item').once("value").then((snap) => {
+            var menu_items = snap.val();
+            Object.keys(menu_items).reduce(function (previous, key) {
+              return previous + menu_items[key].value;
+           }, 0);
+        });
+     } //end menu stat handling 
+   
+   
+
      let updates = {};
      updates["stats_admin/general/visits"] =  i;
      updates["stats_admin/general/total_revenue"] = ri;
