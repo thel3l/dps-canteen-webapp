@@ -378,9 +378,10 @@ function updateStats(amount,type,mi) {
       
         firebase.database().ref('stats_item').once("value").then((snap) => {
             var menu_items = snap.val();
-            Object.keys(menu_items).reduce(function (previous, key) {
-              return previous + menu_items[key].value;
-           }, 0);
+            Object.keys(menu_items).map(function(key, index) {
+              menu_items[key] += menu_counter[key];
+           });
+           firebase.database().ref('stats_item').set(menu_items);
         });
      } //end menu stat handling 
    
