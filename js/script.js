@@ -328,6 +328,23 @@ function updateStats(amount) {
      //handle revenue counter
      let r = stats.total_revenue;
      let ri = r + amount;
+     //handle log of the transactions by moth and year 
+     let date = new Date();
+     let year = date.getFullYear().toString();
+     var monthNames = ["January", "February", "March", "April", "May", "June",
+     "July", "August", "September", "October", "November", "December"
+    ];
+    let month = monthNames[date.getMonth()];
+    firebase.database().ref('stats_general').once("value").then((snap) => {
+        var stats_general = snap.val();
+        if(snap.hasChild(year)) {
+            console.log("this");
+        } else {
+          firebase.database().ref(`stats_general/${year}/${month}`).set({
+             revenue: amount
+          });
+        }
+    });
      let updates = {};
      updates["stats_admin/general/visits"] =  i;
      updates["stats_admin/general/total_revenue"] = ri;
