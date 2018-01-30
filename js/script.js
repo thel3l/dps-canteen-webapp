@@ -23,10 +23,10 @@ function changeErrorMessage(msg) {
   },100);
 }
 // start dev code
-setTimeout(function(){
-    $('#wrapper').fadeOut(function() { $(this).remove(); });
-    $('#slideshow').fadeOut( function() { $(this).remove(); });
-   }, 1500);
+// setTimeout(function(){
+//     $('#wrapper').fadeOut(function() { $(this).remove(); });
+//     $('#slideshow').fadeOut( function() { $(this).remove(); });
+//    }, 1500);
 //auth starts
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
@@ -315,7 +315,7 @@ function topUp(type) {
         str += key + "=" + user_profile[key];
     }
 //  sending the link with the parameters
- //   window.location = "https://api.dpscanteen.ml/paytm?" + str;
+     window.location = "https://api.dpscanteen.ml/paytm?" + str;
 }
 
 function updateStats(amount,type,mi) {
@@ -382,7 +382,9 @@ function updateStats(amount,type,mi) {
               menu_items[key] += menu_counter[key];
            });
            firebase.database().ref('stats_item').set(menu_items);
+           console.log(menu_items);
         });
+       
      } //end menu stat handling 
    
    
