@@ -297,6 +297,10 @@ function topUp(type) {
     console.error('Food plan not selected or amount not entered');
     return
   }
+
+  //increment no_users
+  increaseUserCount();
+
 //serializing obj and creating the parameters
     var str = "";
     for (var key in user_profile) {
@@ -311,8 +315,12 @@ function topUp(type) {
 
 
 function increaseUserCount() {
-  firebase.database().ref('stats_admin/').transaction((post) => {
-     
+  firebase.database().ref('stats_admin/').transaction((snap) => {
+      if(snap) {
+        snap.visits++;
+      } else {
+        console.log("ln 318 visit counter error");
+      }
   });
 }
 
