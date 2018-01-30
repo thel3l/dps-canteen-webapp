@@ -13,13 +13,13 @@ var database = firebase.database();
 var userRef, userInfo;
 var adNo;
 var temp_adno;
-//start dev code
-// setTimeout(function(){
-//     $('#wrapper').fadeOut(function() { $(this).remove(); });
-//     $('#slideshow').fadeOut( function() { $(this).remove(); });
-//   }, 1500);
+// start dev code
+setTimeout(function(){
+    $('#wrapper').fadeOut(function() { $(this).remove(); });
+    $('#slideshow').fadeOut( function() { $(this).remove(); });
+  }, 1500);
 
-//end dev code
+// end dev code
 function changeErrorMessage(msg) {
   setTimeout(() => {
     var error_board = document.getElementById("UserNotRegistered");
@@ -276,9 +276,25 @@ function topUp(type) {
         restrictions.push(menu[i]);
       }
     }
-  //menu end
+// menuitems array refining for data transafer
+    var temp_menu = [];
+    for(var x in c_user_menu) {
+      if(c_user_menu[x] != " " && c_user_menu != null) {
+        temp_menu.push(c_user_menu[x]);
+      }
+    }
+      //sending to the billiing page
+    var user_profile = {
+      name: $('#studentName span').text(),
+      id : $('#user_id').text(),
+      TXN_AMOUNT: billAmount,
+      type: type,
+      menu_items: temp_menu,
+    }
+    console.log(user_profile);
+//menu end
 
-  //custom start
+//custom start
   } else  if (type == 'custom') {
     var wantedAmount = parseInt($('#customMon').val());
     if(wantedAmount < 10){
@@ -286,7 +302,14 @@ function topUp(type) {
     }else if(wantedAmount >2000){
       toast("Too high of a denomination");
     }else{
-    var amount = wantedAmount;
+      var amount = wantedAmount;
+      var user_profile = {
+        name: $('#studentName span').text(),
+        id : $('#user_id').text(),
+        TXN_AMOUNT: amount,
+        type: type
+      }
+      console.log(user_profile);
     }
   //custom end
   } else {
@@ -334,54 +357,26 @@ function topUp(type) {
      //menu transaction code is done
 
 
-// menuitems array refining for data transafer
-var temp_menu = [];
-for(var x in c_user_menu) {
-  if(c_user_menu[x] != " " && c_user_menu != null) {
-     temp_menu.push(c_user_menu[x]);
-  }
-}
-  //sending to the billiing page
-  var user_profile = {
-    name: $('#studentName span').text(),
-    id : $('#user_id').text(),
-    TXN_AMOUNT: billAmount,
-    type: type,
-    menu_items: temp_menu,
- }
- console.log(user_profile);
+
 //serializing obj and creating the parameters
- var str = "";
- for (var key in user_profile) {
-     if (str != "") {
-         str += "&";
-     }
-     str += key + "=" + user_profile[key];
- }
+    var str = "";
+    for (var key in user_profile) {
+        if (str != "") {
+            str += "&";
+        }
+        str += key + "=" + user_profile[key];
+    }
 //  sending the link with the parameters
- window.location = "https://api.dpscanteen.ml/paytm?" + str;
+    window.location = "https://api.dpscanteen.ml/paytm?" + str;
 
- /*
-Debugging Report
-degugger:Madrigal1
-issue: recharge button problems
-comments and report :
-Employing the old school basics
-(a console.log(every line to stack trace the error ))
-everything to this point works fine
-firebase loading of the menu items is rusty and needs improvements
-
-Improvements for the future:
-add custom encryption to the url parameters in the url
-optimize the load speed and time of the menu items
-optimize loading page speed
-*/
-
-    //end of topup function
 }
 
 
-
+function increaseUserCount() {
+  firebase.database().ref('stats_admin/').transaction((post) => {
+     
+  });
+}
 
 
 
